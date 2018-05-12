@@ -74,7 +74,7 @@ def webhook():
 
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
-    question = event
+    question = event.message.text
     question = checkd(question)
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
