@@ -92,6 +92,7 @@ def movie(event):
     userid = event.source.user_id
 
     findm =findmovie(userid)
+    print(findm)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     if sentence !='' :
         cut = cutw(sentence)
@@ -229,7 +230,7 @@ def movie(event):
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                     user.insert(
-                        {"UserId": userid, "NameMovie": "no", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
+                        {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
 
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
