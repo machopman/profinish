@@ -69,15 +69,28 @@ def webhook():
 
     return 'OK'
 
-
+def checDic(question):
+    cut = cutw(question)
+    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
+        a = json.load(f)
+        e = ''
+        for key, value in a.items():
+            for i in cut:
+                if i in value:
+                    w = i
+                    u  =str(w)
+                    e = e+u
+        return e
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
     user = mongo.db.users
     question = event.message.text
+    chec = checDic(question)
     ques = checkd(question)
     userid = event.source.user_id
+
     findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     if sentence !='' :
@@ -212,7 +225,7 @@ def movie(event):
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
             if findm == '':
-                if checDic(question) == '':
+                if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                     user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": 'Actor', "Question": question,
@@ -223,10 +236,9 @@ def movie(event):
                 Type(classify, event, movie_name, userid, user, question, name,findm)
 
     elif findm == '':
-        if checDic(question) != '':
-            global classify
-            global movie_name
-            global name
+        if chec != '':
+            classify = ''
+            movie_name =''
             w = user.find({'UserId':userid}).sort("Time")
             q = []
 
@@ -236,8 +248,8 @@ def movie(event):
                     if key == 'Question':
                         q.append(value)
 
-            ques = q[-1]+checDic(question)
-            Type(classify, event, movie_name, userid, user, ques, name,findm)
+            ques = q[-1]+chec
+            Type(classify, event, movie_name, userid, user, ques, chec,findm)
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
     print(q)
@@ -557,18 +569,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
 
 
-def checDic(question):
-    cut = cutw(question)
-    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
-        a = json.load(f)
-        e = ''
-        for key, value in a.items():
-            for i in cut:
-                if i in value:
-                    w = i
-                    u  =str(w)
-                    e = e+u
-        return e
+
 
 def general(question, event,userid,user):
     if question.find('สบายดี') >= 0:
