@@ -228,8 +228,13 @@ def movie(event):
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-                    user.insert({"UserId": userid, "NameMovie": movie_name, "Cate":classify[0], "Question": question,
-                                 "Answer": text, "Time": datetime.now()})
+                    print(userid)
+                    print(movie_name)
+                    print(classify[0])
+                    print(question)
+                    print(text)
+                    print(datetime.now())
+                    user.insert({"UserId": userid, "NameMovie": movie_name, "Cate":classify[0], "Question": question,"Answer": text, "Time": datetime.now()})
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
             else:
@@ -255,11 +260,11 @@ def movie(event):
             Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
-    print(q)
-    print(movie_name)
-    print(userid)
-    print(question)
-    print(name)
+    #print(q)
+    #print(movie_name)
+    #print(userid)
+    #print(question)
+    #print(name)
     if q == 0: #actor
         if name != '' :
             detail = movie_actor(event,findm,question)
