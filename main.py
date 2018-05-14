@@ -76,6 +76,7 @@ def webhook():
 def movie(event):
     question = event.message.text
     ques = checkd(question)
+    print(ques)
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     print(sentence)
@@ -534,34 +535,10 @@ def Type(q, event, movie_name,userid,user,question,name):
 
 
 
-def  checkd(question):
-     name = searchMovieNameInDic(question)
-     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
-     if sentence!='':
-         if sentence !='' or name !='':
-             if name in question:
-                 u = question.replace(name,'')
-                 return u
-             if name not in question:
-                 return sentence
-         if sentence =='' and name =='':
-              return  question
-     elif sentence=='':
-         return question
 
 
-def searchMovieNameInDic(question):
-    cut = cutw(question)
-    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
-        a = json.load(f)
-        e = ''
-        for key, value in a.items():
-            for i in cut:
-                if i in value:
-                    w = key.lower()
-                    u  =str(w)
-                    e = e+u
-        return e
+
+
 
 def checDic(question):
     cut = cutw(question)
