@@ -30,20 +30,22 @@ def movie_actor(event,question,userid):
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
         mov = findmovie(userid)
+        print(mov)
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
         found = False
         for movie in data:
-            print(movie['nameEN'])
             if movie_name == movie['nameEN'].lower().replace(' ', ''):
+                print(movie_name)
                 found = True
                 Movie_URL = 'http://mandm.plearnjai.com/API/detailMovie.php?idmovie=' + movie['idIMDb']
                 r = requests.get(url=Movie_URL)
                 movie_detail = r.json()
                 detail = movie_detail['response'][0]['detailMovie'][0]['Actor']
                 detail = detail.replace('\n', '')
+                print(detail)
                 if detail != '':
                     return detail
                 else:
