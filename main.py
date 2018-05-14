@@ -220,7 +220,8 @@ def movie(event):
                 p = sess.run(tf.argmax(scores, 1), feed_dict={x: inputs2, keep_prob: 1.0})
                 print(p)
             classify = p
-            clas = classify[0]
+            print(type(classify))
+            clas = str(classify[0])
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
@@ -234,10 +235,8 @@ def movie(event):
                     print(clas)
                     print(question)
                     print(text)
-                    print(datetime.now())
                     user.insert(
-                        {"UserId": userid, "NameMovie": movie_name, "Cate": 0, "Question": question, "Answer": text,
-                         "Time": datetime.now()})
+                        {"UserId": userid, "NameMovie": "no", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
 
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
