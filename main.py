@@ -230,14 +230,13 @@ def movie(event):
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                     print(userid)
                     print(movie_name)
+                    print(user)
                     print(classify[0])
                     print(question)
                     print(text)
                     print(datetime.now())
                     user.insert(
-                        {"UserId": userid, "NameMovie": "no", "Cate": classify[0], "Question": question,
-                         "Answer": text,
-                         "Time": datetime.now()})
+                        {"UserId": userid, "NameMovie": "no", "Cate": classify[0], "Question": question,"Answer": text})
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
             else:
