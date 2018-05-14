@@ -75,9 +75,9 @@ def webhook():
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
     question = event.message.text
-    question = checkd(question)
+    ques = checkd(question)
 
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     print(sentence)
     if sentence !='':
         cut = cutw(sentence)
