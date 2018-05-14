@@ -241,15 +241,18 @@ def movie(event):
             movie_name =''
             w = user.find({'UserId':userid}).sort("Time")
             q = []
-
+            t=[]
             for i in w:
                 a = i
                 for key, value in a.items():
                     if key == 'Question':
                         q.append(value)
+                    if key =='Cate':
+                        t.append(value)
+
 
             ques = q[-1]+chec
-            Type(classify, event, movie_name, userid, user, ques, chec,findm)
+            Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
     print(q)
