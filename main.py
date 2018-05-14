@@ -290,15 +290,14 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
     if q == '1':#"director"
 
-
         if name != '' :
-            detail = movie_director(event,question,userid,findm)
+            detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != ''):
-            detail = movie_director(event,question,userid,findm)
+            detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name == '') :
-            detail = movie_director(event,question,userid,findm)
+            detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         if (name =='')and (movie_name!=''):
             user.insert(
@@ -319,7 +318,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
     if q == '2':#"image"
         if name != '' :
-            detail = movie_image(event,question,userid,findm)
+            detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -327,7 +326,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             line_bot_api.push_message(userid,image_message)
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_image(event,question,userid,findm)
+            detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -335,7 +334,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             line_bot_api.push_message(userid, image_message)
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_image(event,question,userid,findm)
+            detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -356,15 +355,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                          "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
     if q == '3':#"review"
         if name != '':
-            detail = movie_review(event,question,userid,findm)
+            detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_review(event,question,userid,findm)
+            detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_review(event,question,userid,findm)
+            detail = movie_review(event,findm,question)
             if detail!= 'เรื่องอะไรครับ' or detail != 'เรื่องอะไรนะครับ':
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
@@ -383,15 +382,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                          "Answer": detail, "Time": datetime.now()})
     if q == '4': #"spoil"
         if name != '' :
-            detail = movie_spoil(event,question,userid,findm)
+            detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_spoil(event,question,userid,findm)
+            detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_spoil(event,question,userid,findm)
+            detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -409,15 +408,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
     if q == '5': #"detail"
         if name != '':
-            detail = movie_detail(event,question,userid,findm)
+            detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_detail(event,question,userid,findm)
+            detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_detail(event,question,userid,findm)
+            detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -436,15 +435,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
     if q == '6': #"date"
 
         if name != '' :
-            detail = movie_date(event,question,userid,findm)
+            detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_date(event,question,userid,findm)
+            detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_date(event,question,userid,findm)
+            detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -462,15 +461,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
     if q == '7': #"type"
         if name != '' :
-            detail = movie_type(event,question,userid,findm)
+            detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') :
-            detail = movie_type(event,question,userid,findm)
+            detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') :
-            detail = movie_type(event,question,userid,findm)
+            detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!='') :
@@ -488,17 +487,17 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
     if q == '8':
         if 'สนุก' in question:
             if name != '' and q != 9 :
-                detail = movie_enjoy(event,question,userid,findm)
+                detail = movie_enjoy(event,findm,question)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
             elif (name == '') and (movie_name != '') and q != '9' :
-                detail = movie_enjoy(event,question,userid,findm)
+                detail = movie_enjoy(event,findm,question)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
             elif (name == '') and (movie_name == '') and q != '9' :
-                detail = movie_enjoy(event,question,userid,findm)
+                detail = movie_enjoy(event,findm,question)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
