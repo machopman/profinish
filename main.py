@@ -220,19 +220,16 @@ def movie(event):
                 p = sess.run(tf.argmax(scores, 1), feed_dict={x: inputs2, keep_prob: 1.0})
                 print(p)
             classify = p
-            print(type(classify))
-            clas = str(classify[0])
+            clas = checkcate(classify)
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
             if findm == '':
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
-
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                     print(userid)
                     print(movie_name)
-                    print(clas)
                     print(question)
                     print(text)
                     user.insert(
@@ -573,7 +570,25 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             line_bot_api.reply_message(event.reply_token, message)
             return 0
 
-
+def checkcate(classify):
+    if classify ==0:
+        return '0'
+    elif classify == 1:
+        return  '1'
+    elif classify ==2:
+        return '2'
+    elif classify ==3:
+        return '3'
+    elif classify ==4:
+        return '4'
+    elif classify ==5:
+        return '5'
+    elif classify ==6:
+        return '6'
+    elif classify ==7:
+        return '7'
+    elif classify==8:
+        return '8'
 
 
 
