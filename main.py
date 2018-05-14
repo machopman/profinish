@@ -228,7 +228,7 @@ def movie(event):
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-                    user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": 'Actor', "Question": question,
+                    user.insert({"UserId": userid, "NameMovie": movie_name, "Cate":cate(classify), "Question": question,
                                  "Answer": text, "Time": datetime.now()})
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
@@ -252,7 +252,7 @@ def movie(event):
 
 
             ques = q[-1]+chec
-            Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
+            Type(checkcate(t[-1]), event, movie_name, userid, user, ques, chec,findm)
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
     print(q)
@@ -566,12 +566,45 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             return 0
 
 
+def checkcate(classify):
+    if classify ==0:
+        return 'actor'
+    elif classify == 1:
+        return  'director'
+    elif classify ==2:
+        return 'image'
+    elif classify ==3:
+        return 'review'
+    elif classify ==4:
+        return 'spoil'
+    elif classify ==5:
+        return 'detail'
+    elif classify ==6:
+        return 'date'
+    elif classify ==7:
+        return 'type'
+    elif classify==8:
+        return 'moviegen'
 
-
-
-
-
-
+def cate(classi):
+    if classi=='actor':
+        return 0
+    elif classi=='director':
+        return 1
+    elif classi == 'image':
+        return 2
+    elif classi == 'review':
+        return 3
+    elif classi == 'spoil':
+        return 4
+    elif classi == 'detail':
+        return 5
+    elif classi == 'date':
+        return 6
+    elif classi == 'type':
+        return 7
+    elif classi == 'moviegen':
+        return 8
 
 
 def general(question, event,userid,user):
