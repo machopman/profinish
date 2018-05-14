@@ -222,6 +222,11 @@ def movie(event):
                 Type(classify, event, movie_name, userid, user, question, name)
 
 def Type(q, event, movie_name,userid,user,question,name):
+    print(q)
+    print(movie_name)
+    print(userid)
+    print(question)
+    print(name)
     if q == 0: #actor
         if name != '' and q != 9 and q != 8:
             detail = movie_actor(event,question,userid)
