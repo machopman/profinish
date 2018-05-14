@@ -8,7 +8,7 @@ from namemoviebefore  import findmovie
 from searchMovieNameInDic import searchMovieNameInDic
 from googletrans import Translator
 
-def movie_review(event,question,userid):
+def movie_review(event,findm,question):
     movie_name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','',event.message.text).replace(' ', '')
     if movie_name != '':
         movie_name = movie_name.lower()
@@ -37,31 +37,28 @@ def movie_review(event,question,userid):
             return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
-            mov = findmovie(userid)
-            if mov !='A':
-                movie_name = mov.lower().replace(' ','')
-                URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
-                r = requests.get(url=URL)
-                data = r.json()
-                found = False
-                for movie in data:
-                    if movie_name == movie['nameEN'].lower().replace(' ', ''):
-                        found = True
-                        Movie_URL = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie=' + movie['idIMDb']
-                        r = requests.get(url=Movie_URL)
-                        response = r.json()
-                        detail = response['response']['Review_mandm']
-
-                        if detail != None or detail != None:
-                            translator = Translator()
-                            translations = translator.translate(detail, dest='th')
-                            return translations.text
-                        else:
-                            return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+            mov = findm
+            movie_name = mov.lower().replace(' ','')
+            URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
+            r = requests.get(url=URL)
+            data = r.json()
+            found = False
+            for movie in data:
+                if movie_name == movie['nameEN'].lower().replace(' ', ''):
+                    found = True
+                    Movie_URL = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie=' + movie['idIMDb']
+                    r = requests.get(url=Movie_URL)
+                    response = r.json()
+                    detail = response['response']['Review_mandm']
+                    if detail != None or detail != None:
+                        translator = Translator()
+                        translations = translator.translate(detail, dest='th')
+                        return translations.text
+                    else:
+                        return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
                 if found == False:
                     return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
-            elif  mov =='A':
-                 return  'กรุณาพิมพ์ ชื่อหนัง + สิ่งที่ต้องการถาม';
+
 
     else:
         cut = cutw(event.message.text)

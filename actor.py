@@ -6,7 +6,7 @@ from json import load
 from namemoviebefore  import findmovie
 from searchMovieNameInDic import searchMovieNameInDic
 
-def movie_actor(event,question,userid):
+def movie_actor(event,findm,question):
     movie_name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','',event.message.text).replace(' ', '')
     if movie_name!='':
         movie_name = movie_name.lower()
@@ -29,7 +29,7 @@ def movie_actor(event,question,userid):
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
-        mov = findmovie(userid)
+        mov = findm
         print(mov)
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

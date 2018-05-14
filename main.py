@@ -74,13 +74,13 @@ def webhook():
 
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
+    user = mongo.db.users
     question = event.message.text
     ques = checkd(question)
-    print(ques)
-
+    userid = event.source.user_id
+    findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-    print(sentence)
-    if sentence !='':
+    if sentence !='' :
         cut = cutw(sentence)
         print(cut)
         words = []
@@ -205,24 +205,41 @@ def movie(event):
             with tf.Session(graph=graph) as sess:
                 saver.restore(sess, 'model.ckpt')
                 p = sess.run(tf.argmax(scores, 1), feed_dict={x: inputs2, keep_prob: 1.0})
-            print(p)
+                print(p)
             classify = p
-            user = mongo.db.users
 
-            userid = event.source.user_id
 
-            name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]',
-                          '',
-                          question).replace(' ', '')
+            name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
-
-
-            if  (name == '') and (movie_name == '') and classify == 9:
+            if findm == '':
+                if checDic(question) == '':
+                    text = 'เรื่องอะไรครับ'
+                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+                    user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": 'Actor', "Question": question,
+                                 "Answer": text, "Time": datetime.now()})
+            elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
             else:
-                Type(classify, event, movie_name, userid, user, question, name)
+                Type(classify, event, movie_name, userid, user, question, name,findm)
 
-def Type(q, event, movie_name,userid,user,question,name):
+    elif findm == '':
+        if checDic(question) != '':
+            global classify
+            global movie_name
+            global name
+            w = user.find({'UserId':userid}).sort("Time")
+            q = []
+
+            for i in w:
+                a = i
+                for key, value in a.items():
+                    if key == 'Question':
+                        q.append(value)
+
+            ques = q[-1]+checDic(question)
+            Type(classify, event, movie_name, userid, user, ques, name,findm)
+
+def Type(q, event, movie_name,userid,user,question,name,findm):
     print(q)
     print(movie_name)
     print(userid)
@@ -230,13 +247,13 @@ def Type(q, event, movie_name,userid,user,question,name):
     print(name)
     if q == 0: #actor
         if name != '' and q != 9 and q != 8:
-            detail = movie_actor(event,question,userid)
+            detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_actor(event,question,userid)
+            detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_actor(event,question,userid)
+            detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         if (name =='')and (movie_name!='') :
             user.insert(
@@ -259,13 +276,13 @@ def Type(q, event, movie_name,userid,user,question,name):
 
 
         if name != '' and q != 9 and q != 8:
-            detail = movie_director(event,question,userid)
+            detail = movie_director(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_director(event,question,userid)
+            detail = movie_director(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_director(event,question,userid)
+            detail = movie_director(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         if (name =='')and (movie_name!=''):
             user.insert(
@@ -286,7 +303,7 @@ def Type(q, event, movie_name,userid,user,question,name):
 
     if q == 2:#"image"
         if name != '' and q != 9 and q != 8:
-            detail = movie_image(event,question,userid)
+            detail = movie_image(event,question,userid,findm)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -294,7 +311,7 @@ def Type(q, event, movie_name,userid,user,question,name):
             line_bot_api.push_message(userid,image_message)
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_image(event,question,userid)
+            detail = movie_image(event,question,userid,findm)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -302,7 +319,7 @@ def Type(q, event, movie_name,userid,user,question,name):
             line_bot_api.push_message(userid, image_message)
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_image(event,question,userid)
+            detail = movie_image(event,question,userid,findm)
             image_message = ImageSendMessage(
                 original_content_url=detail,
                 preview_image_url=detail
@@ -323,15 +340,15 @@ def Type(q, event, movie_name,userid,user,question,name):
                          "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
     if q == 3:#"review"
         if name != '' and q != 9 and q != 8:
-            detail = movie_review(event,question,userid)
+            detail = movie_review(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_review(event,question,userid)
+            detail = movie_review(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_review(event,question,userid)
+            detail = movie_review(event,question,userid,findm)
             if detail!= 'เรื่องอะไรครับ' or detail != 'เรื่องอะไรนะครับ':
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
@@ -350,15 +367,15 @@ def Type(q, event, movie_name,userid,user,question,name):
                          "Answer": detail, "Time": datetime.now()})
     if q == 4: #"spoil"
         if name != '' and q != 9 and q != 8:
-            detail = movie_spoil(event,question,userid)
+            detail = movie_spoil(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_spoil(event,question,userid)
+            detail = movie_spoil(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_spoil(event,question,userid)
+            detail = movie_spoil(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -376,15 +393,15 @@ def Type(q, event, movie_name,userid,user,question,name):
 
     if q == 5: #"detail"
         if name != '' and q != 9 and q != 8:
-            detail = movie_detail(event,question,userid)
+            detail = movie_detail(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_detail(event,question,userid)
+            detail = movie_detail(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_detail(event,question,userid)
+            detail = movie_detail(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -403,15 +420,15 @@ def Type(q, event, movie_name,userid,user,question,name):
     if q == 6: #"date"
 
         if name != '' and q != 9 and q != 8:
-            detail = movie_date(event,question,userid)
+            detail = movie_date(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_date(event,question,userid)
+            detail = movie_date(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_date(event,question,userid)
+            detail = movie_date(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!=''):
@@ -429,15 +446,15 @@ def Type(q, event, movie_name,userid,user,question,name):
 
     if q == 7: #"type"
         if name != '' and q != 9 and q != 8:
-            detail = movie_type(event,question,userid)
+            detail = movie_type(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name != '') and q != 9 and q != 8:
-            detail = movie_type(event,question,userid)
+            detail = movie_type(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
-            detail = movie_type(event,question,userid)
+            detail = movie_type(event,question,userid,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (movie_name!='') :
@@ -455,17 +472,17 @@ def Type(q, event, movie_name,userid,user,question,name):
     if q == 8:
         if 'สนุก' in question:
             if name != '' and q != 9 :
-                detail = movie_enjoy(event,question,userid)
+                detail = movie_enjoy(event,question,userid,findm)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
             elif (name == '') and (movie_name != '') and q != 9 :
-                detail = movie_enjoy(event,question,userid)
+                detail = movie_enjoy(event,question,userid,findm)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
             elif (name == '') and (movie_name == '') and q != 9 :
-                detail = movie_enjoy(event,question,userid)
+                detail = movie_enjoy(event,question,userid,findm)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 

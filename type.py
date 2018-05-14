@@ -5,7 +5,7 @@ from cutword import cutw
 from json import load
 from searchMovieNameInDic import searchMovieNameInDic
 from namemoviebefore  import findmovie
-def movie_type(event,question,userid):
+def movie_type(event,findm,question):
     movie_name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','',event.message.text).replace(' ', '')
     if movie_name != '':
         movie_name = movie_name.lower()
@@ -29,7 +29,7 @@ def movie_type(event,question,userid):
         if found == False:
             return 'ยังไม่รู้วันประเภทหนังเรื่องนี้เลยครับ'
     elif (movie_name == '') and (searchMovieNameInDic(question) == ''):
-        mov = findmovie(userid)
+        mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)

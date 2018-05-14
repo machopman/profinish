@@ -1,4 +1,7 @@
 from json import load
+
+from flask import json
+
 from cutword import cutw
 import re
 def searchMovieNameInDic(question):
@@ -25,3 +28,16 @@ def checkd(question):
     elif sentence =='' and name =='':
         return question
 #print(checkd('ใครเป็นผู้กำกับวันเดอวูแมน'))
+
+def checDic(question):
+    cut = cutw(question)
+    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
+        a = json.load(f)
+        e = ''
+        for key, value in a.items():
+            for i in cut:
+                if i in value:
+                    w = i
+                    u  =str(w)
+                    e = e+u
+        return e
