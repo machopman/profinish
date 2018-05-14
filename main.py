@@ -234,7 +234,10 @@ def movie(event):
                     print(question)
                     print(text)
                     print(datetime.now())
-                    user.insert({"UserId": userid, "NameMovie": 'noname', "Cate":classify[0], "Question": question,"Answer": text, "Time": datetime.now()})
+                    user.insert(
+                        {"UserId": userid, "NameMovie": "no", "Cate": classify[0], "Question": question,
+                         "Answer": text,
+                         "Time": datetime.now()})
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
             else:
