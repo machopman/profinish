@@ -1,12 +1,12 @@
 
-import  re
 import  requests
 from cutword import cutw
 from json import load
+
+from normalname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
-from namemoviebefore  import findmovie
 def movie_type(event,findm,question):
-    movie_name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','',event.message.text).replace(' ', '')
+    movie_name = checDic(event.message.text)
     if movie_name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

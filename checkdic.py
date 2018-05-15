@@ -1,3 +1,4 @@
+import difflib
 from json import load
 
 from flask import json
@@ -6,16 +7,28 @@ from cutword import cutw
 import re
 def searchMovieNameInDic(question):
     cut = cutw(question)
-    ans =''
+    ques =question
+    t = []
     with open('new.txt', mode='r', encoding='utf-8-sig') as f:
         a = load(f)
+
         for key, value in a.items():
+
             for i in cut:
-                if i  in value:
-                     for i in value:
-                         if i in question:
-                             ans = ans+question.replace(i,'')
-    return ans
+                if i in value:
+                    w = ques.replace(i,'')
+                    t.append(w)
+                else:
+                    z = difflib.get_close_matches(i, value)
+                    if z != []:
+                        u = ques.replace(i, '')
+                        t.append(u)
+    if t ==[]:
+        return ''
+    else:
+        return t[0]
+
+
 
 
 def checkd(question):
@@ -27,17 +40,5 @@ def checkd(question):
         return sentence
     elif sentence =='' and name =='':
         return question
-#print(checkd('ใครเป็นผู้กำกับวันเดอวูแมน'))
+#print(checkd('cattt'))
 
-def checDic(question):
-    cut = cutw(question)
-    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
-        a = json.load(f)
-        e = ''
-        for key, value in a.items():
-            for i in cut:
-                if i in value:
-                    w = i
-                    u  =str(w)
-                    e = e+u
-        return e

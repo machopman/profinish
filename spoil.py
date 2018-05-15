@@ -7,10 +7,11 @@ from json import load
 
 from googletrans import Translator
 from namemoviebefore  import findmovie
+from normalname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_spoil(event,findm,question):
-    movie_name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','',event.message.text).replace(' ', '')
+    movie_name = checDic(event.message.text)
     if movie_name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

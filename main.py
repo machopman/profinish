@@ -1,6 +1,6 @@
 import difflib
 import random
-
+from checkName import checkname
 from actor import movie_actor
 from date import movie_date
 from detail import movie_detail
@@ -9,6 +9,7 @@ from enjoy import movie_enjoy
 from image import movie_image
 #from googletrans import Translator
 from namemoviebefore  import findmovie
+from normalname import checDic
 from searchpic import searchpic
 import json
 import numpy as np
@@ -69,18 +70,6 @@ def webhook():
 
     return 'OK'
 
-def checDic(question):
-    cut = cutw(question)
-    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
-        a = json.load(f)
-        e = ''
-        for key, value in a.items():
-            for i in cut:
-                if i in value:
-                    w = i
-                    u  =str(w)
-                    e = e+u
-        return e
 
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -225,7 +214,7 @@ def movie(event):
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
-            if findm == '':
+            if findm == '' and classify!=9 and classify!=8:
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
@@ -238,7 +227,8 @@ def movie(event):
                 Type(clas, event, movie_name, userid, user, question, name,findm)
 
     elif findm == '':
-        if chec != '':
+        check = checkname(question)
+        if chec != '' or check==True:
             movie_name =''
             w = user.find({'UserId':userid}).sort("Time")
             q = []
@@ -254,13 +244,12 @@ def movie(event):
 
             ques = q[-1]+chec
             Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
+        elif chec=='':
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
+
+
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
-    print(q)
-    print(movie_name)
-    print(userid)
-    print(question)
-    print(name)
     if q == '0': #actor
         if name != '' :
             detail = movie_actor(event,findm,question)
