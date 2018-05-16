@@ -90,5 +90,5 @@ def movie_review(event,findm,question):
                     except :
                         return   'ยังไม่ข้อมูลรีวิวเลย'
 
-print(movie_review('ขอรีวิวหน่อย','wonderwoman','ขอรีวิวหน่อย'))
+#print(movie_review('ขอรีวิวหน่อย','wonderwoman','ขอรีวิวหน่อย'))
 #print(movie_review('ขอรีวิววันเดอวูแมนหน่อย'))
