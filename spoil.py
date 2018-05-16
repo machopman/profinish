@@ -12,6 +12,7 @@ from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_spoil(event,findm,question):
     movie_name = checDic(event.message.text)
+    print(movie_name)
     if movie_name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

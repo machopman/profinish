@@ -81,7 +81,6 @@ def movie(event):
     userid = event.source.user_id
 
     findm =findmovie(userid)
-    print(findm)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     if sentence !='' :
         cut = cutw(sentence)
@@ -208,9 +207,10 @@ def movie(event):
             with tf.Session(graph=graph) as sess:
                 saver.restore(sess, 'model.ckpt')
                 p = sess.run(tf.argmax(scores, 1), feed_dict={x: inputs2, keep_prob: 1.0})
-                print(p)
+
             classify = p
             clas = checkcate(classify)
+            print(clas)
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
