@@ -219,7 +219,7 @@ def movie(event):
             print(movie_name)
 
 
-            if findm == '' and classify!=9 and classify!=8:
+            if findm == '' and classify!=9 and classify!=8 and name =='':
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
@@ -228,7 +228,7 @@ def movie(event):
 
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
-            elif name!='' or movie_name !='':
+            else:
                 Type(clas, event, movie_name, userid, user, question, name,findm)
 
     elif findm == '':
