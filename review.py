@@ -22,8 +22,7 @@ def movie_review(event,findm,question):
                 r = requests.get(url=Movie_URL)
                 response = r.json()
                 detail = response['response']['Review_mandm']
-                detail = detail.replace('\n','')
-                detail = detail.replace('/n','')
+               
 
 
                 if detail != None or detail != None:
@@ -81,7 +80,7 @@ def movie_review(event,findm,question):
                                     response = r.json()
                                     detail = response['response']['Review_mandm']
                                     detail = str(detail)
-                                
+
 
                                     if detail != None or detail != None:
                                         translator = Translator()
