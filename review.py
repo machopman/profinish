@@ -8,12 +8,11 @@ from searchMovieNameInDic import searchMovieNameInDic
 from googletrans import Translator
 
 def movie_review(event,findm,question):
-    movie_name = checDic(event.message.text)
-    print(type(movie_name))
+    movie_name = checDic(event)
 
-    if movie_name != '':
+    if  movie_name!='':
         movie_name = movie_name.lower()
-        print(movie_name)
+
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
@@ -30,11 +29,11 @@ def movie_review(event,findm,question):
                     translations = translator.translate(detail, dest='th')
                     return translations.text
                 else:
-                    return '1'    #'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+                    return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
         if found == False:
-            return  '2'    #'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+            return  'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
-    elif (movie_name=='')and (searchMovieNameInDic(question)==''):
+    elif (movie_name=='')and (searchMovieNameInDic(question)=='') :
             mov = findm
             movie_name = mov.lower().replace(' ', '')
             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -59,7 +58,7 @@ def movie_review(event,findm,question):
                     return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
     else:
-        cut = cutw(event.message.text)
+        cut = cutw(event)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
@@ -93,5 +92,5 @@ def movie_review(event,findm,question):
                     except :
                         return   'ยังไม่ข้อมูลรีวิวเลย'
 
-#print(movie_review('ขอรีวิวหน่อย','wonderwoman','ขอรีวิวหน่อย'))
+#print(movie_review('รีวิวwonderwoman','wonderwoman','รีวิวwonderwoman'))
 #print(movie_review('ขอรีวิววันเดอวูแมนหน่อย'))

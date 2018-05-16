@@ -56,8 +56,10 @@ def checDic(question):
             else:
                 r = e[0].lower()
                 return r
+        else:
+            return ''
 
 
-#print(checDic('ใครคือผู้กำกับwonderwoman'))
+print(checDic('รีวิว'))
 
 
