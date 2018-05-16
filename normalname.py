@@ -42,21 +42,22 @@ def checDic(question):
                 if j ==k:
                     y.append(k)
 
-        if e[0] !='Revolt':
+
+
+        if e==[] and y==[]:
+                return ''
+        elif e[0] !='Revolt':
             if t!=[]:
                  o = t[0].lower()
                  return o
             elif y!=[]:
                  u =  y[0].lower()
                  return u
-            elif e==[] and y==[]:
-                return ''
             else:
                 r = e[0].lower()
                 return r
-        else:
-            return ''
 
-#print(checDic('ขอรีวิวwonderwomanหน่อย'))
+
+print(checDic('ใครคือผู้กำกับwonderwoman'))
 
 
