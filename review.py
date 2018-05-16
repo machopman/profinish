@@ -9,8 +9,11 @@ from googletrans import Translator
 
 def movie_review(event,findm,question):
     movie_name = checDic(event.message.text)
+    print(type(movie_name))
+
     if movie_name != '':
         movie_name = movie_name.lower()
+        print(movie_name)
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
