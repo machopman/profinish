@@ -1,6 +1,26 @@
 import difflib
+import re
+
+import requests
 from flask import json
 from cutword import cutw
+'''
+def check(event):
+
+    URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
+    r = requests.get(url=URL)
+    data = r.json()
+    d= []
+    for movie in data:
+        nameEN= movie['nameEN'].lower().replace(' ', '')
+        d.append(nameEN)
+
+    if event in d:
+        return event
+    else:
+        return ''
+'''
+
 
 def checDic(question):
     question =question.replace(' ', '')
@@ -21,12 +41,22 @@ def checDic(question):
             for k in e:
                 if j ==k:
                     y.append(k)
-        if t!=[]:
-            return t[0].lower()
-        elif y!=[]:
-            return y[0].lower()
-        elif e==[] and y==[]:
-            return ''
+
+        if e[0] !='Revolt':
+            if t!=[]:
+                 o = t[0].lower()
+                 return o
+            elif y!=[]:
+                 u =  y[0].lower()
+                 return u
+            elif e==[] and y==[]:
+                return ''
+            else:
+                r = e[0].lower()
+                return r
         else:
-            return e[0].lower()
-#print(checDic('สวัสดี'))
+            return ''
+
+#print(checDic('ขอรีวิวwonderwomanหน่อย'))
+
+

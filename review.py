@@ -8,7 +8,7 @@ from searchMovieNameInDic import searchMovieNameInDic
 from googletrans import Translator
 
 def movie_review(event,findm,question):
-    movie_name = checDic(event.message.text)
+    movie_name = checDic(event)
     if movie_name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -22,44 +22,41 @@ def movie_review(event,findm,question):
                 r = requests.get(url=Movie_URL)
                 response = r.json()
                 detail = response['response']['Review_mandm']
-               
-
-
-                if detail != None or detail != None:
+                if detail != '' :
                     translator = Translator()
                     translations = translator.translate(detail, dest='th')
                     return translations.text
                 else:
-                    return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+                    return '1'    #'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
         if found == False:
-            return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+            return  '2'    #'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
             mov = findm
-            movie_name = mov.lower().replace(' ','')
+            movie_name = mov.lower().replace(' ', '')
             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
             r = requests.get(url=URL)
             data = r.json()
             found = False
             for movie in data:
-                if movie_name == movie['nameEN'].lower().replace(' ', ''):
-                    found = True
-                    Movie_URL = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie=' + movie['idIMDb']
-                    r = requests.get(url=Movie_URL)
-                    response = r.json()
-                    detail = response['response']['Review_mandm']
-                    if detail != None or detail != None:
-                        translator = Translator()
-                        translations = translator.translate(detail, dest='th')
-                        return translations.text
-                    else:
-                        return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
-                if found == False:
+                    if movie_name == movie['nameEN'].lower().replace(' ', ''):
+                        found = True
+                        Movie_URL = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie=' + movie['idIMDb']
+                        r = requests.get(url=Movie_URL)
+                        response = r.json()
+                        detail = response['response']['Review_mandm']
+
+                        if detail != None or detail != None:
+                            translator = Translator()
+                            translations = translator.translate(detail, dest='th')
+                            return translations.text
+                        else:
+                            return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
+            if found == False:
                     return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
-
     else:
-        cut = cutw(event.message.text)
+        cut = cutw(event)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
@@ -87,11 +84,11 @@ def movie_review(event,findm,question):
                                         translations = translator.translate(detail, dest='th')
                                         return translations.text
                                     else:
-                                        return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลย'
+                                        return  'ยังไม่ได้รีวิวหนังเรื่องนี้เลย'
                             if found == False:
-                                    return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลย'
+                                    return    'ยังไม่ได้รีวิวหนังเรื่องนี้เลย'
                     except :
-                        return 'ยังไม่ข้อมูลรีวิวเลย'
+                        return   'ยังไม่ข้อมูลรีวิวเลย'
 
-#print(movie_review('ขอรีวิวwonderwomanหน่อย','wonderwoman','ขอรีวิวwonderwomanหน่อย'))
+print(movie_review('ขอรีวิวหน่อย','wonderwoman','ขอรีวิวหน่อย'))
 #print(movie_review('ขอรีวิววันเดอวูแมนหน่อย'))
