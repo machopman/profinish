@@ -8,7 +8,7 @@ from searchMovieNameInDic import searchMovieNameInDic
 from googletrans import Translator
 
 def movie_review(event,findm,question):
-    movie_name = checDic(event)
+    movie_name = checDic(event.message.text)
 
     if  movie_name!='':
         movie_name = movie_name.lower()
@@ -58,7 +58,7 @@ def movie_review(event,findm,question):
                     return 'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
     else:
-        cut = cutw(event)
+        cut = cutw(event.message.text)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
