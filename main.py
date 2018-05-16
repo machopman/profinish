@@ -228,7 +228,7 @@ def movie(event):
 
             elif (name == '') and (movie_name == '') and classify == 9:
                 general(question, event, userid, user)
-            else:
+            elif name!='' or movie_name !='':
                 Type(clas, event, movie_name, userid, user, question, name,findm)
 
     elif findm == '':
