@@ -250,6 +250,12 @@ def movie(event):
 
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
+    print(q)
+    print(type(q))
+    print(movie_name)
+    print(question)
+    print(name)
+    print(findm)
     if q == '0': #actor
         if name != '' :
             detail = movie_actor(event,findm,question)
@@ -370,6 +376,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie":findmovie(userid), '3': "review", "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if q == '4': #"spoil"
+
         if name != '' :
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
