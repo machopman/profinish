@@ -81,8 +81,7 @@ def movie_review(event,findm,question):
                                     response = r.json()
                                     detail = response['response']['Review_mandm']
                                     detail = str(detail)
-                                    detail = detail.replace('\n', '')
-                                    detail = detail.replace('/n', '')
+                                
 
                                     if detail != None or detail != None:
                                         translator = Translator()
