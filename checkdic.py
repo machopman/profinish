@@ -49,5 +49,5 @@ def checkd(question):
         return sentence
     elif sentence =='' and name =='':
         return question
-print(checkd('ขอรีวิวwonderwoman'))
+#print(checkd('ขอรีวิวwonderwoman'))
 
