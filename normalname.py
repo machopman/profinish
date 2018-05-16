@@ -29,4 +29,4 @@ def checDic(question):
             return ''
         else:
             return e[0].lower()
-print(checDic('สวัสดี'))
+#print(checDic('สวัสดี'))

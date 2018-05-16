@@ -14,10 +14,3 @@ def checkname(event):
             found = True
 
     return found
-
-e = checkname('wonderwoman')
-
-if e==True:
-    print('เจอ')
-else:
-    print('ไม่เจอ')
