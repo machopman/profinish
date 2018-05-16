@@ -214,6 +214,11 @@ def movie(event):
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
+
+            print(name)
+            print(movie_name)
+
+
             if findm == '' and classify!=9 and classify!=8:
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
@@ -250,12 +255,7 @@ def movie(event):
 
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
-    print(q)
-    print(type(q))
-    print(movie_name)
-    print(question)
-    print(name)
-    print(findm)
+
     if q == '0': #actor
         if name != '' :
             detail = movie_actor(event,findm,question)

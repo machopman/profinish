@@ -58,6 +58,6 @@ def checDic(question):
                 return r
 
 
-print(checDic('ใครคือผู้กำกับwonderwoman'))
+#print(checDic('ใครคือผู้กำกับwonderwoman'))
 
 
