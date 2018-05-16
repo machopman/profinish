@@ -80,6 +80,7 @@ def movie_review(event,findm,question):
                                     r = requests.get(url=Movie_URL)
                                     response = r.json()
                                     detail = response['response']['Review_mandm']
+                                    detail = str(detail)
                                     detail = detail.replace('\n', '')
                                     detail = detail.replace('/n', '')
 
@@ -94,5 +95,5 @@ def movie_review(event,findm,question):
                     except :
                         return 'ยังไม่ข้อมูลรีวิวเลย'
 
-#print(movie_review('ขอรีวิวwonderwomanหน่อย'))
+#print(movie_review('ขอรีวิวwonderwomanหน่อย','wonderwoman','ขอรีวิวwonderwomanหน่อย'))
 #print(movie_review('ขอรีวิววันเดอวูแมนหน่อย'))
