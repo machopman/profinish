@@ -210,7 +210,7 @@ def movie(event):
 
             classify = p
             clas = checkcate(classify)
-            print(clas)
+            print(classify)
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
@@ -607,16 +607,66 @@ def checkcate(classify):
         return '8'
 
 def general(question, event,userid,user):
-    #a = ["ทำอะไรได้บ้าง","การทำงาน","มีความสามารถไรบ้าง","ทำไรได้","สามารถทำอะไรได้","ความสามารถของบอท","มีฟังชันอะไรบ้าง","ฟังชั่นอะไร","ความสามารถพิเศษ"]
+    a = ["ทำอะไรได้บ้าง","การทำงาน","มีความสามารถไรบ้าง","ทำไรได้","สามารถทำอะไรได้","ความสามารถของบอท","มีฟังชันอะไรบ้าง","ฟังชั่นอะไร","ความสามารถพิเศษ",'ถามอะไรได้บ้าง','สามารถทำอะไรได้']
     b = ["สวัสดี", "ดีจ้า", "สวัสดีค่ะ", "สวัสดีครับ", "สวัส", "ดีจร้า", "ดีงับ", "สวัดดี", 'สวัสดีตอนบ่าย','สวัสดีตอนเย็น']
-    #z = difflib.get_close_matches(question, a)
+    z = difflib.get_close_matches(question, a)
     y = difflib.get_close_matches(question, b)
-
     if  y[0] in b:
         ans = ['สวัสดีจร้า','สวัสดีค่ะ','ดีจ้า','สวัสดี']
         text = random.choice(ans)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
         #user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+    if z[0] in a :
+        message = TemplateSendMessage(
+            alt_text='Carousel template',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        title='สามารถถามได้ดังนี้',
+                        text='ถามเกี่ยวกับ',
+                        actions=[
+
+                            MessageTemplateAction(
+                                label='นักแสดง',
+                                text='เช่น ใครเป็นนักแสดง wonderwoman'
+                            ),
+                            MessageTemplateAction(
+                                label='ผู้กำกับ',
+                                text='เช่น ใครเป็นผู้กำกับวันเดอวูแมน'
+                            ),
+                            MessageTemplateAction(
+                                label='รูปภาพ',
+                                text='เช่น อยากดูรูปภาพwonderwoman'
+                            )
+
+                        ]
+                    ),
+                    CarouselColumn(
+                        title='สามารถถามได้ดังนี้',
+                        text='ถามเกี่ยวกับ',
+                        actions=[
+
+                            MessageTemplateAction(
+                                label='รีวิว',
+                                text='เช่น อยากอ่านรีวิวwonderwoman'
+                            ),
+                            MessageTemplateAction(
+                                label='สปอย',
+                                text='เช่น อยากดูสปอยwonderwoman'
+                            ),
+                            MessageTemplateAction(
+                                label='เรื่องย่อ',
+                                text='เช่น อยากอ่านเรื่องย่อwonderwoman'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+        return 0
+
+
 
 
 
