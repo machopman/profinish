@@ -664,6 +664,10 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 MessageTemplateAction(
                                     label='การทักทายทั่วไป',
                                     text='สบายดีไหม'
+                                ),
+                                MessageTemplateAction(
+                                    label='-',
+                                    text='-'
                                 )
 
                             ]
