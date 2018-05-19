@@ -601,15 +601,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
                                 MessageTemplateAction(
                                     label='นักแสดง',
-                                    text='เช่น ใครเป็นนักแสดง wonderwoman'
+                                    text='ใครเป็นนักแสดง wonderwoman'
                                 ),
                                 MessageTemplateAction(
                                     label='ผู้กำกับ',
-                                    text='เช่น ใครเป็นผู้กำกับวันเดอวูแมน'
+                                    text='ใครเป็นผู้กำกับวันเดอวูแมน'
                                 ),
                                 MessageTemplateAction(
                                     label='รูปภาพ',
-                                    text='เช่น อยากดูรูปภาพwonderwoman'
+                                    text='อยากดูรูปภาพwonderwoman'
                                 )
 
                             ]
@@ -621,16 +621,51 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
                                 MessageTemplateAction(
                                     label='รีวิว',
-                                    text='เช่น อยากอ่านรีวิวwonderwoman'
+                                    text='อยากอ่านรีวิวwonderwoman'
                                 ),
                                 MessageTemplateAction(
                                     label='สปอย',
-                                    text='เช่น อยากดูสปอยwonderwoman'
+                                    text='อยากดูสปอยwonderwoman'
                                 ),
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เช่น อยากอ่านเรื่องย่อwonderwoman'
+                                    label='เรื่องย่อภาพยนตร์',
+                                    text='อยากอ่านเรื่องย่อwonderwoman'
                                 )
+                            ]
+                        ),
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
+
+                                MessageTemplateAction(
+                                    label='ประเภทหนัง',
+                                    text='เwonderwonเป็นหนังประเภทอะไร'
+                                ),
+                                MessageTemplateAction(
+                                    label='วันฉายภาพยนตร์',
+                                    text='wonderwomanฉายวันไหน'
+                                ),
+                                MessageTemplateAction(
+                                    label='ความสนุก',
+                                    text='wonderwomanสนุกไหม'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
+
+                                MessageTemplateAction(
+                                    label='แนะนำภาพยนตร์',
+                                    text='แนะนำหนังหน่อย'
+                                ),
+                                MessageTemplateAction(
+                                    label='การทักทายทั่วไป',
+                                    text='สบายดีไหม'
+                                )
+
                             ]
                         )
                     ]
@@ -661,7 +696,7 @@ def checkcate(classify):
         return '8'
 
 def general(question, event,userid,user):
-   b = ["สวัสดี", "ดีจ้า", "สวัสดีค่ะ", "สวัสดีครับ", "สวัส", "ดีจร้า", "ดีงับ", "สวัดดี", 'สวัสดีตอนบ่าย','สวัสดีตอนเย็น']
+   b = ["สวัสดี", "ดีจ้า", "สวัสดีค่ะ", "สวัสดีครับ", "สวัส", "ดีงับ", "สวัดดี", 'สวัสดีตอนบ่าย','สวัสดีตอนเย็น']
 
    y = difflib.get_close_matches(question, b)
    if  y[0] in b:
