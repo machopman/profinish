@@ -10,7 +10,7 @@ from image import movie_image
 #from googletrans import Translator
 from namemoviebefore  import findmovie
 from normalname import checDic
-from searchpic import searchpic
+from searchpic import searchpic, web
 import json
 import numpy as np
 import tensorflow as tf
@@ -215,8 +215,7 @@ def movie(event):
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             movie_name = searchMovieNameInDic(question)
 
-            print(name)
-            print(movie_name)
+
 
 
             if findm == '' and classify!=9 and classify!=8 and name =='':
@@ -538,20 +537,31 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                 user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
         elif 'แนะนำหนัง' in question:
+            t = []
+            url =[]
+            for j in range(6):
+                a = searchpic()
+                b = a[0]
+                t.append(b)
+                c = a[1]
+                t.append(c)
+                d= a[2]
+                t.append(d)
+                e = a[3]
+                url.append(e)
 
             message = TemplateSendMessage(
                 alt_text='Carousel template',
                 template=CarouselTemplate(
                     columns=[
                         CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu1',
-                            text='description1',
+                            thumbnail_image_url=t[0],
+                            title=t[1],
+                            text=t[2],
                             actions=[
-                                PostbackTemplateAction(
-                                    label='postback1',
-                                    text='postback text1',
-                                    data='action=buy&itemid=1'
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
                                 ),
                                 MessageTemplateAction(
                                     label='message1',
@@ -559,19 +569,18 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri1',
-                                    uri='http://mandm.plearnjai.com/'
+                                    uri=url[0]
                                 )
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
+                            thumbnail_image_url=t[3],
+                            title=t[4],
+                            text=t[5],
                             actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
                                 ),
                                 MessageTemplateAction(
                                     label='message2',
@@ -579,7 +588,83 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
+                                    uri=url[1]
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=t[6],
+                            title=t[7],
+                            text=t[8],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri=url[2]
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=t[9],
+                            title=t[10],
+                            text=t[11],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri=url[3]
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=t[12],
+                            title=t[13],
+                            text=t[14],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri=url[4]
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=t[15],
+                            title=t[16],
+                            text=t[17],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri=url[5]
                                 )
                             ]
                         )
