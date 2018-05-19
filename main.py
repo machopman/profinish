@@ -569,7 +569,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri1',
-                                    uri=url[0]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         ),
@@ -588,7 +588,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri=url[1]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         ),
@@ -607,7 +607,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri=url[2]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         ),
@@ -626,7 +626,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri=url[3]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         ),
@@ -645,7 +645,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri=url[4]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         ),
@@ -664,7 +664,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 ),
                                 URITemplateAction(
                                     label='uri2',
-                                    uri=url[5]
+                                    uri='http://mandm.plearnjai.com/'
                                 )
                             ]
                         )
