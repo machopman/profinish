@@ -10,7 +10,7 @@ from image import movie_image
 #from googletrans import Translator
 from namemoviebefore  import findmovie
 from normalname import checDic
-from searchpic import searchpic, web
+from searchpic import searchpic
 import json
 import numpy as np
 import tensorflow as tf
