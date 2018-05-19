@@ -539,6 +539,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
         elif 'แนะนำหนัง' in question:
             t = []
             url =[]
+            det=[]
             for j in range(6):
                 a = searchpic()
                 b = a[0]
@@ -549,6 +550,10 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                 t.append(d)
                 e = a[3]
                 url.append(e)
+                d= a[4]
+                det.append(d)
+                f =a[5]
+                det.append(f)
 
             message = TemplateSendMessage(
                 alt_text='Carousel template',
@@ -560,12 +565,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[2],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[0]
                                 ),
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='บทรีวิว',
+                                    text=det[1]
                                 ),
                                 URITemplateAction(
                                     label='uri1',
@@ -579,12 +584,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[5],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[2]
                                 ),
                                 MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
+                                    label='บทรีวิว',
+                                    text=det[3]
                                 ),
                                 URITemplateAction(
                                     label='uri2',
@@ -598,12 +603,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[8],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[4]
                                 ),
                                 MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
+                                    label='บทรีวิว',
+                                    text=det[5]
                                 ),
                                 URITemplateAction(
                                     label='uri2',
@@ -617,12 +622,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[11],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[6]
                                 ),
                                 MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
+                                    label='บทรีวิว',
+                                    text=det[7]
                                 ),
                                 URITemplateAction(
                                     label='uri2',
@@ -636,12 +641,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[14],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[8]
                                 ),
                                 MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
+                                    label='บทรีวิว',
+                                    text=det[9]
                                 ),
                                 URITemplateAction(
                                     label='uri2',
@@ -655,12 +660,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                             text=t[17],
                             actions=[
                                 MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
+                                    label='เรื่องย่อ',
+                                    text=det[10]
                                 ),
                                 MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
+                                    label='บทรีวิว',
+                                    text=det[11]
                                 ),
                                 URITemplateAction(
                                     label='uri2',
@@ -725,7 +730,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
                                 MessageTemplateAction(
                                     label='ประเภทหนัง',
-                                    text='เwonderwonเป็นหนังประเภทอะไร'
+                                    text='wonderwonเป็นหนังประเภทอะไร'
                                 ),
                                 MessageTemplateAction(
                                     label='วันฉายภาพยนตร์',

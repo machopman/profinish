@@ -1,5 +1,9 @@
 import requests
 import random
+
+from googletrans import Translator
+
+
 def searchpic():
     URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
     r = requests.get(url=URL)
@@ -17,9 +21,22 @@ def searchpic():
     movie_detail = r.json()
     detail1 = movie_detail['response'][0]['detailMovie'][0]['nameEN']
     detail2 = movie_detail['response'][0]['detailMovie'][0]['nameTH']
+    detail3 = movie_detail['response'][0]['detailMovie'][0]['Synopsis']
+
     y = ("https://imagemovie.herokuapp.com/" + e + '.jpg')
     c = "http://www.mandm.plearnjai.com/web/detailMovie.php?nameEN=" + detail1 + "&nameTH=" + detail2
-    return y ,detail1, detail2,c
+
+    url = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie='+e
+    u = requests.get(url=url)
+    story = u.json()
+    detail4 = story['response']['Review_mandm']
+    if detail4 != '':
+        translator = Translator()
+        translations = translator.translate(detail4, dest='th')
+        j = translations.text
+
+
+    return y ,detail1, detail2,c,detail3 , j
 
 
 

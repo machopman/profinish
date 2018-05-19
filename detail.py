@@ -6,7 +6,7 @@ from json import load
 from normalname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
-def movie_detail(event,findm,question,):
+def movie_detail(event,findm,question):
     movie_name = checDic(event.message.text)
     if movie_name != '':
         movie_name = movie_name.lower()
