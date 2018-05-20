@@ -762,6 +762,13 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             )
             line_bot_api.reply_message(event.reply_token, message)
             return 0
+        else:
+            p =['คืออย่างที่คุณคิดเลย','ยังไม่รู้เลยจร้า','ไม่รู้เหมือนกัน','น่าจะเป็นอย่างนั้น','ขอไปหาข้อมูลแปบ','ขอไปศึกษาก่อนเดี๋ยวมาตอบ','ไว้วันหลังจะมาตอบ','คลาวหน้าจะมาตอบนะ']
+            text= random.choice(p)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+            user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
+                         "Answer": text, "Time": datetime.now()})
+
 
 
 def checkcate(classify):
@@ -793,7 +800,94 @@ def general(question, event,userid,user):
         text = random.choice(ans)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
         #user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('สบายดี') >= 0:
+       text = 'สบายดีครับ'
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
 
+   elif question.find('บายดี') >= 0:
+       text = 'สบายดีจร้า'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('กำลังทำ') >= 0:
+       text = 'กำลังรีวิวหนังอยู่ครับ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('ได้ไหม') >= 0:
+       text = 'ได้สิ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('ขอบคุณ') >= 0:
+       text = 'ยินดีจร้า'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('ลาก่อน') >= 0:
+       text = 'จร้าไว้คุยกันอีกนะ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('ชื่อไร') >= 0:
+       text = 'ผมชื่อมูวี่จัง'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question.find('ทำอะไร') >= 0:
+       text = 'กำลังพูดคุยกับคุณอยู่ครับ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'ไปไหน' in question:
+       text = 'ไปหาข้อมูลมารีวิวหนังแปบนึงนะ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'รู้จัก' in question:
+       text = 'รู้จักสิแฟนเราเอง'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'แฟนเราเอง' in question:
+       text = 'ไม่สิอย่ามโน'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'แง' in question:
+       text = 'พูดไม่เพราะเลยนะครับ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'ป่าวนะ' in question:
+       text = 'ไม่เชื่อ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif '555' in question:
+       text = 'หัวเราะๆๆ'
+       print(text)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'อยากมีแฟน' in question:
+       text = 'หาสิ้ๆๆ'
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif 'อยาก' in question:
+       text = 'อยากอะไรฮะ'
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   elif question == 'หาให้หน่อย':
+       text = 'จะให้เราแฟนให้อะดิ'
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
+   else:
+       p = ['คืออย่างที่คุณคิดเลย', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
+            'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
+       text = random.choice(p)
+       line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+       user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
 
 
 
