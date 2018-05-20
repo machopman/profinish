@@ -48,7 +48,7 @@ def send():
     t = []
     url = []
     det = []
-    for j in range(6):
+    for j in range(2):
         a = searchpic()
         b = a[0]
         t.append(b)

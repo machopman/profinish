@@ -294,83 +294,10 @@ def movie(event):
                                 uri='http://mandm.plearnjai.com/'
                             )
                         ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][6],
-                        title=send()[0][7],
-                        text=send()[0][8],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][4]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][5]
-                            ),
-                            URITemplateAction(
-                                label='uri2',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][9],
-                        title=send()[0][10],
-                        text=send()[0][11],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][6]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][7]
-                            ),
-                            URITemplateAction(
-                                label='uri2',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][12],
-                        title=send()[0][13],
-                        text=send()[0][14],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][8]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][9]
-                            ),
-                            URITemplateAction(
-                                label='uri2',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][15],
-                        title=send()[0][16],
-                        text=send()[0][17],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][10]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][11]
-                            ),
-                            URITemplateAction(
-                                label='uri2',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
                     )
+
+
+
                 ]
             )
         )
