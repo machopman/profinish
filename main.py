@@ -635,44 +635,8 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                                 )
                             ]
                         ),
-                        CarouselColumn(
-                            thumbnail_image_url=t[12],
-                            title=t[13],
-                            text=t[14],
-                            actions=[
-                                MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text=det[8]
-                                ),
-                                MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text=det[9]
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=t[15],
-                            title=t[16],
-                            text=t[17],
-                            actions=[
-                                MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text=det[10]
-                                ),
-                                MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text=det[11]
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        )
+                       
+
                     ]
                 )
             )

@@ -39,7 +39,10 @@ def searchpic():
         t = 'ไม่มีบทวิจารณ์หนังเรื่องนี้นะ'
         e=e+t
 
+
     return y ,detail1, detail2,c,detail3 ,e
+
+
 
 
 #print(searchpic())
