@@ -812,6 +812,7 @@ def general(question, event,userid,user):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
             #user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
    except:
+       
        if question.find('สบายดี') >= 0:
            text = 'สบายดีครับ'
            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
