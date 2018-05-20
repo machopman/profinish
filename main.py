@@ -540,7 +540,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             t = []
             url =[]
             det=[]
-            for j in range(6):
+            for j in range(3):
                 a = searchpic()
                 b = a[0]
                 t.append(b)
