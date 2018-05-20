@@ -32,7 +32,7 @@ def searchpic():
     story = u.json()
     detail4 = story['response']['Review_mandm']
     e =''
-    if detail4 != '':
+    if detail4 != None:
         translator = Translator()
         translations = translator.translate(detail4, dest='th')
         e=e+translations.text
@@ -43,7 +43,7 @@ def searchpic():
     return y ,detail1, detail2,c,detail3 ,e
 
 
-
+print(searchpic())
 
 
 
