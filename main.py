@@ -257,7 +257,12 @@ def movie(event):
 def Type(q, event, movie_name,userid,user,question,name,findm):
 
     if q == '0': #actor
-        if name != '' :
+        if 'แสดง' not in question:
+            p = ['เทส', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
+                 'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
+            text = random.choice(p)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+        elif name != '' :
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != '') :
@@ -266,6 +271,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
         elif (name == '') and (movie_name == ''):
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+
         if (name =='')and (movie_name!='') :
             user.insert(
                 {"UserId": userid, "NameMovie": movie_name, "Cate": '0', "Question": question, "Answer": detail,
@@ -284,8 +290,12 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
 
     if q == '1':#"director"
-
-        if name != '' :
+        if 'กำกับ' not in question:
+            p = ['เทส', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
+                 'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
+            text = random.choice(p)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+        elif name != '' :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != ''):
@@ -312,6 +322,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
 
     if q == '2':#"image"
+
         if name != '' :
             detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
