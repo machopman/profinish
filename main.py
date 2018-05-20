@@ -1,4 +1,5 @@
 import difflib
+from searchstory import searchstory
 import random
 from checkName import checkname
 from actor import movie_actor
@@ -520,7 +521,10 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
         a = ["ทำอะไรได้บ้าง", "การทำงาน", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", "ความสามารถของบอท",
              "มีฟังชันอะไรบ้าง", "ฟังชั่นอะไร", "ความสามารถพิเศษ", 'ถามอะไรได้บ้าง', 'สามารถทำอะไรได้']
         z = difflib.get_close_matches(question, a)
-        if 'สนุก' in question:
+        if 'มีเรื่องอะไร' in question:
+            r = searchstory()
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=r))
+        elif 'สนุก' in question:
             if name != '' and q != 9 :
                 detail = movie_enjoy(event,findm,question)
 
