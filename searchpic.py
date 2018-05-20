@@ -27,7 +27,6 @@ def searchpic():
     c = "http://www.mandm.plearnjai.com/web/detailMovie.php?nameEN=" + detail1 + "&nameTH=" + detail2
 
     url = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie='+e
-    print(url)
     u = requests.get(url=url)
     story = u.json()
     detail4 = story['response']['Review_mandm']
