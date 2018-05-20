@@ -82,7 +82,7 @@ def movie(event):
 
     findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-    if sentence !='' and 'แนะนำหนัง' not in sentence :
+    if sentence !='' and ('แนะนำหนัง' not in sentence) :
         cut = cutw(sentence)
         print(cut)
         words = []
@@ -250,7 +250,7 @@ def movie(event):
             Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
         elif chec=='':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
-    elif 'แนะนำหนัง' not in sentence :
+    if 'แนะนำหนัง' not in sentence :
         t = []
         url = []
         det = []
@@ -679,7 +679,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             else:
                 user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
-        
+
         elif z[0] in a:
             message = TemplateSendMessage(
                 alt_text='Carousel template',
