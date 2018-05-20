@@ -43,7 +43,7 @@ def searchpic():
     return y ,detail1, detail2,c,detail3 ,e
 
 
-print(searchpic())
+#print(searchpic())
 
 
 
