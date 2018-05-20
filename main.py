@@ -82,7 +82,7 @@ def movie(event):
 
     findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-    if sentence !='' and 'แนะนำหนัง' not in sentence :
+    if sentence !='' :
         cut = cutw(sentence)
         print(cut)
         words = []
