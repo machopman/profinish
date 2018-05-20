@@ -10,7 +10,7 @@ from image import movie_image
 #from googletrans import Translator
 from namemoviebefore  import findmovie
 from normalname import checDic
-from searchpic import searchpic, send
+from searchpic import searchpic
 import json
 import numpy as np
 import tensorflow as tf
@@ -82,7 +82,7 @@ def movie(event):
 
     findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-    if sentence !='' and ('แนะนำหนัง' not in sentence) :
+    if sentence !='' and 'แนะนำหนัง' not in sentence :
         cut = cutw(sentence)
         print(cut)
         words = []
@@ -250,59 +250,6 @@ def movie(event):
             Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
         elif chec=='':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
-    elif 'แนะนำหนัง' in sentence :
-
-
-        message = TemplateSendMessage(
-            alt_text='Carousel template',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][0],
-                        title=send()[0][1],
-                        text=send()[0][2],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][0]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][1]
-                            ),
-                            URITemplateAction(
-                                label='uri1',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=send()[0][3],
-                        title=send()[0][4],
-                        text=send()[0][5],
-                        actions=[
-                            MessageTemplateAction(
-                                label='เรื่องย่อ',
-                                text=send()[2][2]
-                            ),
-                            MessageTemplateAction(
-                                label='บทรีวิว',
-                                text=send()[2][3]
-                            ),
-                            URITemplateAction(
-                                label='uri2',
-                                uri='http://mandm.plearnjai.com/'
-                            )
-                        ]
-                    )
-
-
-
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-
 
 
 
@@ -590,6 +537,142 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             else:
                 user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
+        elif 'แนะนำหนัง' in question:
+            a = []
+            d =[]
+            f = []
+            for i in range(6):
+                b = searchpic()[0]
+                a.append(b)
+                c = searchpic()[1]
+                d.append(c)
+                e = searchpic()[2]
+                f.append(e)
+
+
+            message = TemplateSendMessage(
+                alt_text='Carousel template',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url=a[0],
+                            title=d[0],
+                            text=f[0],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri1',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=a[1],
+                            title=d[1],
+                            text=f[1],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=a[2],
+                            title=d[2],
+                            text=f[2],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=a[3],
+                            title=d[3],
+                            text=f[3],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=a[4],
+                            title=d[4],
+                            text=f[4],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=a[5],
+                            title=d[5],
+                            text=f[5],
+                            actions=[
+                                MessageTemplateAction(
+                                    label='เรื่องย่อ',
+                                    text='เรื่องย่อ'
+                                ),
+                                MessageTemplateAction(
+                                    label='บทรีวิว',
+                                    text='บทรีวิว'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, message)
+            return 0
 
         elif z[0] in a:
             message = TemplateSendMessage(
