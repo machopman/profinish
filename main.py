@@ -250,7 +250,7 @@ def movie(event):
             Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
         elif chec=='':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
-    if 'แนะนำหนัง' not in sentence :
+    elif 'แนะนำหนัง' in sentence :
         t = []
         url = []
         det = []
@@ -391,7 +391,7 @@ def movie(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, message)
-        return 0
+
 
 
 
