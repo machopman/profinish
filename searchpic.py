@@ -27,16 +27,20 @@ def searchpic():
     c = "http://www.mandm.plearnjai.com/web/detailMovie.php?nameEN=" + detail1 + "&nameTH=" + detail2
 
     url = 'http://movieapi.plearnjai.com/DEV/API/Summarization.php?idmovie='+e
+    print(url)
     u = requests.get(url=url)
     story = u.json()
     detail4 = story['response']['Review_mandm']
+    e =''
     if detail4 != '':
         translator = Translator()
         translations = translator.translate(detail4, dest='th')
-        j = translations.text
+        e=e+translations.text
+    elif detail4=='':
+        t = 'ไม่มีบทวิจารณ์หนังเรื่องนี้นะ'
+        e=e+t
 
-
-    return y ,detail1, detail2,c,detail3 , j
+    return y ,detail1, detail2,c,detail3 ,e
 
 
 
