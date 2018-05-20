@@ -44,8 +44,28 @@ def searchpic():
 
 
 
+def send():
+    t = []
+    url = []
+    det = []
+    for j in range(6):
+        a = searchpic()
+        b = a[0]
+        t.append(b)
+        c = a[1]
+        t.append(c)
+        d = a[2]
+        t.append(d)
+        e = a[3]
+        url.append(e)
+        d = a[4]
+        det.append(d)
+        f = a[5]
+        det.append(f)
+    return t ,url , det
 
 #print(searchpic())
+#print(send()[0][0])
 
 
 

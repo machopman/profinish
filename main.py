@@ -10,7 +10,7 @@ from image import movie_image
 #from googletrans import Translator
 from namemoviebefore  import findmovie
 from normalname import checDic
-from searchpic import searchpic
+from searchpic import searchpic, send
 import json
 import numpy as np
 import tensorflow as tf
@@ -251,40 +251,24 @@ def movie(event):
         elif chec=='':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
     elif 'แนะนำหนัง' in sentence :
-        t = []
-        url = []
-        det = []
-        for j in range(6):
-            a = searchpic()
-            b = a[0]
-            t.append(b)
-            c = a[1]
-            t.append(c)
-            d = a[2]
-            t.append(d)
-            e = a[3]
-            url.append(e)
-            d = a[4]
-            det.append(d)
-            f = a[5]
-            det.append(f)
+
 
         message = TemplateSendMessage(
             alt_text='Carousel template',
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url=t[0],
-                        title=t[1],
-                        text=t[2],
+                        thumbnail_image_url=send()[0][0],
+                        title=send()[0][1],
+                        text=send()[0][2],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[0]
+                                text=send()[2][0]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[1]
+                                text=send()[2][1]
                             ),
                             URITemplateAction(
                                 label='uri1',
@@ -293,17 +277,17 @@ def movie(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=t[3],
-                        title=t[4],
-                        text=t[5],
+                        thumbnail_image_url=send()[0][3],
+                        title=send()[0][4],
+                        text=send()[0][5],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[2]
+                                text=send()[2][2]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[3]
+                                text=send()[2][3]
                             ),
                             URITemplateAction(
                                 label='uri2',
@@ -312,17 +296,17 @@ def movie(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=t[6],
-                        title=t[7],
-                        text=t[8],
+                        thumbnail_image_url=send()[0][6],
+                        title=send()[0][7],
+                        text=send()[0][8],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[4]
+                                text=send()[2][4]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[5]
+                                text=send()[2][5]
                             ),
                             URITemplateAction(
                                 label='uri2',
@@ -331,17 +315,17 @@ def movie(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=t[9],
-                        title=t[10],
-                        text=t[11],
+                        thumbnail_image_url=send()[0][9],
+                        title=send()[0][10],
+                        text=send()[0][11],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[6]
+                                text=send()[2][6]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[7]
+                                text=send()[2][7]
                             ),
                             URITemplateAction(
                                 label='uri2',
@@ -350,17 +334,17 @@ def movie(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=t[12],
-                        title=t[13],
-                        text=t[14],
+                        thumbnail_image_url=send()[0][12],
+                        title=send()[0][13],
+                        text=send()[0][14],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[8]
+                                text=send()[2][8]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[9]
+                                text=send()[2][9]
                             ),
                             URITemplateAction(
                                 label='uri2',
@@ -369,17 +353,17 @@ def movie(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=t[15],
-                        title=t[16],
-                        text=t[17],
+                        thumbnail_image_url=send()[0][15],
+                        title=send()[0][16],
+                        text=send()[0][17],
                         actions=[
                             MessageTemplateAction(
                                 label='เรื่องย่อ',
-                                text=det[10]
+                                text=send()[2][10]
                             ),
                             MessageTemplateAction(
                                 label='บทรีวิว',
-                                text=det[11]
+                                text=send()[2][11]
                             ),
                             URITemplateAction(
                                 label='uri2',
