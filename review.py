@@ -24,7 +24,7 @@ def movie_review(event,findm,question):
                 r = requests.get(url=Movie_URL)
                 response = r.json()
                 detail = response['response']['Review_mandm']
-                if detail != '' :
+                if detail != None :
                     translator = Translator()
                     translations = translator.translate(detail, dest='th')
                     return translations.text
