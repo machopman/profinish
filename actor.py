@@ -7,8 +7,10 @@ from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_actor(event,findm,question):
     movie_name = checDic(event.message.text)
+
     if movie_name!='':
         movie_name = movie_name.lower()
+        print(movie_name)
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
@@ -21,6 +23,7 @@ def movie_actor(event,findm,question):
                 movie_detail = r.json()
                 detail = movie_detail['response'][0]['detailMovie'][0]['Actor']
                 detail = detail.replace('\n', '')
+                print(detail)
                 if detail != '':
                     return detail
                 else:
@@ -63,6 +66,7 @@ def movie_actor(event,findm,question):
                         if i in value:
                             w = key.lower()
                             movie_name = w.lower()
+                            print(movie_name)
                             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
                             r = requests.get(url=URL)
                             data = r.json()
@@ -75,6 +79,7 @@ def movie_actor(event,findm,question):
                                     movie_detail = r.json()
                                     detail = movie_detail['response'][0]['detailMovie'][0]['Actor']
                                     detail = detail.replace('\n', '')
+                                    print(detail)
                                     if detail != '':
                                         return detail
                                     else:
