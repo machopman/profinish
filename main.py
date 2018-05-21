@@ -1,4 +1,6 @@
 import difflib
+
+from normalize import normalword
 from searchstory import searchstory
 import random
 from checkName import checkname
@@ -76,11 +78,11 @@ def webhook():
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
     user = mongo.db.users
-    question = event.message.text
+    q = event.message.text
+    question= normalword(q)
     chec = checDic(question)
     ques = checkd(question)
     userid = event.source.user_id
-
     findm =findmovie(userid)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     if sentence !='' :
