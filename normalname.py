@@ -26,7 +26,10 @@ def check(event):
 
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
-    ques = question.replace('แล้ว','')
+    if 'แล้ว' in question:
+        ques = question.replace('แล้ว','')
+    else:
+        ques = question
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     cut = cutsentence(ques)
     if sentence !='':
