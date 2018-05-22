@@ -80,10 +80,12 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
+
     if sentence !='' :
         cut = cutw(sentence)
         print(cut)
+
         words = []
         for row in cut:
             words.append(row)
@@ -898,7 +900,6 @@ def general(question, event,userid,user):
            text = random.choice(p)
            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
            user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
-
 
 
 

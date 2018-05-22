@@ -10,7 +10,7 @@ def checDic(question):
     ques = str(question)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
     cut = mmcut(ques)
-    print(cut)
+    #print(cut)
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
         if name =='':
