@@ -1,9 +1,9 @@
 
-import  re
+
 import  requests
 from cutword import cutw
 from json import load
-from main import checDic
+from classifyname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 def movie_image(event,findm,question):
     movie_name = checDic(event.message.text)

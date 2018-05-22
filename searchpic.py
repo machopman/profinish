@@ -1,7 +1,6 @@
 import requests
 import random
 
-from googletrans import Translator
 
 
 def searchpic():
