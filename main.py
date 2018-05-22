@@ -231,6 +231,8 @@ def movie(event):
 
     elif findm == '':
         check = checkname(question)
+        print('check')
+        print(check)
         if chec != '' or check==True:
             movie_name =''
             w = user.find({'UserId':userid}).sort("Time")
@@ -254,6 +256,16 @@ def movie(event):
 
 
 def Type(q, event, movie_name,userid,user,question,name,findm):
+    print('ประเภท')
+    print(q)
+    print('ชื่อหนังพบในdic')
+    print(movie_name)
+    print('คำถาม')
+    print(question)
+    print('ชื่อหนัง')
+    print(name)
+    print('ชื่อหนังก่อนหน้า')
+    print(findm)
 
     if q == '0': #actor
         if 'แสดง' not in question:
