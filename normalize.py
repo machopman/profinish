@@ -21,10 +21,6 @@ def  normalword(word):
     question = re.sub(r'(\w)\1+', r'\1', word)
     s = cutw(question)
     e= GetListWithoutRepetitions(s)
-    t= ''
-    for i in e:
-        if len(i)>1:
-            t=t+i
-    return t
+    return  e
 
-print(normalword('เธอเธอไปไหนไหนมาครับบบบบบบบบบบบบบบบบบบบบ'))
+#print(normalword('สปอย'))
