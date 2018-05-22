@@ -1,17 +1,10 @@
 import difflib
 import re
-
 from flask import json
-
 from restplus import mmcut
-
-
 def checDic(question):
-    ques = str(question)
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
-    cut = mmcut(ques)
-    #print(cut)
-    if sentence !='':
+        ques = str(question)
+        cut = mmcut(ques)
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
         if name =='':
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
@@ -81,10 +74,9 @@ def checDic(question):
             elif y!=[]:
                 return y[0]
             else:
-                return ''
-
-    else:
-         return question
+                return ques
 
 
-#print(checDic("cat"))
+
+
+#print(checDic("ลาก่อน"))

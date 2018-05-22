@@ -9,9 +9,7 @@ def movie_actor(event,findm,question):
     movie_name = checDic(event.message.text)
 
     if movie_name!='':
-        print('1')
         movie_name = movie_name.lower()
-        print(movie_name)
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
@@ -32,9 +30,7 @@ def movie_actor(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
-        print('2')
         mov = findm
-        print(mov)
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -59,7 +55,6 @@ def movie_actor(event,findm,question):
 
 
     else:
-        print('3')
         cut = cutw(event.message.text)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
@@ -69,7 +64,6 @@ def movie_actor(event,findm,question):
                         if i in value:
                             w = key.lower()
                             movie_name = w.lower()
-                            print(movie_name)
                             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
                             r = requests.get(url=URL)
                             data = r.json()
