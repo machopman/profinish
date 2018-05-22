@@ -5,7 +5,7 @@ import re
 import requests
 from flask import json
 
-from cutsentence import cutsentence
+
 from cutword import cutw
 '''
 def check(event):
@@ -28,7 +28,7 @@ def check(event):
 def checDic(question):
     ques = question
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
-    cut = cutsentence(ques)
+    cut = cutw(ques)
     print(cut)
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
