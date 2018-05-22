@@ -27,4 +27,4 @@ def  normalword(word):
             t=t+i
     return t
 
-#print(normalword('เธอเธอไปไหนไหนมาครับบบบบบบบบบบบบบบบบบบบบ'))
+print(normalword('เธอเธอไปไหนไหนมาครับบบบบบบบบบบบบบบบบบบบบ'))

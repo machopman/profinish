@@ -1,7 +1,6 @@
 import difflib
 from json import load
 
-from flask import json
 
 from cutword import cutw
 import re
@@ -49,5 +48,5 @@ def checkd(question):
         return sentence
     elif sentence =='' and name =='':
         return question
-#print(checkd('ขอรีวิวwonderwoman'))
+print(checkd('ขอรีวิว'))
 

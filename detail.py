@@ -106,4 +106,4 @@ def movie_detail(event,findm,question):
                                     return 'ยังไม่ทราบเนื้อเรื่องนี้เลย'
                     except :
                         return 'ยังไม่ทราบลยครับ'
-#print(movie_detail('ขอเรื่องย่อวันเดอ'))
+#print(movie_detail('w'))
