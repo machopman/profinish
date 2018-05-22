@@ -1,35 +1,12 @@
-import difflib
-import random
-import re
 
-import requests
-from flask import json
 
 from cutsentence import cutsentence
-from cutword import cutw
-'''
-def check(event):
 
-    URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
-    r = requests.get(url=URL)
-    data = r.json()
-    d= []
-    for movie in data:
-        nameEN= movie['nameEN'].lower().replace(' ', '')
-        d.append(nameEN)
-
-    if event in d:
-        return event
-    else:
-        return ''
-'''
-
-#z = difflib.get_close_matches(i, value)
 def checDic(question):
     ques = question
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     cut = cutsentence(ques)
     print(cut)
+'''
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
         if name =='':
@@ -105,7 +82,7 @@ def checDic(question):
     else:
          return ''
 
-
+'''
 
 #print(checDic("แล้วใครคือนักแสดงwonderwoman"))
 
