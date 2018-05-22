@@ -26,12 +26,11 @@ def check(event):
 
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
-    ques = question
+    ques = question.replace('แล้ว','')
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     cut = cutsentence(ques)
-    #print(cut)
     if sentence !='':
-        name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',question).replace(' ', '')
+        name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
         if name =='':
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = json.load(f)
@@ -45,9 +44,11 @@ def checDic(question):
                                     e.append(i)
                                 elif e==[]:
                                     z = difflib.get_close_matches(j, value)
+
                                     if z!=[]:
                                         for n in z:
                                             q.append(n)
+
                     except:
                         e=e.append('')
                         q.append('')
@@ -105,7 +106,7 @@ def checDic(question):
 
 
 
-print(checDic("ใครเป็นผู้กำกับ"))
+print(checDic("แล้วใครคือนักแสดง"))
 
 
 
