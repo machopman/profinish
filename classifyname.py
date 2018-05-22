@@ -7,7 +7,7 @@ from restplus import mmcut
 
 
 def checDic(question):
-    ques = question
+    ques = str(question)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
     cut = mmcut(ques)
     print(cut)
