@@ -13,6 +13,7 @@ from cutword import cutw
 def checDic(question):
     ques = question
     cut = cutsentence(ques)
+    print(cut)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   ques).replace(' ', '')
     if name =='':
@@ -89,7 +90,7 @@ def checDic(question):
 
 
 
-#print(checDic("สปอย"))
+print(checDic("สปอยwonderwoman"))
 
 
 
