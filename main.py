@@ -80,7 +80,7 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
     if sentence !='' :
         cut = cutw(sentence)
         print(cut)
