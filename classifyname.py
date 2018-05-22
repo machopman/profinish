@@ -84,4 +84,7 @@ def checDic(question):
                 return ''
 
     else:
-         return ''
+         return question
+
+
+#print(checDic("cat"))
