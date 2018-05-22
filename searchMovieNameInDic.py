@@ -2,6 +2,7 @@
 from cutword import cutw
 from json import load
 def searchMovieNameInDic(question):
+    question = str(question)
     cut = cutw(question)
     with open('new.txt', mode='r', encoding='utf-8-sig') as f:
         a = load(f)
