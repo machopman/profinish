@@ -88,9 +88,7 @@ def checDic(question):
 
 
 
-
-
-#print(checDic("สปอยwonderwoman"))
+#print(checDic("สวัสดี"))
 
 
 
