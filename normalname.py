@@ -12,11 +12,10 @@ from cutword import cutw
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
     ques = question
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
     cut = cutsentence(ques)
-    if sentence !='':
-        name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
-        if name =='':
+    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
+                  ques).replace(' ', '')
+    if name =='':
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = json.load(f)
                 e = []
@@ -52,7 +51,7 @@ def checDic(question):
                 elif e==[] and q==[]:
                     return ''
 
-        elif name!='':
+    elif name!='':
             g= []
             y=[]
             name = name.lower()
@@ -86,8 +85,7 @@ def checDic(question):
             else:
                 return ''
 
-    else:
-         return ''
+
 
 
 
@@ -95,6 +93,6 @@ def checDic(question):
 
 
 
-print(checDic('ใครเป็นนักแสดงวันเดอวูแ'))
+#print(checDic('cat'))
 
 #z = difflib.get_close_matches(i, value)
