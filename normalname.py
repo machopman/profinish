@@ -6,17 +6,33 @@ import requests
 from flask import json
 
 from cutsentence import cutsentence
+from cutword import cutw
+'''
+def check(event):
 
+    URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
+    r = requests.get(url=URL)
+    data = r.json()
+    d= []
+    for movie in data:
+        nameEN= movie['nameEN'].lower().replace(' ', '')
+        d.append(nameEN)
 
+    if event in d:
+        return event
+    else:
+        return ''
+'''
 
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
     ques = question
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
     cut = cutsentence(ques)
     print(cut)
-    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
-                  ques).replace(' ', '')
-    if name =='':
+    if sentence !='':
+        name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
+        if name =='':
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = json.load(f)
                 e = []
@@ -52,7 +68,7 @@ def checDic(question):
                 elif e==[] and q==[]:
                     return ''
 
-    elif name!='':
+        elif name!='':
             g= []
             y=[]
             name = name.lower()
@@ -86,12 +102,15 @@ def checDic(question):
             else:
                 return ''
 
+    else:
+         return ''
 
 
-#print(checDic("สวัสดี"))
+
+#print(checDic("แล้วใครคือนักแสดงwonderwoman"))
 
 
 
-#print(checDic('cat'))
+#checDic('ใครเป็นนักแสดงวันเดอวูแ')
 
 #z = difflib.get_close_matches(i, value)
