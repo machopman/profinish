@@ -6,7 +6,7 @@ import requests
 from flask import json
 
 
-from cutword import cutw
+
 from restplus import mmcut
 
 '''
