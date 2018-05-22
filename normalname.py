@@ -6,7 +6,7 @@ import requests
 from flask import json
 
 from cutsentence import cutsentence
-from cutword import cutw
+
 
 
 #z = difflib.get_close_matches(i, value)
