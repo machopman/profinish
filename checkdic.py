@@ -9,7 +9,7 @@ from searchMovieNameInDic import searchMovieNameInDic
 
 
 def searchMovieName(question):
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(question)).replace(' ', '')
     name =  searchMovieNameInDic(question)
     if sentence !='' and name !='':
         cut = cutw(question)
