@@ -7,22 +7,7 @@ from flask import json
 
 from cutsentence import cutsentence
 from cutword import cutw
-'''
-def check(event):
 
-    URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
-    r = requests.get(url=URL)
-    data = r.json()
-    d= []
-    for movie in data:
-        nameEN= movie['nameEN'].lower().replace(' ', '')
-        d.append(nameEN)
-
-    if event in d:
-        return event
-    else:
-        return ''
-'''
 
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
@@ -30,7 +15,7 @@ def checDic(question):
         ques = question.replace('แล้ว','')
     else:
         ques = question
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question)
     cut = cutsentence(ques)
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
@@ -113,6 +98,6 @@ def checDic(question):
 
 
 
-#checDic('ใครเป็นนักแสดงวันเดอวูแ')
+print(checDic('ใครเป็นนักแสดงวันเดอวูแ'))
 
 #z = difflib.get_close_matches(i, value)
