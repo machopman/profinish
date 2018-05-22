@@ -41,7 +41,7 @@ def searchMovieName(question):
 
 def checkd(question):
     name = searchMovieName(question)
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(question)).replace(' ', '')
     if name !='':
         return name
     elif sentence !='':
