@@ -3,7 +3,7 @@ from googletrans import Translator
 import  requests
 from cutword import cutw
 from json import load
-from normalname import checDic
+from main import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_detail(event,findm,question):

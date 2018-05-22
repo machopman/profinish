@@ -3,7 +3,7 @@ import  requests
 from cutword import cutw
 from json import load
 
-from normalname import checDic
+from main import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_scorepos(event,findm,question):

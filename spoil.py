@@ -7,7 +7,7 @@ from json import load
 
 from googletrans import Translator
 from namemoviebefore  import findmovie
-from normalname import checDic
+from main import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_spoil(event,findm,question):

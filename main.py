@@ -1,7 +1,7 @@
 import difflib
 
 from normalize import normalword
-from searchstory import searchstory
+from restplus import mmcut
 import random
 from checkName import checkname
 from actor import movie_actor
@@ -10,9 +10,7 @@ from detail import movie_detail
 from director import movie_director
 from enjoy import movie_enjoy
 from image import movie_image
-#from googletrans import Translator
 from namemoviebefore  import findmovie
-from normalname import checDic
 from searchpic import searchpic
 import json
 import numpy as np
@@ -23,10 +21,8 @@ from searchMovieNameInDic import searchMovieNameInDic
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, ImagemapSendMessage, BaseSize,
-                            URIImagemapAction, ImagemapArea, MessageImagemapAction, TemplateSendMessage,
-                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction,
-                            PostbackTemplateAction)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage,
+                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction)
 import re
 from flask.ext.pymongo import PyMongo
 from review import movie_review
@@ -906,6 +902,85 @@ def general(question, event,userid,user):
            user.insert({'userid': userid, 'question': question, 'answer': text, 'time': datetime.now()})
 
 
+def checDic(question):
+    ques = question
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
+    cut = mmcut(ques)
+    print(cut)
+    if sentence !='':
+        name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
+        if name =='':
+            with open('new.txt', mode='r', encoding='utf-8-sig') as f:
+                a = json.load(f)
+                e = []
+                q= []
+                for key, value in a.items():
+                    try:
+                        for i in value:
+                            for j in cut:
+                                if j in i:
+                                    e.append(i)
+                                elif e==[]:
+                                    z = difflib.get_close_matches(j, value)
+
+                                    if z!=[]:
+                                        for n in z:
+                                            q.append(n)
+
+                    except:
+                        e=e.append('')
+                        q.append('')
+                if e!=[]:
+                    k = []
+                    for i in cut:
+                       for j in e:
+                           if i==j:
+                               k.append(j)
+                               return j
+                    if k==[]:
+                        return e[0]
+                elif e==[] and q !=[]:
+                    return q[0]
+
+                elif e==[] and q==[]:
+                    return ''
+
+        elif name!='':
+            g= []
+            y=[]
+            name = name.lower()
+            with open('new.txt', mode='r', encoding='utf-8-sig') as f:
+                a = json.load(f)
+                for key, value in a.items():
+                    try:
+                        z = difflib.get_close_matches(name, value)
+                        if z!=[]:
+                            for m in z:
+                                y.append(m)
+                                if name in m:
+                                    g.append(m)
+                                else:
+                                    y.append(m)
+                    except:
+                        g = g+''
+                        y.append('')
+
+            if g!=[]:
+                p = []
+                for c in cut:
+                    if c in g:
+                        p.append(c)
+                if p!=[]:
+                    return p[0]
+                else:
+                    return g[0]
+            elif y!=[]:
+                return y[0]
+            else:
+                return ''
+
+    else:
+         return ''
 
 
 
