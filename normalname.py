@@ -11,11 +11,8 @@ from cutword import cutw
 
 #z = difflib.get_close_matches(i, value)
 def checDic(question):
-    if 'แล้ว' in question:
-        ques = question.replace('แล้ว','')
-    else:
-        ques = question
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question.message.text).replace(' ', '')
+    ques = question
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', question).replace(' ', '')
     cut = cutsentence(ques)
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',ques).replace(' ', '')
