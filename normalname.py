@@ -7,6 +7,8 @@ from flask import json
 
 
 from cutword import cutw
+from restplus import mmcut
+
 '''
 def check(event):
 
@@ -28,7 +30,7 @@ def check(event):
 def checDic(question):
     ques = question
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
-    cut = cutw(ques)
+    cut = mmcut(ques)
     print(cut)
     if sentence !='':
         name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
@@ -111,6 +113,6 @@ def checDic(question):
 
 
 
-#checDic('ใครเป็นนักแสดงวันเดอวูแ')
+#print(checDic('ใครเป็นนักแสดงวันเดอวูแ'))
 
 #z = difflib.get_close_matches(i, value)
