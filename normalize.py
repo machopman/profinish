@@ -26,4 +26,4 @@ def  normalword(word):
         ans = ans+i
     return  ans
 
-#print(normalword('สปอยยยยยยยwonderwoman'))
+#print(normalword('แล้วใครคือนักแสดงงงงงงงงงงงง'))
