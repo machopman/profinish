@@ -292,7 +292,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
         else:
             user.insert(
-                {"UserId": userid, "NameMovie": findmovie(userid), "Cate": '0', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": findm, "Cate": '0', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
 
     if q == '1':#"director"
@@ -324,7 +324,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
         else:
             user.insert(
-                {"UserId": userid, "NameMovie": findmovie(userid), "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": findm, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
 
     if q == '2':#"image"
@@ -363,7 +363,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '2', "Question": question,
                          "Answer": 'รูปภาพ'+movie_name, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie":findmovie(userid), "Cate": '2', "Question": question,
+            user.insert({"UserId": userid, "NameMovie":findm, "Cate": '2', "Question": question,
                          "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
     if q == '3':#"review"
         if name != '':
@@ -390,7 +390,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '3', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie":findmovie(userid), '3': "review", "Question": question,
+            user.insert({"UserId": userid, "NameMovie":findm, '3': "review", "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if q == '4': #"spoil"
         if name != '' :
@@ -441,7 +441,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie":findmovie(userid), "Cate": '4', "Question": question,
+            user.insert({"UserId": userid, "NameMovie":findm, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
 
     if q == '5': #"detail"
@@ -467,7 +467,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '5', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '5', "Question": question,
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
 
     if q == '6': #"date"
@@ -494,7 +494,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate":'6', "Question": question,
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate":'6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
 
     if q == '7': #"type"
@@ -520,7 +520,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": name, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
-            user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '7', "Question": question,
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if q == '8':
         a = ["ทำอะไรได้บ้าง", "การทำงาน", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", "ความสามารถของบอท",
