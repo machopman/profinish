@@ -103,7 +103,7 @@ def readFile():
     return w
 
 
-#print(checDic("ใครคือผู้กำกับวันเดอวู"))
+#print(checDic("รีวิว"))
 
 
 '''
