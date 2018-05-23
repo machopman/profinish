@@ -390,12 +390,11 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
 
-
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
 
-    
+
         if (name =='')and (movie_name!=''):
             user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
