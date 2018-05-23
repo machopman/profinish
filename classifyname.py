@@ -6,12 +6,10 @@ from restplus import mmcut
 def checDic(question):
         ques = str(question)
         cut = mmcut(ques)
-        print(cut)
         k = set(cut)
         f = readFile()
         s = k - f
         cut = list(s)
-        print(cut)
         if cut!=[]:
             name = re.sub('[ฤกขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',str(ques)).replace(' ', '')
             if name =='':
