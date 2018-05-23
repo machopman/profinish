@@ -103,7 +103,7 @@ def readFile():
     return w
 
 
-#print(checDic("รีวิว"))
+#print(checDic("สปอย"))
 
 
 '''

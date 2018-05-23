@@ -49,4 +49,4 @@ def checkd(question):
     elif sentence =='' and name =='':
         return question
 #print(checkd('แล้วใครคือนักแสดง'))
-#print(type(checkd('ขอรีวิว')))
+#print((checkd('สปอย')))

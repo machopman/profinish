@@ -6,13 +6,11 @@ from cutword import cutw
 from json import load
 
 from googletrans import Translator
-from namemoviebefore  import findmovie
 from classifyname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_spoil(event,findm,question):
-    movie_name = checDic(event.message.text)
-    print(movie_name)
+    movie_name = checDic(question)
     if movie_name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -100,4 +98,4 @@ def movie_spoil(event,findm,question):
                         return 'ยังไม่ข้อมูลเลย'
 
 
-#print(movie_spoil('สปอยwonderwoman'))
+#print(movie_spoil('สปอย','wonderwoman','สปอย'))
