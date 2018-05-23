@@ -385,41 +385,17 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
     if q == '4': #"spoil"
         if name != '' :
             detail = movie_spoil(event,findm,question)
-
-            if len(detail) > 1999 and len(detail) < 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:]))
-            elif len(detail) >= 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:3998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[3999:]))
-            elif len(detail) < 2000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
         elif (name == '') and (movie_name != '') :
             detail = movie_spoil(event,findm,question)
-            if len(detail) > 1999 and len(detail) < 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:]))
-            elif len(detail) >= 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:3998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[3999:]))
-            elif len(detail) < 2000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
+
 
         elif (name == '') and (movie_name == '') and q != 9 and q != 8:
             detail = movie_spoil(event,findm,question)
-            if len(detail) > 1999 and len(detail) < 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:]))
-            elif len(detail) >= 4000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[1999:3998]))
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[3999:]))
-            elif len(detail) < 2000:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
 
+    
         if (name =='')and (movie_name!=''):
             user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
