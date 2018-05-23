@@ -292,12 +292,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
 
     if q == '1':#"director"
-        if 'กำกับ' not in question:
-            p = ['เทส', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
-                 'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
-            text = random.choice(p)
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-        elif name != '' :
+        if name != '' :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != ''):
