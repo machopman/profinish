@@ -263,12 +263,8 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
     print('ชื่อหนังก่อนหน้า'+"="+name)
 
     if q == '0': #actor
-        if 'แสดง' not in question:
-            p = ['เทส', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
-                 'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
-            text = random.choice(p)
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-        elif name != '' :
+
+        if name != '' :
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (movie_name != '') :
