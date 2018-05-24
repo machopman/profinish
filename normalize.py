@@ -3,19 +3,19 @@ import re
 from cutword import cutw
 
 
-def GetListWithoutRepetitions(loInput):
-    if loInput==[]:
+def GetListWithoutRepetitions(question):
+    if question==[]:
         return []
-    loOutput = []
-    if loInput[0] is None:
-        oGroupElement=1
+    Output = []
+    if question[0] is None:
+        GroupElement=1
     else: # loInput[0]<>None
-        oGroupElement=None
-    for oElement in loInput:
-        if oElement != oGroupElement:
-            loOutput.append(oElement)
-            oGroupElement = oElement
-    return loOutput
+        GroupElement=None
+    for Element in question:
+        if Element != GroupElement:
+            Output.append(Element)
+            GroupElement = Element
+    return Output
 
 def  normalword(word):
     question = re.sub(r'(\w)\1+', r'\1', word)
