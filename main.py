@@ -1,4 +1,4 @@
-import difflib
+import key
 
 from classifyname import checDic
 from normalize import normalword
@@ -29,7 +29,7 @@ from review import movie_review
 from spoil import movie_spoil
 from type import movie_type
 from datetime import datetime
-
+from key import diffli
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(
@@ -78,6 +78,7 @@ def movie(event):
     question= normalword(q)
     chec = checDic(question)
     ques = checkd(question)
+    ques = diffli(ques)
     userid = event.source.user_id
     findm =findmovie(userid)
 
@@ -487,9 +488,8 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if q == '8':
-        a = ["ทำอะไรได้บ้าง", "การทำงาน", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", "ความสามารถของบอท",
-             "มีฟังชันอะไรบ้าง", "ฟังชั่นอะไร", "ความสามารถพิเศษ", 'ถามอะไรได้บ้าง', 'สามารถทำอะไรได้']
-        z = difflib.get_close_matches(question, a)
+        a = ["ทำอะไรได้บ้าง", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", 'ถามอะไรได้บ้าง', 'สามารถทำอะไรได้']
+        z = key.get_close_matches(question, a)
         if 'สนุก' in question:
             if name != '' and q != 9 :
                 detail = movie_enjoy(event,findm,question)
@@ -775,7 +775,7 @@ def checkcate(classify):
 def general(question, event,userid,user):
    try:
        b = ["สวัสดี", "ดีจ้า", "สวัสดีค่ะ", "สวัสดีครับ", "สวัส", "ดีงับ", "สวัดดี", 'สวัสดีตอนบ่าย','สวัสดีตอนเย็น']
-       y = difflib.get_close_matches(question, b)
+       y = key.get_close_matches(question, b)
        if  y[0] in b:
             ans = ['สวัสดีจร้า','สวัสดีค่ะ','ดีจ้า','สวัสดี']
             text = random.choice(ans)

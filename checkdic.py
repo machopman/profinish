@@ -1,4 +1,4 @@
-import difflib
+import key
 from json import load
 
 
@@ -25,7 +25,7 @@ def searchMovieName(question):
                         w = ques.replace(i,'')
                         t.append(w)
                     else:
-                        z = difflib.get_close_matches(i, value)
+                        z = key.get_close_matches(i, value)
                         if z != []:
                             u = ques.replace(i, '')
                             t.append(u)

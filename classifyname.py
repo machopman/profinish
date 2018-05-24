@@ -1,4 +1,4 @@
-import difflib
+import key
 import re
 from flask import json
 from restplus import mmcut
@@ -30,7 +30,7 @@ def checDic(question):
 
                                     elif e==[]:
 
-                                        z = difflib.get_close_matches(j, value)
+                                        z = key.get_close_matches(j, value)
                                         if z!=[]:
                                             for n in z:
                                                 #print(j)
@@ -63,7 +63,7 @@ def checDic(question):
                     a = json.load(f)
                     for key, value in a.items():
                         try:
-                            z = difflib.get_close_matches(name, value)
+                            z = key.get_close_matches(name, value)
                             if z!=[]:
                                 for m in z:
                                     y.append(m)
