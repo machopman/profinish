@@ -1,4 +1,4 @@
-import key
+import difflib
 import re
 from flask import json
 from restplus import mmcut
@@ -30,7 +30,7 @@ def checDic(question):
 
                                     elif e==[]:
 
-                                        z = key.get_close_matches(j, value)
+                                        z = difflib.get_close_matches(j, value)
                                         if z!=[]:
                                             for n in z:
                                                 #print(j)
@@ -40,6 +40,9 @@ def checDic(question):
                         except:
                             e=e.append('')
                             q.append('')
+
+
+
                     if e!=[]:
                         k = []
                         for i in cut:
@@ -48,9 +51,9 @@ def checDic(question):
                                    k.append(j)
                                    return j
                         if k==[]:
-                            return e[0] #,set(l)
+                            return e[0]
                     elif e==[] and q !=[]:
-                        return q[0] #, set(t)
+                        return q[0]
 
                     elif e==[] and q==[]:
                         return ''
@@ -101,12 +104,6 @@ def readFile():
 
     w = set(a)
     return w
-
-
-#print(checDic("สปอย"))
-
-
-'''
 def readFile1():
     a = []
     with open('dictionary.txt', mode='r', encoding='utf-8-sig') as f:
@@ -117,8 +114,8 @@ def readFile1():
 
 
     return a
-#print(readFile1())
-'''
+#print(checDic("สปอย"))
+
 '''
 for i in readFile1():
     e = checDic(i)
