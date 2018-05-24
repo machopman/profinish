@@ -228,7 +228,7 @@ def movie(event):
             elif (name == '') and (chec == '') and classify == 9:
                 general(question, event, userid, user)
             else:
-                Type(clas, event, chec, userid, user, question, name,findm)
+                Type(clas, event, chec, userid, user, question, chec,findm)
 
     elif findm == '':
         check = checkname(question)
