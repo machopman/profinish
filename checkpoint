@@ -1,6 +1,0 @@
-model_checkpoint_path: "model.ckpt"
-all_model_checkpoint_paths: "D:\\profinish\\test\\new\\deep\\1527099724\\checkpoints\\model-34600"
-all_model_checkpoint_paths: "D:\\profinish\\test\\new\\deep\\1527099724\\checkpoints\\model-34700"
-all_model_checkpoint_paths: "D:\\profinish\\test\\new\\deep\\1527099724\\checkpoints\\model-34800"
-all_model_checkpoint_paths: "D:\\profinish\\test\\new\\deep\\1527099724\\checkpoints\\model-34900"
-all_model_checkpoint_paths: "model.ckpt"
