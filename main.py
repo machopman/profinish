@@ -215,7 +215,7 @@ def movie(event):
             print(classify)
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
-            movie_name = searchMovieNameInDic(question)
+            #movie_name = searchMovieNameInDic(question)
 
 
             if findm == '' and classify!=9 and classify!=8 and name =='':
@@ -225,10 +225,10 @@ def movie(event):
                     user.insert(
                         {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
 
-            elif (name == '') and (movie_name == '') and classify == 9:
+            elif (name == '') and (chec == '') and classify == 9:
                 general(question, event, userid, user)
             else:
-                Type(clas, event, movie_name, userid, user, question, name,findm)
+                Type(clas, event, chec, userid, user, question, name,findm)
 
     elif findm == '':
         check = checkname(question)
