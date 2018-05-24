@@ -75,7 +75,7 @@ def checDic(question):
                                     else:
                                         y.append(m)
                         except:
-                            g = g+''
+                            g.append('')
                             y.append('')
 
                 if g!=[]:
