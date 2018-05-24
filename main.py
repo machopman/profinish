@@ -262,7 +262,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
     print('ชื่อหนัง'+"="+name)
     print('ชื่อหนังก่อนหน้า'+"="+findm)
 
-    if q == '0': #actor
+    if q == '0' : #actor
 
         if name != '' :
             detail = movie_actor(event,findm,question)
