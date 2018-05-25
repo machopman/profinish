@@ -218,7 +218,7 @@ def movie(event):
             #movie_name = searchMovieNameInDic(question)
 
 
-            if findm == '' and classify!=9 and classify!=8 and name =='':
+            if findm == '' and classify!=9 and classify!=8 and name ==''and chec=='':
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
