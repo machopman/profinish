@@ -1,3 +1,4 @@
+import re
 
 import  requests
 from cutword import cutw
@@ -7,8 +8,10 @@ from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_actor(event,findm,question):
     movie_name = checDic(event.message.text)
+    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
+                  movie_name).replace(' ', '')
 
-    if movie_name!='':
+    if movie_name != '' and name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -55,7 +58,7 @@ def movie_actor(event,findm,question):
 
 
     else:
-        cut = cutw(event.message.text)
+        cut = cutw(event)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
@@ -91,7 +94,7 @@ def movie_actor(event,findm,question):
 
 
 
-#print(movie_actor('ใครเป็นนักแสดงวันเดอวูแมน'))
+#print(movie_actor('ใครเป็นนักแสดงวันเดอวูแมน,'''))
 #print(movie_actor('ใครเป็นนักแสดงwonderwoman'))
 
 

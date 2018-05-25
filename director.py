@@ -1,3 +1,4 @@
+import re
 
 import  requests
 from cutword import cutw
@@ -7,7 +8,10 @@ from classifyname import checDic
 from searchMovieNameInDic import searchMovieNameInDic
 def movie_director(event,findm,question):
     movie_name = checDic(event.message.text)
-    if movie_name!='':
+    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
+                  movie_name).replace(' ', '')
+
+    if movie_name!='' and name!='':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -28,9 +32,7 @@ def movie_director(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
     elif (movie_name=='')and (searchMovieNameInDic(question)==''):
-        print('1')
         mov = findm
-        print(mov)
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -54,6 +56,7 @@ def movie_director(event,findm,question):
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
 
     else:
+
         cut = cutw(event.message.text)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
@@ -84,3 +87,4 @@ def movie_director(event,findm,question):
                     except:
                         return 'ยังไม่รู้ใครเป็นผู้กำกับเลย'
 
+#print(movie_director('ใครเป็นผู้กำกับวันเดอวูแมน','','ใครเป็นผู้กำกับวันเดอวูแมน'))

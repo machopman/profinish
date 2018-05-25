@@ -1,3 +1,4 @@
+import re
 
 import  requests
 from cutword import cutw
@@ -8,7 +9,11 @@ from searchMovieNameInDic import searchMovieNameInDic
 
 def movie_scorepos(event,findm,question):
     movie_name = checDic(event.message.text)
-    if movie_name != '':
+
+    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
+                  movie_name).replace(' ', '')
+
+    if movie_name != '' and name != '':
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
