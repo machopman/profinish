@@ -3,9 +3,9 @@ import difflib
 from json import load
 
 
-from cutword import cutw
 import re
 
+from restplus import mmcut
 from searchMovieNameInDic import searchMovieNameInDic
 
 
@@ -13,7 +13,7 @@ def searchMovieName(question):
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(question)).replace(' ', '')
     name =  searchMovieNameInDic(question)
     if sentence !='' and name !='':
-        cut = cutw(question)
+        cut = mmcut(question)
         ques =question
         t = []
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
@@ -33,11 +33,12 @@ def searchMovieName(question):
         if t ==[]:
             return ''
         else:
+            #print(t[0])
             return t[0]
     else:
         return ''
 
-
+#searchMovieName("ใครเป็นผู้กำกับวัน")
 
 
 def checkd(question):
@@ -49,5 +50,5 @@ def checkd(question):
         return sentence
     elif sentence =='' and name =='':
         return question
-#print(checkd('แล้วใครคือนักแสดง'))
+#print(checkd('ใครเป็นผู้กำกับ'))
 #print((checkd('สปอย')))
