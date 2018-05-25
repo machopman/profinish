@@ -66,7 +66,7 @@ def checDic(question):
                     a = json.load(f)
                     for key, value in a.items():
                         try:
-                            z = key.get_close_matches(name, value)
+                            z = difflib.get_close_matches(name, value)
                             if z!=[]:
                                 for m in z:
                                     y.append(m)
@@ -114,7 +114,7 @@ def readFile1():
 
 
     return a
-#print(checDic("สปอย"))
+print(checDic("ใครคือผู้กำกับwonderwoman"))
 
 '''
 for i in readFile1():

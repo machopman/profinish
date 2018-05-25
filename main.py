@@ -171,7 +171,7 @@ def movie(event):
 
             # Combine all the pooled features
             num_filters_total = features1 * len([2, 3, 4])
-            print(pooled_outputs)
+            #print(pooled_outputs)
 
             # h_pool = tf.concat(3, pooled_outputs)
             h_pool = tf.concat(pooled_outputs, 3)
@@ -228,7 +228,7 @@ def movie(event):
             elif (name == '') and (chec == '') and classify == 9:
                 general(question, event, userid, user)
             else:
-                Type(clas, event, chec, userid, user, question, chec,findm)
+                Type(clas, event, chec, userid, user, question,name,findm)
 
     elif findm == '':
         check = checkname(question)
@@ -247,7 +247,7 @@ def movie(event):
 
 
             ques = q[-1]+chec
-            Type(t[-1], event, movie_name, userid, user, ques, chec,findm)
+            Type(t[-1], event, chec, userid, user, ques, chec,findm)
         elif chec=='':
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
 
@@ -306,11 +306,11 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
                  "Time": datetime.now()})
         elif (movie_name =='')and(name !=''):
             user.insert(
-                {"UserId": userid, "NameMovie": name, "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie":  movie_name, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
         elif (movie_name != '') and (name != ''):
             user.insert(
-                {"UserId": userid, "NameMovie": name, "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie":  movie_name, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
         else:
             user.insert(

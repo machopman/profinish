@@ -8,10 +8,6 @@ def readFile1(name):
             a.append(movie_name)
     return a
 
-
-
-
-
 def diffli(question):
     r = readFile1('ques.txt')
     z = difflib.get_close_matches(question, r)
