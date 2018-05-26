@@ -19,7 +19,7 @@ def findmovie(userid):
             return ''
 
 
-#print(findmovie('U7183997e3e85a10d8c5f1f3925825016'))
+print(findmovie('U7183997e3e85a10d8c5f1f3925825016'))
 
 
 
