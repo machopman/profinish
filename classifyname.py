@@ -114,7 +114,7 @@ def readFile1():
 
 
     return a
-#print(checDic("ใครคือผู้กำกับwonderwoman"))
+#print(checDic("cat"))
 
 '''
 for i in readFile1():

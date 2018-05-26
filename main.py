@@ -265,13 +265,13 @@ def Type(clas, event, chec, userid, user, question,name,findm):
     if clas == '0' : #actor
 
         if name != '' :
-            detail = movie_actor(event,findm,question)
+            detail = movie_actor(chec,name,moviename,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (chec != '') :
-            detail = movie_actor(event,findm,question)
+            detail = movie_actor(chec,name,moviename,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         elif (name == '') and (chec == ''):
-            detail = movie_actor(event,findm,question)
+            detail = movie_actor(chec,name,moviename,findm)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
         if (name =='')and (chec!='') :
