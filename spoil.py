@@ -7,10 +7,12 @@ from json import load
 
 from googletrans import Translator
 from classifyname import checDic
-from searchMovieNameInDic import searchMovieNameInDic
+from searchMovieNameInDic import searchMovieNameInDic, searchMovie
+
 
 def movie_spoil(event,findm,question):
     movie_name = checDic(question)
+    movie_name = searchMovie(movie_name)
 
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
