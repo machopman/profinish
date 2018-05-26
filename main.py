@@ -254,70 +254,70 @@ def movie(event):
 
 
 
-def Type(q, event, movie_name,userid,user,question,name,findm):
-    print('ประเภท'+"="+q)
-    print('ชื่อหนังพบในdic'+"="+movie_name)
+def Type(clas, event, chec, userid, user, question,name,findm):
+    print('ประเภท'+"="+clas)
+    print('ชื่อหนังพบในdic'+"="+chec)
     print('คำถาม'+"="+question)
     print('ชื่อหนัง'+"="+name)
     print('ชื่อหนังก่อนหน้า'+"="+findm)
 
-    if q == '0' : #actor
+    if clas == '0' : #actor
 
         if name != '' :
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-        elif (name == '') and (movie_name == ''):
+        elif (name == '') and (chec == ''):
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        if (name =='')and (movie_name!='') :
+        if (name =='')and (chec!='') :
             user.insert(
-                {"UserId": userid, "NameMovie": movie_name, "Cate": '0', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": chec, "Cate": '0', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
+        elif (chec =='')and(name !=''):
             user.insert(
-                {"UserId": userid, "NameMovie": name, "Cate": '0', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": chec, "Cate": '0', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
-        elif (movie_name != '') and (name != ''):
+        elif (chec != '') and (name != ''):
             user.insert(
-                {"UserId": userid, "NameMovie": name, "Cate": '0', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": chec, "Cate": '0', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
         else:
             user.insert(
                 {"UserId": userid, "NameMovie": findm, "Cate": '0', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
 
-    if q == '1':#"director"
+    if clas == '1':#"director"
         if name != '' :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-        elif (name == '') and (movie_name != ''):
+        elif (name == '') and (chec != ''):
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-        if (name =='')and (movie_name!=''):
+        if (name =='')and (chec!=''):
             user.insert(
-                {"UserId": userid, "NameMovie": movie_name, "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie": chec, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
+        elif (chec =='')and(name !=''):
             user.insert(
-                {"UserId": userid, "NameMovie":  movie_name, "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie":  chec, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
-        elif (movie_name != '') and (name != ''):
+        elif (chec != '') and (name != ''):
             user.insert(
-                {"UserId": userid, "NameMovie":  movie_name, "Cate": '1', "Question": question, "Answer": detail,
+                {"UserId": userid, "NameMovie":  chec, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
         else:
             user.insert(
                 {"UserId": userid, "NameMovie": findm, "Cate": '1', "Question": question, "Answer": detail,
                  "Time": datetime.now()})
 
-    if q == '2':#"image"
+    if clas == '2':#"image"
 
         if name != '' :
             detail = movie_image(event,findm,question)
@@ -327,7 +327,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             )
             line_bot_api.push_message(userid,image_message)
 
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
                 original_content_url=detail,
@@ -335,7 +335,7 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             )
             line_bot_api.push_message(userid, image_message)
 
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_image(event,findm,question)
             image_message = ImageSendMessage(
                 original_content_url=detail,
@@ -343,15 +343,15 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             )
             line_bot_api.push_message(userid, image_message)
 
-        if (name =='')and (movie_name!=''):
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '2', "Question": question,
-                         "Answer": 'รูปภาพ'+movie_name, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '2', "Question": question,
+        if (name =='')and (chec!=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '2', "Question": question,
+                         "Answer": 'รูปภาพ'+chec, "Time": datetime.now()})
+        elif (chec =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '2', "Question": question,
                          "Answer": 'รูปภาพ'+name, "Time": datetime.now()})
-        elif (movie_name !='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '2', "Question": question,
-                         "Answer": 'รูปภาพ'+movie_name, "Time": datetime.now()})
+        elif (chec !='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '2', "Question": question,
+                         "Answer": 'รูปภาพ'+chec, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie":findm, "Cate": '2', "Question": question,
                          "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
@@ -360,48 +360,48 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
 
-        if (name =='')and (movie_name!=''):
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '3', "Question": question,
+        if (name =='')and (chec!=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '3', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '3', "Question": question,
+        elif (chec =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '3', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name !='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '3', "Question": question,
+        elif (chec !='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '3', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie":findm, '3': "review", "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-    if q == '4': #"spoil"
+    if clas == '4': #"spoil"
         if name != '' :
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
 
-        elif (name == '') and (movie_name == '') and q != 9 and q != 8:
+        elif (name == '') and (chec == '') :
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
 
 
-        if (name =='')and (movie_name!=''):
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '4', "Question": question,
+        if (name =='')and (chec!=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '4', "Question": question,
+        elif (chec =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name !='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '4', "Question": question,
+        elif (chec !='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '4', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie":findm, "Cate": '4', "Question": question,
@@ -412,22 +412,22 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        if (name =='')and (movie_name!=''):
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '5', "Question": question,
+        if (name =='')and (chec!=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '5', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '5', "Question": question,
+        elif (chec =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '5', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name !='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '5', "Question": question,
+        elif (chec !='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '5', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question,
@@ -439,53 +439,53 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
             detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_date(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        if (name =='')and (movie_name!=''):
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '6', "Question": question,
+        if (name =='')and (chec!=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '6', "Question": question,
+        elif (chec =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name !='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '6', "Question": question,
+        elif (chec !='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie": findm, "Cate":'6', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
 
-    if q == '7': #"type"
+    if clas == '7': #"type"
         if name != '' :
             detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name != '') :
+        elif (name == '') and (chec != '') :
             detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (movie_name == '') :
+        elif (name == '') and (chec == '') :
             detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        if (name =='')and (movie_name!='') :
-            user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '7', "Question": question,
+        if (name =='')and (chec!='') :
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name =='')and(name !=''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '7', "Question": question,
+        elif (clas =='')and(name !=''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-        elif (movie_name != '') and (name != ''):
-            user.insert({"UserId": userid, "NameMovie": name, "Cate": '7', "Question": question,
+        elif (chec != '') and (name != ''):
+            user.insert({"UserId": userid, "NameMovie": chec, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
-    if q == '8':
+    if clas == '8':
         a = ["ทำอะไรได้บ้าง", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", 'ถามอะไรได้บ้าง', 'สามารถทำอะไรได้']
         z = difflib.get_close_matches(question, a)
         if 'สนุก' in question:
@@ -494,24 +494,24 @@ def Type(q, event, movie_name,userid,user,question,name,findm):
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-            elif (name == '') and (movie_name != '') and q != '9' :
+            elif (name == '') and (chec != '') :
                 detail = movie_enjoy(event,findm,question)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-            elif (name == '') and (movie_name == '') and q != '9' :
+            elif (name == '') and (chec == '') :
                 detail = movie_enjoy(event,findm,question)
 
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-            if (name =='')and (movie_name!='') :
-                user.insert({"UserId": userid, "NameMovie": movie_name, "Cate": '8', "Question": question,
+            if (name =='')and (chec!='') :
+                user.insert({"UserId": userid, "NameMovie": chec, "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
-            elif (movie_name =='')and(name !=''):
-                user.insert({"UserId": userid, "NameMovie": name, "Cate": '8', "Question": question,
+            elif (chec =='')and(name !=''):
+                user.insert({"UserId": userid, "NameMovie": chec, "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
-            elif (movie_name != '') and (name != ''):
-                user.insert({"UserId": userid, "NameMovie": name, "Cate": '8', "Question": question,
+            elif (chec != '') and (name != ''):
+                user.insert({"UserId": userid, "NameMovie": chec, "Cate": '8', "Question": question,
                              "Answer": detail, "Time": datetime.now()})
             else:
                 user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
