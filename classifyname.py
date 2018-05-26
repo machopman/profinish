@@ -114,7 +114,7 @@ def readFile1():
 
 
     return a
-print(checDic("ใครเป็นผู้กำกับวันเดอวู"))
+#print(checDic("ใครเป็นผู้กำกับวันเดอวู"))
 
 '''
 for i in readFile1():
