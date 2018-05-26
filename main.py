@@ -16,7 +16,7 @@ import numpy as np
 import tensorflow as tf
 from cutword import cutw
 from checkdic import checkd
-from searchMovieNameInDic import searchMovieNameInDic
+from searchMovieNameInDic import  searchMovie
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
@@ -260,7 +260,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
     print('คำถาม'+"="+question)
     print('ชื่อหนัง'+"="+name)
     print('ชื่อหนังก่อนหน้า'+"="+findm)
-    moviename = searchMovieNameInDic(chec)
+    moviename = searchMovie(chec)
 
     if clas == '0' : #actor
 
