@@ -18,12 +18,12 @@ def GetListWithoutRepetitions(question):
     return Output
 
 def  normalword(word):
-    question = re.sub(r'(\w)\1+', r'\1', word)
-    s = cutw(question)
+    #question = re.sub(r'(\w)\1+', r'\1', word)
+    s = cutw(word)
     e= GetListWithoutRepetitions(s)
     ans =''
     for i in e:
         ans = ans+i
     return  ans
 
-#print(normalword('สวัสดี'))
+#print(normalword('ใครเป็นนักแสดงงงงงงงงงงวันเดอวูแมมมมมมมมม'))

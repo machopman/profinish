@@ -50,5 +50,5 @@ def checkd(question):
         return sentence
     elif sentence =='' and name =='':
         return question
-#print(checkd('ใครเป็นผู้กำกับ'))
+#print(checkd('ใครเป็นนักแสดงวันเดอวูแม'))
 #print((checkd('สปอย')))
