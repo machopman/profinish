@@ -3,11 +3,18 @@ import re
 import  requests
 from json import load
 
+from classifyname import checDic
+from cutword import cutw
+from searchMovieNameInDic import searchMovieNameInDic
 
 
-def movie_actor(chec,name,moviename,findm):
-    if  name != '' and moviename =='' and chec!='': #มีชื่ออังกฤษด้วย
-        movie_name = name.lower()
+def movie_actor(event,findm,question):
+    movie_name = checDic(event.message.text)
+    name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
+                  movie_name).replace(' ', '')
+
+    if movie_name != '' and name != '':
+        movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
         data = r.json()
@@ -27,7 +34,7 @@ def movie_actor(chec,name,moviename,findm):
                     return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
-    elif (moviename=='')and (chec=='') and (name==''):
+    elif (movie_name == '') and (searchMovieNameInDic(question) == ''):
         mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -52,12 +59,14 @@ def movie_actor(chec,name,moviename,findm):
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
 
 
-        elif moviename!='' and name=='' and chec!='' :
+        else:
+            cut = cutw(event.message.text)
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():
+                    for i in cut:
                         try:
-                            if moviename in value:
+                            if i in value:
                                 w = key.lower()
                                 movie_name = w.lower()
                                 URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
