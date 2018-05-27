@@ -5,7 +5,6 @@ from json import load
 
 import re
 
-from cutword import cutw
 from restplus import mmcut
 from searchMovieNameInDic import searchMovieNameInDic
 
@@ -34,8 +33,9 @@ def searchMovieName(question):
         if t ==[]:
             return ''
         else:
-            #print(t[0])
+
             return t[0]
+
     else:
         return ''
 
@@ -45,16 +45,15 @@ def searchMovieName(question):
 def checkd(question):
     name = searchMovieName(question)
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(question)).replace(' ', '')
-    s = cutw(sentence)
-    t = ''
-    for i in s:
-        if len(i)>1:
-            t=t+i
+
     if name !='':
         return name
     elif sentence !='':
-        return t
+        return sentence
     elif sentence =='' and name =='':
         return question
-#print(checkd('ใครเป็นนักแสดงวันเดอวูแม'))
-#print((checkd('ใครรรรรรเป็นนนนนนผู้กำกับบบบบบบwonnnnnder')))
+
+
+#print(checkd('ใครเป็นักแสดงวันเดอวูแม'))
+#print(checkd('ใครเป็นักแสดงwonderwoman'))
+
