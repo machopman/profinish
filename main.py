@@ -487,39 +487,101 @@ def Type(clas, event, chec, userid, user, question,name,findm):
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if clas == '8':
-        a = ["ทำอะไรได้บ้าง", "มีความสามารถไรบ้าง", "ทำไรได้", "สามารถทำอะไรได้", 'ถามอะไรได้บ้าง', 'สามารถทำอะไรได้']
-        z = difflib.get_close_matches(question, a)
-        if 'สนุก' in question:
-            if name != '' and q != 9 :
-                detail = movie_enjoy(event,findm,question)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่รู้เลยจร้า'))
 
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+    if clas == '9':
+        message = TemplateSendMessage(
+                alt_text='Carousel template',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
 
-            elif (name == '') and (chec != '') :
-                detail = movie_enjoy(event,findm,question)
+                                MessageTemplateAction(
+                                    label='นักแสดง',
+                                    text='ใครเป็นนักแสดง wonderwoman'
+                                ),
+                                MessageTemplateAction(
+                                    label='ผู้กำกับ',
+                                    text='ใครเป็นผู้กำกับวันเดอวูแมน'
+                                ),
+                                MessageTemplateAction(
+                                    label='รูปภาพ',
+                                    text='อยากดูรูปภาพwonderwoman'
+                                )
 
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+                            ]
+                        ),
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
 
-            elif (name == '') and (chec == '') :
-                detail = movie_enjoy(event,findm,question)
+                                MessageTemplateAction(
+                                    label='รีวิว',
+                                    text='อยากอ่านรีวิวwonderwoman'
+                                ),
+                                MessageTemplateAction(
+                                    label='สปอย',
+                                    text='อยากดูสปอยwonderwoman'
+                                ),
+                                MessageTemplateAction(
+                                    label='เรื่องย่อภาพยนตร์',
+                                    text='อยากอ่านเรื่องย่อwonderwoman'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
 
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+                                MessageTemplateAction(
+                                    label='ประเภทหนัง',
+                                    text='wonderwonเป็นหนังประเภทอะไร'
+                                ),
+                                MessageTemplateAction(
+                                    label='วันฉายภาพยนตร์',
+                                    text='wonderwomanฉายวันไหน'
+                                ),
+                                MessageTemplateAction(
+                                    label='ความสนุก',
+                                    text='wonderwomanสนุกไหม'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            title='สามารถถามได้ดังนี้',
+                            text='ถามเกี่ยวกับ',
+                            actions=[
 
-            if (name =='')and (chec!='') :
-                user.insert({"UserId": userid, "NameMovie": moviename, "Cate": '8', "Question": question,
-                             "Answer": detail, "Time": datetime.now()})
-            elif (chec =='')and(name !=''):
-                user.insert({"UserId": userid, "NameMovie": name, "Cate": '8', "Question": question,
-                             "Answer": detail, "Time": datetime.now()})
-            elif (chec != '') and (name != ''):
-                user.insert({"UserId": userid, "NameMovie": moviename, "Cate": '8', "Question": question,
-                             "Answer": detail, "Time": datetime.now()})
-            else:
-                user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
-                             "Answer": detail, "Time": datetime.now()})
-        elif 'แนะนำหนัง' in question:
+                                MessageTemplateAction(
+                                    label='แนะนำภาพยนตร์',
+                                    text='แนะนำหนังหน่อย'
+                                ),
+                                MessageTemplateAction(
+                                    label='การทักทายทั่วไป',
+                                    text='สบายดีไหม'
+                                ),
+                                MessageTemplateAction(
+                                    label='-',
+                                    text='-'
+                                )
+
+                            ]
+                        )
+                    ]
+                )
+            )
+        line_bot_api.reply_message(event.reply_token, message)
+
+
+
+    if clas =='10':
             a = []
-            d =[]
+            d = []
             f = []
             for i in range(6):
                 b = searchpic()[0]
@@ -528,7 +590,6 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                 d.append(c)
                 e = searchpic()[2]
                 f.append(e)
-
 
             message = TemplateSendMessage(
                 alt_text='Carousel template',
@@ -653,101 +714,38 @@ def Type(clas, event, chec, userid, user, question,name,findm):
             )
             line_bot_api.reply_message(event.reply_token, message)
             return 0
+    if clas =='11':
+            if name != '' and clas != 9 :
+                detail = movie_enjoy(event,findm,question)
 
-        elif z[0] in a:
-            message = TemplateSendMessage(
-                alt_text='Carousel template',
-                template=CarouselTemplate(
-                    columns=[
-                        CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
-                            text='ถามเกี่ยวกับ',
-                            actions=[
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-                                MessageTemplateAction(
-                                    label='นักแสดง',
-                                    text='ใครเป็นนักแสดง wonderwoman'
-                                ),
-                                MessageTemplateAction(
-                                    label='ผู้กำกับ',
-                                    text='ใครเป็นผู้กำกับวันเดอวูแมน'
-                                ),
-                                MessageTemplateAction(
-                                    label='รูปภาพ',
-                                    text='อยากดูรูปภาพwonderwoman'
-                                )
+            elif (name == '') and (chec != '') :
+                detail = movie_enjoy(event,findm,question)
 
-                            ]
-                        ),
-                        CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
-                            text='ถามเกี่ยวกับ',
-                            actions=[
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-                                MessageTemplateAction(
-                                    label='รีวิว',
-                                    text='อยากอ่านรีวิวwonderwoman'
-                                ),
-                                MessageTemplateAction(
-                                    label='สปอย',
-                                    text='อยากดูสปอยwonderwoman'
-                                ),
-                                MessageTemplateAction(
-                                    label='เรื่องย่อภาพยนตร์',
-                                    text='อยากอ่านเรื่องย่อwonderwoman'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
-                            text='ถามเกี่ยวกับ',
-                            actions=[
+            elif (name == '') and (chec == '') :
+                detail = movie_enjoy(event,findm,question)
 
-                                MessageTemplateAction(
-                                    label='ประเภทหนัง',
-                                    text='wonderwonเป็นหนังประเภทอะไร'
-                                ),
-                                MessageTemplateAction(
-                                    label='วันฉายภาพยนตร์',
-                                    text='wonderwomanฉายวันไหน'
-                                ),
-                                MessageTemplateAction(
-                                    label='ความสนุก',
-                                    text='wonderwomanสนุกไหม'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
-                            text='ถามเกี่ยวกับ',
-                            actions=[
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-                                MessageTemplateAction(
-                                    label='แนะนำภาพยนตร์',
-                                    text='แนะนำหนังหน่อย'
-                                ),
-                                MessageTemplateAction(
-                                    label='การทักทายทั่วไป',
-                                    text='สบายดีไหม'
-                                ),
-                                MessageTemplateAction(
-                                    label='-',
-                                    text='-'
-                                )
-
-                            ]
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, message)
-            return 0
-        else:
-            p =['คืออย่างที่คุณคิดเลย','ยังไม่รู้เลยจร้า','ไม่รู้เหมือนกัน','น่าจะเป็นอย่างนั้น','ขอไปหาข้อมูลแปบ','ขอไปศึกษาก่อนเดี๋ยวมาตอบ','ไว้วันหลังจะมาตอบ','คลาวหน้าจะมาตอบนะ']
-            text= random.choice(p)
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-            user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
-                         "Answer": text, "Time": datetime.now()})
+            if (name =='')and (chec!='') :
+                user.insert({"UserId": userid, "NameMovie": moviename, "Cate": '8', "Question": question,
+                             "Answer": detail, "Time": datetime.now()})
+            elif (chec =='')and(name !=''):
+                user.insert({"UserId": userid, "NameMovie": name, "Cate": '8', "Question": question,
+                             "Answer": detail, "Time": datetime.now()})
+            elif (chec != '') and (name != ''):
+                user.insert({"UserId": userid, "NameMovie": moviename, "Cate": '8', "Question": question,
+                             "Answer": detail, "Time": datetime.now()})
+            else:
+                user.insert({"UserId": userid, "NameMovie": findmovie(userid), "Cate": '8', "Question": question,
+                             "Answer": detail, "Time": datetime.now()})
+    if clas == '13':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมพ์มั่วดิ'))
+    if clas == '14':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พิมพ์มาใหม่'))
 
 
 
@@ -770,6 +768,19 @@ def checkcate(classify):
         return '7'
     elif classify==8:
         return '8'
+    elif classify==9:
+        return '9'
+    elif classify==10:
+        return '10'
+    elif classify==11:
+        return '11'
+    elif classify==12:
+        return '12'
+    elif classify==13:
+        return '13'
+    elif classify == 14:
+        return '14'
+
 
 def general(question, event,userid,user):
    try:

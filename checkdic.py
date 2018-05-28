@@ -1,13 +1,8 @@
 import difflib
-
 from json import load
-
-
 import re
-
 from restplus import mmcut
 from searchMovieNameInDic import searchMovieNameInDic
-
 
 def searchMovieName(question):
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(question)).replace(' ', '')
