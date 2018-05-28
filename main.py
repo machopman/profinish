@@ -77,7 +77,6 @@ def movie(event):
     question= normalword(q)
     chec = checDic(question)
     ques = checkd(question)
-    ques = diffli(ques)
     userid = event.source.user_id
     findm =findmovie(userid)
 
