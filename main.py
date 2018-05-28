@@ -218,14 +218,14 @@ def movie(event):
             #movie_name = searchMovieNameInDic(question)
 
 
-            if findm == '' and classify!=9 and classify!=8 and name ==''and chec=='':
+            if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec=='':
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                     user.insert(
                         {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
 
-            elif (name == '') and (chec == '') and classify == 9:
+            elif (name == '') and (chec == '') and classify == 12:
                 general(question, event, userid, user)
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
