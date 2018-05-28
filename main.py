@@ -229,7 +229,7 @@ def movie(event):
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '':
+    elif findm == '' :
         check = checkname(question)
         if chec != '' or check==True:
             movie_name =''
