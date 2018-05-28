@@ -104,7 +104,7 @@ def movie(event):
         for line2 in range(count1):
             str = 'PAD'
             words.append(str)
-        inputs = {'input': [words], 'cate': [['0', '0', '0', '0', '0', '0', '0', '0', '0', '0']]}
+        inputs = {'input': [words], 'cate': [['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']]}
         inputs2 = []
         for poemCount in range(len(inputs['input'])):
             poem = []
@@ -131,7 +131,7 @@ def movie(event):
         graph = tf.Graph()
         with graph.as_default():
             wordCount = 15
-            cateDimension = 10
+            cateDimension = 15
             weightColumn1 = 22
             weightColumn2 = 64
             weightRow = 3
