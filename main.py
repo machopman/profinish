@@ -82,7 +82,7 @@ def movie(event):
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
 
-    if sentence !='' :
+    if sentence !='' and searchMovie(chec) !='' :
         cut = cutw(sentence)
         print(cut)
 

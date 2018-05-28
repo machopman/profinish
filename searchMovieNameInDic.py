@@ -27,4 +27,4 @@ def searchMovie(question):
                     u  =str(w)
                     e = e+u
         return e
-#print(searchMovie('ใครเป็นผู้กำกับ'))
+print(searchMovie('วันเดอวูแมน'))
