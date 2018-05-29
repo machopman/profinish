@@ -27,4 +27,19 @@ def searchMovie(question):
                     u  =str(w)
                     e = e+u
         return e
-print(searchMovie('ใครเป็นผู้กำกับwonderwoman'))
+
+def searchM(question):
+    question = str(question)
+    with open('new.txt', mode='r', encoding='utf-8-sig') as f:
+        a = load(f)
+        e = ''
+        for key, value in a.items():
+                if question in value:
+                    w = key.lower()
+                    u  =str(w)
+                    e = e+u
+    if e !='':
+        return e
+    elif e =='':
+        return question
+#print(searchM('wonderwoman'))

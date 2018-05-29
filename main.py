@@ -1,4 +1,6 @@
 import difflib
+
+from cheeng import cheEng
 from classifyname import checDic
 from normalize import normalword
 import random
@@ -16,7 +18,7 @@ import numpy as np
 import tensorflow as tf
 from cutword import cutw
 from checkdic import checkd
-from searchMovieNameInDic import  searchMovie
+from searchMovieNameInDic import searchMovie, searchM
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
@@ -72,14 +74,18 @@ def webhook():
 
 @handler.add(MessageEvent, message=TextMessage)
 def movie(event):
+
     user = mongo.db.users
     q = event.message.text
     question= normalword(q)
+    en =cheEng(question)
     chec = checDic(question)
+    chename = searchM(chec)
+    find =  checkname(chename)
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
-    Catebefor = findmovie(userid)[1]
+
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
 
@@ -230,7 +236,7 @@ def movie(event):
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '' and Catebefor !=12 and Catebefor !=8 and Catebefor !=9 and Catebefor !=10 and Catebefor !=11 and Catebefor !=13 and Catebefor !=14 :
+    elif findm == '' and find==True  :
         check = checkname(question)
         if chec != '' or check==True:
             w = user.find({'UserId':userid}).sort("Time")
@@ -247,8 +253,17 @@ def movie(event):
 
             ques = q[-1]+chec
             Type(t[-1], event, chec, userid, user, ques, chec,findm)
-        elif chec=='':
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='กรุณาพิมพ์ชื่อหนังให้ถูกด้วย'))
+    elif findm == '' and find == False and  en=='find':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่มีหนังเรื่องนี้'))
+    elif find ==False and en=='find':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พูดภาษาอังกฤษด้วยเก่งจัง'))
+    elif find == False and en == 'not':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมภาษาอังกฤษมั่วดิ'))
+    elif find == True:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'))
+
+
+
 
 
 
