@@ -8,19 +8,29 @@ db = client.moviebot
 def findmovie(userid):
         cursor = db.users.find({'UserId':userid}).sort("Time")  #หาuser id
         array=[]
+        s =[]
         for i in cursor:
             a = i
             for key, value in a.items():
-                if key == 'NameMovie ' :
+                if key == 'NameMovie':
                     array.append(value)
 
-        if array !=[]:
-            return array[-1]
-        else:
+                if key == 'Cate':
+                    s.append(value)
+
+
+
+        if array!=[] or  s!=[] :
+            try:
+                return array[-1] ,s[-1]
+            except:
+                return s[-1]
+        if array==[]:
             return ''
 
 
-#print(findmovie('U7183997e3e85a10d8c5f1f3925825016'))
+
+print(findmovie('U7183997e3e85a10d8c5f1f3925825016')[1])
 
 
 
