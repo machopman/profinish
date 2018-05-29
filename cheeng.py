@@ -13,9 +13,10 @@ def readFile():
     return a
 
 def cheEng(question):
-    for i in readFile():
-        i = i.lower().replace(' ','')
-        if question in i :
-            return 'find'
-        else:
-            return 'not'
+    q = readFile()
+    if question in q:
+        return 'find'
+    else:
+        return 'not'
+
+#print(cheEng('piano'))
