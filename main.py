@@ -237,22 +237,25 @@ def movie(event):
                 Type(clas, event, chec, userid, user, question,name,findm)
 
     elif findm == '' and find==True  :
-        check = checkname(question)
-        if chec != '' or check==True:
-            w = user.find({'UserId':userid}).sort("Time")
-            q = []
-            t=[]
-            for i in w:
-                a = i
-                for key, value in a.items():
-                    if key == 'Question':
-                        q.append(value)
-                    if key =='Cate':
-                        t.append(value)
+        try:
+            check = checkname(question)
+            if chec != '' or check==True:
+                w = user.find({'UserId':userid}).sort("Time")
+                q = []
+                t=[]
+                for i in w:
+                    a = i
+                    for key, value in a.items():
+                        if key == 'Question':
+                            q.append(value)
+                        if key =='Cate':
+                            t.append(value)
 
 
-            ques = q[-1]+chec
-            Type(t[-1], event, chec, userid, user, ques, chec,findm)
+                ques = q[-1]+chec
+                Type(t[-1], event, chec, userid, user, ques, chec,findm)
+        except:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='พิมพ์ชื่อหนังทำไม'))
     elif findm == '' and find == False and  en=='find':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่มีหนังเรื่องนี้'))
     elif find ==False and en=='find':

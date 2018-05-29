@@ -49,6 +49,6 @@ def checkd(question):
         return question
 
 
-print(checkd('cat'))
+#print(checkd('cat'))
 #print(checkd('ใครเป็นักแสดงwonderwoman'))
 
