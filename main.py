@@ -85,7 +85,7 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
-    #findcate = findmovie(userid)[1]
+    findcate = findmovie(userid)[1]
 
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
@@ -237,7 +237,7 @@ def movie(event):
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '' and find==True  :
+    elif findm == '' and find==True and findcate!='12':
         try:
             check = checkname(question)
             if chec != '' or check==True:
