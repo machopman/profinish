@@ -17,16 +17,14 @@ def findmovie(userid):
 
                 if key == 'Cate':
                     s.append(value)
-
-
-
-        if array!=[] or  s!=[] :
+        if array == []:
+            return ''
+        elif array!=[] or  s!=[] :
             try:
                 return array[-1] ,s[-1]
             except:
                 return s[-1]
-        if array==[]:
-            return ''
+
 
 
 
