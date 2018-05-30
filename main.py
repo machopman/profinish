@@ -241,7 +241,7 @@ def movie(event):
         try:
             check = checkname(ques)
             if chec != '' or check==True:
-                cut = cutw(sentence)
+                cut = cutw(ques)
                 w = user.find({'UserId':userid}).sort("Time")
                 q = []
                 t=[]
