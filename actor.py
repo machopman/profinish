@@ -15,6 +15,7 @@ def movie_actor(event,findm,question):
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',movie_name).replace(' ', '')
 
     if movie_name != '' and name != '':
+        print('เข้า1')
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -35,6 +36,7 @@ def movie_actor(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif (movie_name == '') and (searchMovieNameInDic(question) == ''):
+            print('เข้า2')
             mov = findm
             movie_name = mov.lower().replace(' ', '')
             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -59,6 +61,7 @@ def movie_actor(event,findm,question):
 
 
     else:
+            print('เข้า3')
             cut = cutw(event.message.text)
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
