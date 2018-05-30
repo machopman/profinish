@@ -91,8 +91,9 @@ def movie(event):
 
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-    cut = cutw(sentence)
+
     if sentence !='' and searchMovie(question) =='' :
+        cut = cutw(sentence)
         words = []
         for row in cut:
             words.append(row)
@@ -238,8 +239,9 @@ def movie(event):
 
     elif findm == '' and find==True and findcate!='12':
         try:
-            check = checkname(question)
+            check = checkname(ques)
             if chec != '' or check==True:
+                cut = cutw(sentence)
                 w = user.find({'UserId':userid}).sort("Time")
                 q = []
                 t=[]
