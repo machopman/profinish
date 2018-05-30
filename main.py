@@ -1,5 +1,7 @@
 import difflib
 
+from pythainlp import find_keyword
+
 from cheeng import cheEng
 from classifyname import checDic
 from normalize import normalword
@@ -11,7 +13,7 @@ from detail import movie_detail
 from director import movie_director
 from enjoy import movie_enjoy
 from image import movie_image
-from namemoviebefore  import findmovie
+from namemoviebefore import findmovie
 from searchpic import searchpic
 import json
 import numpy as np
@@ -89,11 +91,8 @@ def movie(event):
 
 
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
-
+    cut = cutw(sentence)
     if sentence !='' and searchMovie(question) =='' :
-        cut = cutw(sentence)
-        print(cut)
-
         words = []
         for row in cut:
             words.append(row)
@@ -235,7 +234,7 @@ def movie(event):
             elif (name == '') and (chec == '') and classify == 12:
                 general(question, event, userid, user)
             else:
-                Type(clas, event, chec, userid, user, question,name,findm)
+                Type(clas, event, chec, userid, user, question,name,findm,cut)
 
     elif findm == '' and find==True and findcate!='12':
         try:
@@ -254,7 +253,7 @@ def movie(event):
 
 
                 ques = q[-1]+chec
-                Type(t[-1], event, chec, userid, user, ques, chec,findm)
+                Type(t[-1], event, chec, userid, user, ques, chec,findm,cut)
         except:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='พิมพ์ชื่อหนังทำไม'))
     elif findm == '' and find == False and  en=='find':
@@ -272,15 +271,30 @@ def movie(event):
 
 
 
-def Type(clas, event, chec, userid, user, question,name,findm):
+def Type(clas, event, chec, userid, user, question,name,findm,cut):
     print('ประเภท'+"="+clas)
     print('ชื่อหนังพบในdic'+"="+chec)
     print('คำถาม'+"="+question)
     print('ชื่อหนัง'+"="+name)
     print('ชื่อหนังก่อนหน้า'+"="+findm)
     moviename = searchMovie(chec)
-
     if clas == '0' : #actor
+        gg = ['แสดงนำ', 'ดาราหนัง', 'ตัวประกอบ', 'ตัวละคร', 'แสดงละคร', 'ผู้แสดง', 'แสดง', 'ดารา', 'ดาราภาพยนตร์',
+                    'รับบท',
+                    'การแสดง', 'นักแสดง', 'ภาพยนตร์', 'นักแสดงหลัก']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+
+        if w==[]:
+            detail ='ยังไม่มีข้อมูลนะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '0', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
+
 
         if name != '' :
             detail = movie_actor(event,findm,question)
@@ -310,6 +324,19 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                  "Time": datetime.now()})
 
     if clas == '1':#"director"
+        gg = ['ผู้ควบคุม', 'คนเขียนบท', 'กำกับ', 'ผู้กำกับภาพยนตร์', 'ผู้กำกับหนัง', 'ผู้กำกับ', 'ผู้เขียนบท', 'ครับ', 'สร้างเรื่อง', 'ผู้เขียนบทภาพยนตร์', 'ผู้เขียนบทหนัง']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail='ยังไม่มีข้อมูลนะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '1', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
+
         if name != '' :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
@@ -337,6 +364,18 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                  "Time": datetime.now()})
 
     if clas == '2':#"image"
+        gg = ['รูปงาม', 'รูปภาพ', 'คำถาม', 'ภาพ', 'ภาพถ่าย', 'รูป', 'ได้รูป']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail = 'ยังส่งให้ไม่ได้จร้า'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '2', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
 
         if name != '' :
             detail = movie_image(event,findm,question)
@@ -375,6 +414,20 @@ def Type(clas, event, chec, userid, user, question,name,findm):
             user.insert({"UserId": userid, "NameMovie":findm, "Cate": '2', "Question": question,
                          "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
     if clas == '3':#"review"
+        gg = ['รี', 'วิว', 'review', 'วิจารณ์', 'เล่าเรื่อง', 'แสดงความคิดเห็น', 'ผู้วิจารณ์', 'คิดเห็น', 'ความคิด', 'จาร', 'คำวิจารณ์', 'บทความ', 'นักวิจารณ์', 'บทวิจารณ์', 'วิพากษ์', 'ความคิดเห็น', 'การแสดงความคิดเห็น']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail ='ยังไม่มีข้อมูลนะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '3', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
+
+
         if name != '':
             detail = movie_review(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
@@ -401,6 +454,18 @@ def Type(clas, event, chec, userid, user, question,name,findm):
             user.insert({"UserId": userid, "NameMovie":findm, '3': "review", "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if clas == '4': #"spoil"
+        gg = ['ส่วนสำคัญ', 'จุดสำคัญ', 'เรื่องสำคัญ', 'ประเด็นสำคัญ', 'Spoil', 'spoil', 'พูดถึง', 'สำคัญ']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail='ยังไม่มีข้อมูลนะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '4', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
         if name != '' :
             detail = movie_spoil(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1998]))
@@ -427,6 +492,19 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                          "Answer": detail, "Time": datetime.now()})
 
     if clas == '5': #"detail"
+        gg = ['ลาย', 'เนื้อหนัง', 'เรื่องเล่า', 'เนื้อหา', 'เนื้อความ', 'ย่อ', 'เรื่องราว', 'เล่า', 'เนื้อเรื่อง', 'ย่อความ', 'เรื่องย่อ', 'รายละเอียด', 'เอียด', 'เล่าเรื่อง', 'ละเอียด']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail ='ยังไม่มีข้อมูลนะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
+
         if name != '':
             detail = movie_detail(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
@@ -453,6 +531,18 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                          "Answer": detail, "Time": datetime.now()})
 
     if clas == '6': #"date"
+        gg = ['ฉาย', 'ฉายหนัง', 'เมื่อไหร่', 'ขอเวลา', 'วันที่', 'เวลา', 'เมื่อ', 'ออกอากาศ', 'เมื่อไร', 'อากาศ', 'วัน', 'โมง']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail='ยังไม่ทราบจ้านะครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '6', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
 
         if name != '' :
             detail = movie_date(event,findm,question)
@@ -480,6 +570,19 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                          "Answer": detail, "Time": datetime.now()})
 
     if clas == '7': #"type"
+        gg = ['ประเภท', 'Type', 'เภท', 'แนว', 'หมวด', 'หมวดหมู่', 'type']
+        cut = find_keyword(cut, lentext=1)
+        w = []
+        for i in cut:
+            if i in gg:
+                a = 'อยู่'
+                w.append(a)
+        if w == []:
+            detail = 'ตอนนี้ยังไม่ทราบครับ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
+                         "Answer": detail, "Time": datetime.now()})
+
         if name != '' :
             detail = movie_type(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))

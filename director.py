@@ -9,7 +9,7 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 
 
 def movie_director(event,findm,question):
-    movie_name = checDic(event.message.text)
+    movie_name = checDic(event)
     movie_name = searchMovie(movie_name)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
