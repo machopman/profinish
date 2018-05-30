@@ -11,6 +11,7 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 def movie_actor(event,findm,question):
     movie_name = checDic(event)
     movie_name = searchMovie(movie_name)
+    print(movie_name)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',movie_name).replace(' ', '')
 
     if movie_name != '' and name != '':
