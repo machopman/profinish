@@ -1,6 +1,5 @@
 import difflib
 
-from pythainlp import find_keyword
 
 from cheeng import cheEng
 from classifyname import checDic
