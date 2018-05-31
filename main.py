@@ -827,10 +827,10 @@ def PatternCon(userid,event,findm,ques,user,question):
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
     elif findquestion(userid) =="ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว ให้อ่านด้วย":
+        detail = movie_image(event, findm, question)
+        detail1 = movie_detail(event, findm, question)
+        detail2 = movie_review(event, findm, question)
         if event.message.text =='ต้องการ':
-            detail = movie_image(event, findm, question)
-            detail1 = movie_detail(event, findm, question)
-            detail2 = movie_review(event, findm, question)
             buttons_template_message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
