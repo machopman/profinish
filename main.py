@@ -989,10 +989,8 @@ def general(question, event,userid,user):
            user.insert({"UserId": userid, "NameMovie": '', "Cate": '12', "Question": question, "Answer": text,
                         "Time": datetime.now()})
        else:
-           p = ['คืออย่างที่คุณคิดเลย', 'ยังไม่รู้เลยจร้า', 'ไม่รู้เหมือนกัน', 'น่าจะเป็นอย่างนั้น', 'ขอไปหาข้อมูลแปบ',
-                'ขอไปศึกษาก่อนเดี๋ยวมาตอบ', 'ไว้วันหลังจะมาตอบ', 'คลาวหน้าจะมาตอบนะ']
-           text = random.choice(p)
-           line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+
+           line_bot_api.reply_message(event.reply_token, TextSendMessage(text="เราสามารถถาม เกี่ยวกับ ผู้กำกับ นักแสดง รีวิว สปอย แนะนำหนัง รูปภาพ เวลาฉาย ประเภท ของหนังแต่ละเรื่องได้นะได้นะ"))
            user.insert({"UserId": userid, "NameMovie": '', "Cate": '12', "Question": question, "Answer": text,
                         "Time": datetime.now()})
 
