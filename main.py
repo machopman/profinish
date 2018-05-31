@@ -79,7 +79,6 @@ def movie(event):
 
     user = mongo.db.users
     q = event.message.text
-
     question= normalword(q)
     en =cheEng(question)
     chec = checDic(question)
@@ -89,6 +88,7 @@ def movie(event):
     userid = event.source.user_id
     findm =findmovie(userid)[0]
     ques  =PatternCon(userid,event,findm,ques,user,question)
+    ques = speakstory(event, user, userid, findm, ques)
     findcate = findmovie(userid)[1]
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',ques).replace(' ', '')
 
@@ -275,6 +275,18 @@ def movie(event):
             {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
              "Time": datetime.now()})
 
+def speakstory(event,user,userid,findm,ques):
+    a = ["กำลังคุยเรื่องอะไรอยู่", "คุยเรื่องอะไรอยู่", "กำลังคุยเรื่องไหน", "คุยเรื่องไหนอยู่", "กำลังสนทนาเรื่องไหน",
+         "กำลังพูดถึงเรื่องไหน", "กำลังพูดถึงเรื่องอะไรอยู่", "คุยเรื่องไหน"]
+
+    z = difflib.get_close_matches(event, a)
+    if z!=[]:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
+        user.insert(
+            {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
+             "Time": datetime.now()})
+    else:
+        return ques
 
 
 
