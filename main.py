@@ -24,7 +24,8 @@ from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage,
-                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction)
+                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction, ButtonsTemplate,
+                            PostbackTemplateAction)
 import re
 from flask.ext.pymongo import PyMongo
 from review import movie_review
@@ -88,9 +89,8 @@ def movie(event):
     userid = event.source.user_id
     findm =findmovie(userid)[0]
     ques  =PatternCon(userid, event, findm,ques,user)
+    ques =str(ques)
     findcate = findmovie(userid)[1]
-
-
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',ques).replace(' ', '')
 
     if sentence !='' and searchMovie(question) =='' :
@@ -257,7 +257,12 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='พิมพ์ชื่อหนังทำไม'))
+            detail ='ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว และ สปอยให้อ่านด้วย'
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
+            user.insert(
+                {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
+                 "Time": datetime.now()})
+
     elif findm == '' and find == False and  en=='find':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่มีหนังเรื่องนี้'))
     elif find ==False and en=='find':
@@ -814,7 +819,7 @@ def checkcate(classify):
     elif classify == 14:
         return '14'
 
-def PatternCon(userid,event,findm,ques,user):
+def PatternCon(userid,event,findm,ques,user,question):
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
         question ='อยากอ่านเรื่องย่อ'
         if event.message.text=='ต้องการ':
@@ -822,6 +827,38 @@ def PatternCon(userid,event,findm,ques,user):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
+    elif findquestion(userid) =="ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว และ สปอยให้อ่านด้วย":
+        if event.message.text =='ต้องการ':
+            detail = movie_image(event, findm, question)
+            detail1 = movie_detail(event, findm, question)
+            detail2 = movie_review(event, findm, question)
+            detail3 = movie_spoil(event, findm, question)
+            buttons_template_message = TemplateSendMessage(
+                alt_text='Buttons template',
+                template=ButtonsTemplate(
+                    thumbnail_image_url=detail,
+                    title='Menu',
+                    text='Please select',
+                    actions=[
+
+                        MessageTemplateAction(
+                            label='เรื่องย่อ',
+                            text=detail1
+                        ),
+                        MessageTemplateAction(
+                            label='บทรีวิว',
+                            text= detail2
+                        ),
+                        MessageTemplateAction(
+                            label='สปอย',
+                            text=detail3
+                        )
+
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token,buttons_template_message)
+
     else:
         return  ques
 

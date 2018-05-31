@@ -38,7 +38,7 @@ def findquestion(userid):
        return array[-1]
     else:
         return ''
-print(findquestion('U7183997e3e85a10d8c5f1f3925825016'))
+#print(findquestion('U7183997e3e85a10d8c5f1f3925825016'))
 '''
 
 
