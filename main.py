@@ -91,7 +91,7 @@ def movie(event):
     findcate = findmovie(userid)[1]
 
 
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',ques).replace(' ', '')
 
     if sentence !='' and searchMovie(question) =='' :
         cut = cutw(sentence)
