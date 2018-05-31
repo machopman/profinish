@@ -5,7 +5,7 @@ from cheeng import cheEng
 from classifyname import checDic
 from normalize import normalword
 import random
-from checkName import checkname
+from checkName import checkname, checknamedict
 from actor import movie_actor
 from date import movie_date
 from detail import movie_detail
@@ -236,7 +236,7 @@ def movie(event):
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '' and find==True and findcate!='12':
+    elif findm == '' and findcate!='12' and checknamedict(question)=='find':
         try:
             check = checkname(ques)
             if chec != '' or check==True:

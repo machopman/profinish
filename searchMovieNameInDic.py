@@ -43,4 +43,4 @@ def searchM(question):
         return e
     elif e =='':
         return question
-#print(searchM('ใครเป็นผู้กำกับวันเดอวูแมน'))
+print(searchM('wonderwoman'))
