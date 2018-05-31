@@ -50,5 +50,5 @@ def checkd(question):
 
 
 #print(checkd('cat'))
-#print(checkd('ใครเป็นักแสดงwonderwoman'))
+#print(checkd('ใครเป็นผู้กำกับลอสแองเจอลิส'))
 

@@ -19,5 +19,8 @@ def searchstory():
         count = count + 1
     return t
 
+
+
+
 #print(searchpic())
 

@@ -114,7 +114,7 @@ def readFile1():
 
 
     return a
-#print(checDic("thailand"))
+#print(checDic("ใครเป็นผู้กำกับ"))
 
 '''
 for i in readFile1():

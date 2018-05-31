@@ -3,6 +3,8 @@ import re
 import  requests
 from json import load
 
+from checkName import checksentence
+from checkdic import checkd
 from classifyname import checDic
 from cutword import cutw
 from searchMovieNameInDic import searchMovieNameInDic, searchMovie
@@ -11,7 +13,7 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 def movie_actor(event,findm,question):
     movie_name = checDic(event)
     movie_name = searchMovie(movie_name)
-    print(movie_name)
+
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',movie_name).replace(' ', '')
 
     if movie_name != '' and name != '':
@@ -35,7 +37,7 @@ def movie_actor(event,findm,question):
                     return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
-    elif (movie_name == '') and (searchMovieNameInDic(question) == ''):
+    elif (name == '' and movie_name==''and len(checksentence(event)==1)) :
             print('เข้า2')
             mov = findm
             movie_name = mov.lower().replace(' ', '')
