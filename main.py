@@ -88,7 +88,7 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
-    ques  =PatternCon(userid, event, findm,ques,user)
+    ques  =PatternCon(userid,event,findm,ques,user,question)
     ques =str(ques)
     findcate = findmovie(userid)[1]
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',ques).replace(' ', '')
