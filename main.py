@@ -585,7 +585,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '7', "Question": question,
                          "Answer": detail, "Time": datetime.now()})
     if clas == '8':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่รู้เลยจร้า'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='เราสามารถถาม เกี่ยวกับ ผู้กำกับ นักแสดง รีวิว สปอย แนะนำหนัง รูปภาพ เวลาฉาย ประเภท ของหนังแต่ละเรื่องได้นะได้นะ'))
 
     if clas == '9':
         message = TemplateSendMessage(
