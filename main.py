@@ -256,7 +256,7 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
-            detail ='ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว ให้อ่านด้วย'
+            detail ='ต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
             user.insert(
                 {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
@@ -826,33 +826,14 @@ def PatternCon(userid,event,findm,ques,user,question):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
-    elif findquestion(userid) =="ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว ให้อ่านด้วย":
-        detail = movie_image(event, findm, question)
-        detail1 = movie_detail(event, findm, question)
-        detail2 = movie_review(event, findm, question)
+    elif findquestion(userid) =="ต้องการอ่าน บทรีวิว ไหมล่ะ":
+        question = 'รีวิวหน่อย'
         if event.message.text =='ต้องการ':
-            buttons_template_message = TemplateSendMessage(
-                alt_text='Buttons template',
-                template=ButtonsTemplate(
-                    thumbnail_image_url=detail,
-                    title='Menu',
-                    text='Please select',
-                    actions=[
+            detail = movie_review(event, findm, question)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
+                         "Time": datetime.now()})
 
-                        MessageTemplateAction(
-                            label='เรื่องย่อ',
-                            text=detail1
-                        ),
-                        MessageTemplateAction(
-                            label='บทรีวิว',
-                            text= detail2
-                        )
-
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token,buttons_template_message)
-            return  0
 
     else:
         return  ques
