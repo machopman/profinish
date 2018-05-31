@@ -90,7 +90,7 @@ def movie(event):
     ques  =PatternCon(userid,event,findm,ques,user)
     ques = speakstory(event, user, userid, findm, ques)
     findcate = findmovie(userid)[1]
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',str(ques)).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',(ques)).replace(' ', '')
 
     if sentence !='' and searchMovie(question) =='' :
         cut = cutw(sentence)
@@ -296,11 +296,42 @@ def speakstory(event,user,userid,findm,ques):
         else:
             return ques
     except:
-        return
+        return   ques
 
 
+def PatternCon(userid,event,findm,ques,user):
+    if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
+        question ='อยากอ่านเรื่องย่อ'
+        if 'ต้องการ' in event.message.text :
+            detail = movie_detail(event, findm, question)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
+                         "Time": datetime.now()})
+        elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
+            detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
+                         "Time": datetime.now()})
+        else:
+            return ques
+    elif findquestion(userid) =="แล้วต้องการอ่าน บทรีวิว ไหมล่ะ":
+        question = 'รีวิวหน่อย'
+        if 'ต้องการ'in event.message.text:
+            detail = movie_review(event, findm, question)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '3', "Question": question, "Answer": detail,
+                         "Time": datetime.now()})
+        elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
+            detail = 'แล้วอยากอ่านอะไรละเรามีข้อมูล เรื่องย่อ บทรีวิว นักแสดง  ชื่อนักแสดง  ชื่อผู้กำกับ และ สปอย'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie":findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
+                         "Time": datetime.now()})
+        else:
+            return ques
 
 
+    else:
+        return  ques
 
 
 
@@ -840,42 +871,6 @@ def checkcate(classify):
         return '13'
     elif classify == 14:
         return '14'
-
-def PatternCon(userid,event,findm,ques,user):
-    if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
-        question ='อยากอ่านเรื่องย่อ'
-        if 'ต้องการ' in event.message.text :
-            detail = movie_detail(event, findm, question)
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
-                         "Time": datetime.now()})
-        elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
-            detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
-                         "Time": datetime.now()})
-        else:
-            return ques
-    elif findquestion(userid) =="แล้วต้องการอ่าน บทรีวิว ไหมล่ะ":
-        question = 'รีวิวหน่อย'
-        if 'ต้องการ'in event.message.text:
-            detail = movie_review(event, findm, question)
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '3', "Question": question, "Answer": detail,
-                         "Time": datetime.now()})
-        elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
-            detail = 'แล้วอยากอ่านอะไรละเรามีข้อมูล เรื่องย่อ บทรีวิว นักแสดง  ชื่อนักแสดง  ชื่อผู้กำกับ และ สปอย'
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-            user.insert({"UserId": userid, "NameMovie":findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
-                         "Time": datetime.now()})
-        else:
-            return ques
-
-
-    else:
-        return  ques
-
-
 
 
 
