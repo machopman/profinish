@@ -256,7 +256,7 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
-            detail ='ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว และ สปอยให้อ่านด้วย'
+            detail ='ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว ให้อ่านด้วย'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
             user.insert(
                 {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
@@ -826,12 +826,11 @@ def PatternCon(userid,event,findm,ques,user,question):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
-    elif findquestion(userid) =="ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว และ สปอยให้อ่านด้วย":
+    elif findquestion(userid) =="ต้องการทราบข้อมูลหนังเรื่องนี้ไหมล่ะเรามี เรื่องย่อ บทรีวิว ให้อ่านด้วย":
         if event.message.text =='ต้องการ':
             detail = movie_image(event, findm, question)
             detail1 = movie_detail(event, findm, question)
             detail2 = movie_review(event, findm, question)
-            detail3 = movie_spoil(event, findm, question)
             buttons_template_message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
@@ -847,16 +846,13 @@ def PatternCon(userid,event,findm,ques,user,question):
                         MessageTemplateAction(
                             label='บทรีวิว',
                             text= detail2
-                        ),
-                        MessageTemplateAction(
-                            label='สปอย',
-                            text=detail3
                         )
 
                     ]
                 )
             )
             line_bot_api.reply_message(event.reply_token,buttons_template_message)
+            return  0
 
     else:
         return  ques

@@ -35,10 +35,10 @@ def checksentence(event):
     return cut
 
 #print(checksentence('ใครเป็นผู้กำกับลอ'))
-
+'''
 le =len(checksentence('ใครเป็นนักแสดง') )
 print(type(le))
-
+'''
 
 
 #print(checkname('wonderwoman'))
