@@ -6,6 +6,7 @@ client = MongoClient("mongodb://pretty:shop1234@ds139942.mlab.com:39942/moviebot
 db = client.moviebot
 
 def findmovie(userid):
+    try:
         cursor = db.users.find({'UserId':userid}).sort("Time")  #หาuser id
         array=[]
         s =[]
@@ -24,6 +25,8 @@ def findmovie(userid):
                 return array[-1] ,s[-1]
             except:
                 return s[-1]
+    except:
+        return ''
 #print(findmovie('U7183997e3e85a10d8c5f1f3925825016')[0])
 
 def findquestion(userid):
