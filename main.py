@@ -12,7 +12,7 @@ from detail import movie_detail
 from director import movie_director
 from enjoy import movie_enjoy
 from image import movie_image
-from namemoviebefore import findmovie
+from namemoviebefore import findmovie, findquestion
 from searchpic import searchpic
 import json
 import numpy as np
@@ -78,6 +78,7 @@ def movie(event):
 
     user = mongo.db.users
     q = event.message.text
+
     question= normalword(q)
     en =cheEng(question)
     chec = checDic(question)
@@ -86,6 +87,7 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
+    ques  =PatternCon(userid, event, findm,ques)
     findcate = findmovie(userid)[1]
 
 
@@ -263,7 +265,12 @@ def movie(event):
     elif find == False and en == 'not':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมภาษาอังกฤษมั่วดิ'))
     elif find == True:
+        detail ='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'))
+        user.insert(
+            {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
+             "Time": datetime.now()})
+
 
 
 
@@ -806,6 +813,19 @@ def checkcate(classify):
         return '13'
     elif classify == 14:
         return '14'
+
+def PatternCon(userid,event,findm,ques):
+    if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
+        question ='อยากอ่านเรื่องย่อ'
+        if event.message.text=='ต้องการ':
+            detail = movie_detail(event, findm, question)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+    else:
+        return  ques
+
+
+
+
 
 
 def general(question, event,userid,user):
