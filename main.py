@@ -94,6 +94,7 @@ def movie(event):
 
     if sentence !='' and searchMovie(question) =='' :
         cut = cutw(sentence)
+        print(cut)
         words = []
         for row in cut:
             words.append(row)
