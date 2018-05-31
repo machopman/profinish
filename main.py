@@ -87,11 +87,11 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
-    ques  =PatternCon(userid, event, findm,ques)
+    ques  =PatternCon(userid, event, findm,ques,user)
     findcate = findmovie(userid)[1]
 
 
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', ques).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '', str(ques)).replace(' ', '')
 
     if sentence !='' and searchMovie(question) =='' :
         cut = cutw(sentence)
@@ -814,12 +814,14 @@ def checkcate(classify):
     elif classify == 14:
         return '14'
 
-def PatternCon(userid,event,findm,ques):
+def PatternCon(userid,event,findm,ques,user):
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
         question ='อยากอ่านเรื่องย่อ'
         if event.message.text=='ต้องการ':
             detail = movie_detail(event, findm, question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
+                         "Time": datetime.now()})
     else:
         return  ques
 
