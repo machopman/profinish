@@ -24,7 +24,7 @@ def findmovie(userid):
                 return array[-1] ,s[-1]
             except:
                 return s[-1]
-print(findmovie('U7183997e3e85a10d8c5f1f3925825016')[0])
+#print(findmovie('U7183997e3e85a10d8c5f1f3925825016')[0])
 
 def findquestion(userid):
     cursor = db.users.find({'UserId': userid}).sort("Time")  # หาuser id
