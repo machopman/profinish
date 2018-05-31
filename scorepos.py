@@ -1,6 +1,8 @@
 import re
 
 import  requests
+
+from checkName import checksentence
 from cutword import cutw
 from json import load
 
@@ -11,6 +13,7 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 def movie_scorepos(event,findm,question):
     movie_name = checDic(event.message.text)
     movie_name = searchMovie(movie_name)
+    le = len(checksentence(question))
 
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
@@ -37,7 +40,7 @@ def movie_scorepos(event,findm,question):
                     return 'ยังไม่มีคะแนนด้านบวกครับ'
         if found == False:
             return 'ยังไม่มีคะแนนด้านบวกครับ'
-    elif (movie_name=='')and (searchMovieNameInDic(question)==''):
+    elif (name == '' and movie_name==''and le==1):
         mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

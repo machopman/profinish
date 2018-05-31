@@ -1,6 +1,8 @@
 import re
 
 import  requests
+
+from checkName import checksentence
 from cutword import cutw
 from json import load
 from classifyname import checDic
@@ -11,6 +13,7 @@ def movie_review(event,findm,question):
     movie_name = checDic(event.message.text)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
+    le = len(checksentence(question))
 
     if movie_name != '' and name != '':
 
@@ -36,7 +39,7 @@ def movie_review(event,findm,question):
         if found == False:
             return  'ยังไม่ได้รีวิวหนังเรื่องนี้เลยครับ'
 
-    elif (movie_name=='')and (searchMovieNameInDic(question)=='') :
+    elif (name == '' and movie_name==''and le==1) :
             mov = findm
             movie_name = mov.lower().replace(' ', '')
             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

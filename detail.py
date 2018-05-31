@@ -2,6 +2,8 @@ import re
 
 from googletrans import Translator
 import  requests
+
+from checkName import checksentence
 from cutword import cutw
 from json import load
 from classifyname import checDic
@@ -13,6 +15,7 @@ def movie_detail(event,findm,question):
     movie_name = searchMovie(movie_name)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
+    le = len(checksentence(question))
 
     if movie_name != '' and name != '':
         movie_name = movie_name.lower()
@@ -43,7 +46,7 @@ def movie_detail(event,findm,question):
                     return 'ยังไม่ทราบเนื้อเรื่องนี้เลยครับ'
         if found == False:
             return 'ยังไม่ทราบเนื้อเรื่องนี้เลยครับ'
-    elif (movie_name == '') and (searchMovieNameInDic(question) == ''):
+    elif (name == '' and movie_name==''and le==1):
         mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"

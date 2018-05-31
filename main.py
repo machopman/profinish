@@ -325,11 +325,13 @@ def PatternCon(userid,event,findm,ques,user):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '3', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
+            return 0
         elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
             detail = 'แล้วอยากอ่านอะไรละเรามีข้อมูล เรื่องย่อ บทรีวิว นักแสดง  ชื่อนักแสดง  ชื่อผู้กำกับ และ สปอย'
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie":findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
                          "Time": datetime.now()})
+            return 0
         else:
             return ques
 

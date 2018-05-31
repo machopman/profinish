@@ -1,6 +1,8 @@
 import re
 
 import  requests
+
+from checkName import checksentence
 from cutword import cutw
 from json import load
 from classifyname import checDic
@@ -10,6 +12,7 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 def movie_enjoy(event,findm,question):
     movie_name = checDic(event.message.text)
     movie_name = searchMovie(movie_name)
+    le = len(checksentence(question))
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
 
@@ -46,7 +49,7 @@ def movie_enjoy(event,findm,question):
 
 
 
-    elif (movie_name=='')and (searchMovieNameInDic(question)==''):
+    elif (name == '' and movie_name==''and le==1):
         mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
