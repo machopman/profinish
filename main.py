@@ -837,7 +837,7 @@ def checkcate(classify):
     elif classify == 14:
         return '14'
 
-def PatternCon(userid,event,findm,ques,user,question):
+def PatternCon(userid,event,findm,ques,user):
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
         question ='อยากอ่านเรื่องย่อ'
         if 'ต้องการ' in event.message.text :
@@ -845,7 +845,7 @@ def PatternCon(userid,event,findm,ques,user,question):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
-        elif 'ไม่ต้องการ'in event.message.text and 'ไม่' in event.message.text:
+        elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
