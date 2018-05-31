@@ -90,7 +90,7 @@ def movie(event):
     ques  =PatternCon(userid,event,findm,ques,user)
     ques = speakstory(event, user, userid, findm, ques)
     findcate = findmovie(userid)[1]
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',ques).replace(' ', '')
+    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',str(ques)).replace(' ', '')
 
     if sentence !='' and searchMovie(question) =='' :
         cut = cutw(sentence)
@@ -276,24 +276,28 @@ def movie(event):
              "Time": datetime.now()})
 
 def speakstory(event,user,userid,findm,ques):
-    a = ["กำลังคุยเรื่องอะไรอยู่", "คุยเรื่องอะไรอยู่", "กำลังคุยเรื่องไหน", "คุยเรื่องไหนอยู่", "กำลังสนทนาเรื่องไหน",
-         "กำลังพูดถึงเรื่องไหน", "กำลังพูดถึงเรื่องอะไรอยู่", "คุยเรื่องไหน"]
+    try:
+        a = ["กำลังคุยเรื่องอะไรอยู่", "คุยเรื่องอะไรอยู่", "กำลังคุยเรื่องไหน", "คุยเรื่องไหนอยู่", "กำลังสนทนาเรื่องไหน",
+             "กำลังพูดถึงเรื่องไหน", "กำลังพูดถึงเรื่องอะไรอยู่", "คุยเรื่องไหน"]
 
-    z = difflib.get_close_matches(ques, a)
-    if z!=[]:
-        if findm !='':
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
-            user.insert(
-                {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
-                 "Time": datetime.now()})
-        elif findm=='':
-            detail = 'อยากคุยเรื่องอะไรล่ะ'
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-            user.insert(
-                {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": a[0], "Answer": detail,
-                 "Time": datetime.now()})
-    else:
-        return ques
+        z = difflib.get_close_matches(ques, a)
+        if z!=[]:
+            if findm !='':
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
+                user.insert(
+                    {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
+                     "Time": datetime.now()})
+            elif findm=='':
+                detail = 'อยากคุยเรื่องอะไรล่ะ'
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+                user.insert(
+                    {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": a[0], "Answer": detail,
+                     "Time": datetime.now()})
+        else:
+            return ques
+    except:
+        return
+
 
 
 
