@@ -37,7 +37,7 @@ def movie_actor(event,findm,question):
                     return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
-    elif (name == '' and movie_name==''and len(checksentence(event)==1)) :
+    elif (name == '' and movie_name==''and len(checksentence(question)==1)) :
             print('เข้า2')
             mov = findm
             movie_name = mov.lower().replace(' ', '')
