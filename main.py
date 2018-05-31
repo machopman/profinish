@@ -279,7 +279,7 @@ def speakstory(event,user,userid,findm,ques):
     a = ["กำลังคุยเรื่องอะไรอยู่", "คุยเรื่องอะไรอยู่", "กำลังคุยเรื่องไหน", "คุยเรื่องไหนอยู่", "กำลังสนทนาเรื่องไหน",
          "กำลังพูดถึงเรื่องไหน", "กำลังพูดถึงเรื่องอะไรอยู่", "คุยเรื่องไหน"]
 
-    z = difflib.get_close_matches(event, a)
+    z = difflib.get_close_matches(ques, a)
     if z!=[]:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
         user.insert(
