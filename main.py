@@ -281,10 +281,17 @@ def speakstory(event,user,userid,findm,ques):
 
     z = difflib.get_close_matches(ques, a)
     if z!=[]:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
-        user.insert(
-            {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
-             "Time": datetime.now()})
+        if findm !='':
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
+            user.insert(
+                {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
+                 "Time": datetime.now()})
+        elif findm=='':
+            detail = 'อยากคุยเรื่องอะไรล่ะ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+            user.insert(
+                {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": a[0], "Answer": detail,
+                 "Time": datetime.now()})
     else:
         return ques
 
