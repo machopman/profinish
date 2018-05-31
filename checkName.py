@@ -36,7 +36,8 @@ def checksentence(event):
 
 #print(checksentence('ใครเป็นผู้กำกับลอ'))
 
-
+le =len(checksentence('ใครเป็นนักแสดง') )
+print(type(le))
 
 
 
