@@ -287,12 +287,14 @@ def speakstory(event,user,userid,findm,ques):
                 user.insert(
                     {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
                      "Time": datetime.now()})
+                return 0
             elif findm=='':
                 detail = 'อยากคุยเรื่องอะไรล่ะ'
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
                 user.insert(
                     {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": a[0], "Answer": detail,
                      "Time": datetime.now()})
+                return 0
         else:
             return ques
     except:
@@ -307,11 +309,13 @@ def PatternCon(userid,event,findm,ques,user):
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
                          "Time": datetime.now()})
+            return 0
         elif 'ไม่ต้องการ'in event.message.text or 'ไม่' in event.message.text:
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": event.message.text, "Answer": detail,
                          "Time": datetime.now()})
+            return 0
         else:
             return ques
     elif findquestion(userid) =="แล้วต้องการอ่าน บทรีวิว ไหมล่ะ":
