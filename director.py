@@ -19,7 +19,6 @@ def movie_director(event,findm,question):
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
     if e!='' and movie_name !='' and name !='':  #คำถาม+ชื่อภาอังกฤษ
-        print('เข้า1')
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
