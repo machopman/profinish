@@ -56,7 +56,6 @@ def movie_director(event,findm,question):
                 movie_detail = r.json()
                 detail = movie_detail['response'][0]['detailMovie'][0]['Direct']
                 detail = detail.replace('\n', '')
-                print(detail)
                 if detail != '':
                     return detail
                 else:
@@ -99,4 +98,4 @@ def movie_director(event,findm,question):
         return 'ยังไม่รู้ใครเป็นผู้กำกับเลย'
 
 #print(movie_director('ใครเป็นผู้กำกับวันเดอวูแมน','','ใครเป็นผู้กำกับวันเดอวูแมน'))
-(movie_director('ใครเป็นผู้กำกับดราก้อนบอล','wonderwoman','ใครเป็นผู้กำกับดราก้อนบอล'))
+#(movie_director('ใครเป็นผู้กำกับดราก้อนบอล','wonderwoman','ใครเป็นผู้กำกับดราก้อนบอล'))
