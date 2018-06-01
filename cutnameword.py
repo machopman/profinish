@@ -13,6 +13,7 @@ def readFile():
 def CutNameMovie(question):
     cut = mmcut(question)
     if len(cut) ==2:
+        print('k')
         d= []
         for i in readFile():
             for j in cut:
@@ -25,8 +26,8 @@ def CutNameMovie(question):
         else:
             return question
     else:
-        question
-
+        return question
+#print(CutNameMovie('ใครเป็นผู้กำกับ'))
 
 def CutName(question):
     cut = mmcut(question)
