@@ -91,10 +91,10 @@ def movie(event):
     ques  =PatternCon(userid,event,findm,ques,user)
     ques = CutNameMovie(ques)
     findcate = findmovie(userid)[1]
-    sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',(ques))
 
-    if sentence !='' and searchMovie(question) =='' :
-        cut = cutw(sentence)
+
+    if  searchMovie(question) =='' :
+        cut = cutw(ques)
         print(cut)
         words = []
         for row in cut:
