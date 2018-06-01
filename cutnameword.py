@@ -26,3 +26,20 @@ def CutNameMovie(question):
             return question
     else:
         question
+
+
+def CutName(question):
+    cut = mmcut(question)
+    d= []
+    for i in readFile():
+        for j in cut:
+            if j in i:
+                d.append(j)
+    if d!=[]:
+        r =question.replace(d[0],'')
+        return r
+    else:
+        return ''
+
+
+#print(CutName('ใครเป็นผู้กำกับ'))

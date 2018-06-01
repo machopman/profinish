@@ -3,6 +3,7 @@ import re
 import  requests
 
 from checkName import checksentence
+from cutnameword import CutName
 from cutword import cutw
 from json import load
 
@@ -13,6 +14,8 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 def movie_director(event,findm,question):
     movie_name = checDic(event)
     movie_name = searchMovie(movie_name)
+    e =CutName(question)
+
     le = len(checksentence(question))
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
@@ -61,9 +64,9 @@ def movie_director(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
 
-    else:
+    elif e!='':
 
-        cut = cutw(event.message.text)
+        cut = cutw(event)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
@@ -92,5 +95,8 @@ def movie_director(event,findm,question):
                                     return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลย'
                     except:
                         return 'ยังไม่รู้ใครเป็นผู้กำกับเลย'
+    else:
+        return 'ยังไม่รู้ใครเป็นผู้กำกับเลย'
 
 #print(movie_director('ใครเป็นผู้กำกับวันเดอวูแมน','','ใครเป็นผู้กำกับวันเดอวูแมน'))
+(movie_director('ใครเป็นผู้กำกับดราก้อนบอล','wonderwoman','ใครเป็นผู้กำกับดราก้อนบอล'))
