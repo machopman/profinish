@@ -15,7 +15,7 @@ def searchMovieNameInDic(question):
                     e = e+u
         return e
 
-#print(searchMovieNameInDic('ใครเป็นนักแสดง'))
+#print(searchMovieNameInDic('วันเดอ'))
 
 def searchMovie(question):
     question = str(question)
