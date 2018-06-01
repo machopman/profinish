@@ -823,7 +823,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พิมพ์มาใหม่'))
     if clas == '15':  #
         detail = checkmoiveEn()
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail[0:1999]))
         user.insert(
             {"UserId": userid, "NameMovie": findm, "Cate": '15', "Question": question, "Answer": detail,
              "Time": datetime.now()})
