@@ -3,6 +3,7 @@ import difflib
 
 from cheeng import cheEng
 from classifyname import checDic
+from cutnameword import CutNameMovie
 from normalize import normalword
 import random
 from checkName import checkname, checknamedict
@@ -33,7 +34,6 @@ from spoil import movie_spoil
 from storyname import checkmoiveEn
 from type import movie_type
 from datetime import datetime
-from key import diffli
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(
@@ -89,6 +89,7 @@ def movie(event):
     userid = event.source.user_id
     findm =findmovie(userid)[0]
     ques  =PatternCon(userid,event,findm,ques,user)
+    ques = CutNameMovie(ques)
     findcate = findmovie(userid)[1]
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',(ques)).replace(' ', '')
 

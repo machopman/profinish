@@ -4,7 +4,6 @@ import  requests
 from json import load
 
 from checkName import checksentence
-from checkdic import checkd
 from classifyname import checDic
 from cutword import cutw
 from searchMovieNameInDic import searchMovieNameInDic, searchMovie
