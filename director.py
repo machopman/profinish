@@ -13,12 +13,17 @@ from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 
 def movie_director(event,findm,question):
     movie_name = checDic(event)
+    print(movie_name)
     movie_name = searchMovie(movie_name)
+    print(movie_name)
     e =CutName(question)
+    print(e)
 
     le = len(checksentence(question))
+    print(le)
     name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]', '',
                   movie_name).replace(' ', '')
+    print(name)
 
     if movie_name!='' and name!='':
         movie_name = movie_name.lower()
@@ -64,8 +69,7 @@ def movie_director(event,findm,question):
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
 
     elif e!='':
-
-        cut = cutw(event)
+        cut = cutw(event.message.text)
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
