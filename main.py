@@ -283,7 +283,7 @@ def movie(event):
 def PatternCon(userid,event,findm,ques,user):
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
         question ='อยากอ่านเรื่องย่อ'
-        if 'ต้องการ' in event.message.text :
+        if 'ต้องการ' == event.message.text :
             detail = movie_detail(event, findm, question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '5', "Question": question, "Answer": detail,
