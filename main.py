@@ -329,9 +329,6 @@ def Type(clas, event, chec, userid, user, question,name,findm):
     print('ชื่อหนังก่อนหน้า'+"="+findm)
     moviename = searchMovie(chec)
     if clas == '0' : #actor
-
-
-
         if name != '' :
             detail = movie_actor(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
