@@ -239,7 +239,7 @@ def movie(event):
             else:
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '' and findcate!='12' and checknamedict(question)=='find':
+    elif findm == '' and findcate!='12' and chec !='':
         try:
             check = checkname(ques)
             if chec != '' or check==True:
@@ -272,9 +272,9 @@ def movie(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมภาษาอังกฤษมั่วดิ'))
     elif find == True:
         detail ='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         user.insert(
-            {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
+            {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": chec, "Answer": detail,
              "Time": datetime.now()})
 
 
