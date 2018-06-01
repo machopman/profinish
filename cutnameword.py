@@ -27,7 +27,7 @@ def CutNameMovie(question):
             return question
     else:
         return question
-#print(CutNameMovie('ใครเป็นผู้กำกับ'))
+CutNameMovie('ไม่ต้องการ')
 
 def CutName(question):
     cut = mmcut(question)
@@ -43,4 +43,4 @@ def CutName(question):
         return ''
 
 
-#print(CutName('ใครเป็นผู้กำกับ'))
+#print(CutName('ใครเป็นผู้กำกับwonder'))

@@ -41,9 +41,8 @@ def findquestion(userid):
        return array[-1]
     else:
         return ''
-#print(findquestion('U7183997e3e85a10d8c5f1f3925825016'))
-'''
 
+#print(findquestion('U7183997e3e85a10d8c5f1f3925825016'))
 
 #print(findmovie('U7183997e3e85a10d8c5f1f3925825016')[1])
 
@@ -56,7 +55,7 @@ def findquestion(userid):
 
 
 #print(response("ใครเป็นนักแสดงKanColle","KanColle"))
-'''
+
 '''
 doc = db.users.find_one({"Question":question,'NameMovie':name})
 answer=   doc['Answer']
