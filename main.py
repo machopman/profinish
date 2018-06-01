@@ -299,7 +299,7 @@ def PatternCon(userid,event,findm,ques,user):
             return ques
     elif findquestion(userid) =="แล้วต้องการอ่าน บทรีวิว ไหมล่ะ":
         question = 'รีวิวหน่อย'
-        if 'ต้องการ'in event.message.text:
+        if 'ต้องการ'== event.message.text:
             detail = movie_review(event, findm, question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
             user.insert({"UserId": userid, "NameMovie": findm, "Cate": '3', "Question": question, "Answer": detail,
