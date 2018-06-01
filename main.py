@@ -30,6 +30,7 @@ import re
 from flask.ext.pymongo import PyMongo
 from review import movie_review
 from spoil import movie_spoil
+from storyname import checkmoiveEn
 from type import movie_type
 from datetime import datetime
 from key import diffli
@@ -821,10 +822,10 @@ def Type(clas, event, chec, userid, user, question,name,findm):
     if clas == '14':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พิมพ์มาใหม่'))
     if clas == '15':  #
-        detail = checkname()
+        detail = checkmoiveEn()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         user.insert(
-            {"UserId": userid, "NameMovie": findm, "Cate": '15', "Question": question, "Answer": findm,
+            {"UserId": userid, "NameMovie": findm, "Cate": '15', "Question": question, "Answer": detail,
              "Time": datetime.now()})
 
     if clas == '16':

@@ -3,7 +3,7 @@ import re
 import requests
 
 
-def checkname():
+def checkmoiveEn():
     URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
     r = requests.get(url=URL)
     data = r.json()
