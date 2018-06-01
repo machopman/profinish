@@ -138,7 +138,7 @@ def movie(event):
         graph = tf.Graph()
         with graph.as_default():
             wordCount = 15
-            cateDimension = 15
+            cateDimension = 17
             weightColumn1 = 22
             weightColumn2 = 64
             weightRow = 3
