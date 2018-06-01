@@ -866,9 +866,9 @@ def checkcate(classify):
     elif classify == 14:
         return '14'
     elif classify == 15:
-        return '14'
+        return '15'
     elif classify == 16:
-        return '14'
+        return '16'
 
 
 
