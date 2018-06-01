@@ -88,7 +88,6 @@ def movie(event):
     userid = event.source.user_id
     findm =findmovie(userid)[0]
     ques  =PatternCon(userid,event,findm,ques,user)
-    ques = speakstory(event, user, userid, findm, ques)
     findcate = findmovie(userid)[1]
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',(ques)).replace(' ', '')
 
@@ -276,30 +275,7 @@ def movie(event):
             {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": question, "Answer": detail,
              "Time": datetime.now()})
 
-def speakstory(event,user,userid,findm,ques):
-    try:
-        a = ["กำลังคุยเรื่องอะไรอยู่", "คุยเรื่องอะไรอยู่", "กำลังคุยเรื่องไหน", "คุยเรื่องไหนอยู่", "กำลังสนทนาเรื่องไหน",
-             "กำลังพูดถึงเรื่องไหน", "กำลังพูดถึงเรื่องอะไรอยู่", "คุยเรื่องไหน"]
 
-        z = difflib.get_close_matches(ques, a)
-        if z!=[]:
-            if findm !='':
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
-                user.insert(
-                    {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": z[0], "Answer": findm,
-                     "Time": datetime.now()})
-                return 0
-            elif findm=='':
-                detail = 'อยากคุยเรื่องอะไรล่ะ'
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
-                user.insert(
-                    {"UserId": userid, "NameMovie": findm, "Cate": '12', "Question": a[0], "Answer": detail,
-                     "Time": datetime.now()})
-                return 0
-        else:
-            return ques
-    except:
-        return   ques
 
 
 def PatternCon(userid,event,findm,ques,user):
@@ -844,7 +820,18 @@ def Type(clas, event, chec, userid, user, question,name,findm):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมพ์มั่วดิ'))
     if clas == '14':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พิมพ์มาใหม่'))
+    if clas == '15':  #
+        detail = checkname()
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
+        user.insert(
+            {"UserId": userid, "NameMovie": findm, "Cate": '15', "Question": question, "Answer": findm,
+             "Time": datetime.now()})
 
+    if clas == '16':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
+        user.insert(
+            {"UserId": userid, "NameMovie": findm, "Cate": '16', "Question": question, "Answer": findm,
+             "Time": datetime.now()})
 
 
 def checkcate(classify):
