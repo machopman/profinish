@@ -4,6 +4,7 @@ import difflib
 from cheeng import cheEng
 from classifyname import checDic
 from cutnameword import CutNameMovie
+from incorectword import keyword
 from normalize import normalword
 import random
 from checkName import checkname, checknamedict
@@ -94,7 +95,8 @@ def movie(event):
     sentence = re.sub('[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890]', '',(ques))
 
     if sentence !='' and searchMovie(question) =='' :
-        cut = cutw(sentence)
+        #cut = cutw(sentence)
+        cut = keyword(sentence)
         print(cut)
         words = []
         for row in cut:
