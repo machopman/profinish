@@ -227,14 +227,17 @@ def movie(event):
 
             name = re.sub('[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮฝฦใฬมฒท?ื์ิ.่๋้็เโ,ฯี๊ัํะำไๆ๙๘๗๖๕ึ฿ุู๔๓๒๑+ๅาแ]','', question).replace(' ', '')
             #movie_name = searchMovieNameInDic(question)
+            le = len(checksentence(question))
 
-
-            if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec==''and len(checksentence(question)==1):
-                if chec == '':
-                    text = 'เรื่องอะไรครับ'
-                    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
-                    user.insert(
-                        {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
+            if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec=='' and classify!=15 and classify!=16 :
+                if le ==1:
+                    if chec == '':
+                        text = 'เรื่องอะไรครับ'
+                        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
+                        user.insert(
+                            {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
+                else:
+                    Type(clas, event, chec, userid, user, question, name, findm)
 
             elif (name == '') and (chec == '') and classify == 12:
                 general(question, event, userid, user)

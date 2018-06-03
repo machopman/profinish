@@ -34,7 +34,7 @@ def searchMovieName(question):
     else:
         return ''
 
-#searchMovieName("ใครเป็นผู้กำกับวัน")
+
 
 
 def checkd(question):
@@ -50,5 +50,5 @@ def checkd(question):
 
 
 #print(checkd('cat'))
-print(checkd('ใครเป็นผู้กำกับ'))
+#print(checkd('ใครเป็นผู้กำกับ'))
 
