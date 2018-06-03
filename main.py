@@ -7,7 +7,7 @@ from cutnameword import CutNameMovie
 from incorectword import keyword
 from normalize import normalword
 import random
-from checkName import checkname, checknamedict
+from checkName import checkname, checknamedict, checksentence
 from actor import movie_actor
 from date import movie_date
 from detail import movie_detail
@@ -229,7 +229,7 @@ def movie(event):
             #movie_name = searchMovieNameInDic(question)
 
 
-            if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec=='':
+            if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec==''and len(checksentence(question)==1):
                 if chec == '':
                     text = 'เรื่องอะไรครับ'
                     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
