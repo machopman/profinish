@@ -271,6 +271,7 @@ def movie(event):
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
             print('bbbbbbbbbbbbbbbbbb')
+            question = 'รีวิวหน่อย'
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
             user.insert(
@@ -294,7 +295,9 @@ def movie(event):
 
 
 def PatternCon(userid,event,findm,ques,user):
+    print('zzzzzzzzzzzzzzzzzzzzzzzzzz')
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
+
         question ='อยากอ่านเรื่องย่อ'
         if 'ต้องการ' == event.message.text :
             detail = movie_detail(event, findm, question)
