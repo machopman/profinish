@@ -1,7 +1,7 @@
 
 from cutword import cutw
-from keywords import find_keyword
 
+from keywords import find_keyword
 
 
 def keyword(word):
@@ -18,7 +18,7 @@ def keyword(word):
         return a
 
 
-print(keyword('ได้'))
+#print(keyword('ได้'))
 
 
 
