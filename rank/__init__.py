@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import,print_function,unicode_literals
 from collections import Counter
-from pythainlp.corpus import stopwords
+
 #เรียงจำนวนคำของประโยค
+import stopwords
+
+
 def rank(data,stopword=False):
 	"""เรียงจำนวนคำของประโยค
 	รับค่าเป็น ''list'' คืนค่าเป็น ''dict'' [ข้อความ,จำนวน]"""
