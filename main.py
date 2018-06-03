@@ -89,6 +89,8 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
+    print(findm)
+    print(ques)
     ques  =PatternCon(userid,event,findm,ques,user)
     ques = CutNameMovie(ques)
     findcate = findmovie(userid)[1]
@@ -279,25 +281,27 @@ def movie(event):
                  "Time": datetime.now()})
 
     elif findm == '' and find == False and  en=='find':
+
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ไม่มีหนังเรื่องนี้'))
     elif find ==False and en=='find':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='พูดภาษาอังกฤษด้วยเก่งจัง'))
     elif find == False and en == 'not':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมภาษาอังกฤษมั่วดิ'))
     elif find == True:
+        print('yyyyyyyyyyyyyyyyyyy')
         detail ='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         user.insert(
-            {"UserId": userid, "NameMovie":findm , "Cate": '', "Question": chec, "Answer": detail,
+            {"UserId": userid, "NameMovie":chec , "Cate": '5', "Question": chec, "Answer": detail,
              "Time": datetime.now()})
 
 
 
 
 def PatternCon(userid,event,findm,ques,user):
-    print('zzzzzzzzzzzzzzzzzzzzzzzzzz')
-    if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
 
+    if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
+        print('zzzzzzzzzzzzzzzzzzzzzzzzzz')
         question ='อยากอ่านเรื่องย่อ'
         if 'ต้องการ' == event.message.text :
             detail = movie_detail(event, findm, question)
