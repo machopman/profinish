@@ -279,7 +279,7 @@ def movie(event):
         detail ='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         user.insert(
-            {"UserId": userid, "NameMovie": chec, "Cate": '', "Question": chec, "Answer": detail,
+            {"UserId": userid, "NameMovie":findm , "Cate": '', "Question": chec, "Answer": detail,
              "Time": datetime.now()})
 
 
