@@ -391,31 +391,34 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                  "Time": datetime.now()})
 
     if clas == '2':#"image"
+        try:
+            if name != '' :
+                detail = movie_image(event,findm,question)
+                image_message = ImageSendMessage(
+                    original_content_url=detail,
+                    preview_image_url=detail
+                )
+                line_bot_api.push_message(userid,image_message)
 
+            elif (name == '') and (chec != '') :
+                detail = movie_image(event,findm,question)
+                image_message = ImageSendMessage(
+                    original_content_url=detail,
+                    preview_image_url=detail
+                )
+                line_bot_api.push_message(userid, image_message)
 
-        if name != '' :
-            detail = movie_image(event,findm,question)
-            image_message = ImageSendMessage(
-                original_content_url=detail,
-                preview_image_url=detail
-            )
-            line_bot_api.push_message(userid,image_message)
+            elif (name == '') and (chec == '') :
+                detail = movie_image(event,findm,question)
+                image_message = ImageSendMessage(
+                    original_content_url=detail,
+                    preview_image_url=detail
+                )
+                line_bot_api.push_message(userid, image_message)
+        except:
+            detail = movie_image(event, findm, question)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
 
-        elif (name == '') and (chec != '') :
-            detail = movie_image(event,findm,question)
-            image_message = ImageSendMessage(
-                original_content_url=detail,
-                preview_image_url=detail
-            )
-            line_bot_api.push_message(userid, image_message)
-
-        elif (name == '') and (chec == '') :
-            detail = movie_image(event,findm,question)
-            image_message = ImageSendMessage(
-                original_content_url=detail,
-                preview_image_url=detail
-            )
-            line_bot_api.push_message(userid, image_message)
 
         if (name =='')and (chec!=''):
             user.insert({"UserId": userid, "NameMovie": moviename, "Cate": '2', "Question": question,
