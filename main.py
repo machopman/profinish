@@ -250,7 +250,7 @@ def movie(event):
                 print('eeeeeeeeeeeeeeeeeeeeeeeeee')
                 Type(clas, event, chec, userid, user, question,name,findm)
 
-    elif findm == '' and findcate!='12' and chec !='':
+    elif findm == '' and findcate!='12' and chec !='' and findcate!='16' :
         try:
             print('aaaaaaaaaaaaaaaaaaa')
             check = checkname(ques)
