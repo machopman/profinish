@@ -835,10 +835,17 @@ def Type(clas, event, chec, userid, user, question,name,findm):
              "Time": datetime.now()})
 
     if clas == '16':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
-        user.insert(
-            {"UserId": userid, "NameMovie": findm, "Cate": '16', "Question": question, "Answer": findm,
-             "Time": datetime.now()})
+        if findm!='':
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=findm))
+            user.insert(
+                {"UserId": userid, "NameMovie": findm, "Cate": '16', "Question": question, "Answer": findm,
+                 "Time": datetime.now()})
+        else:
+            detail ='ยังไม่ได้พูดถึงเรื่องไหนเลยนะ'
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='ยังไม่ได้พูดถึงเรื่องไหนเลยนะ'))
+            user.insert(
+                {"UserId": userid, "NameMovie": '', "Cate": '16', "Question": question, "Answer": detail,
+                 "Time": datetime.now()})
 
 
 def checkcate(classify):
