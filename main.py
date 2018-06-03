@@ -425,7 +425,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                          "Answer": 'รูปภาพ'+chec, "Time": datetime.now()})
         else:
             user.insert({"UserId": userid, "NameMovie":findm, "Cate": '2', "Question": question,
-                         "Answer": 'รูปภาพ'+findmovie(userid), "Time": datetime.now()})
+                         "Answer": 'รูปภาพ'+findm, "Time": datetime.now()})
     if clas == '3':#"review"
 
 
