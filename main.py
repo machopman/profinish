@@ -236,8 +236,11 @@ def movie(event):
                         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                         user.insert(
                             {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
-                else:
+                elif findm!='':
                     Type(clas, event, chec, userid, user, question, name, findm)
+
+
+
 
             elif (name == '') and (chec == '') and classify == 12:
                 general(question, event, userid, user)
