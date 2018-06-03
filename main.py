@@ -230,25 +230,29 @@ def movie(event):
             le = len(checksentence(question))
 
             if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec=='' and classify!=15 and classify!=16 :
+                print('ccccccccccccccccccccc')
                 if le ==1:
                     if chec == '':
                         text = 'เรื่องอะไรครับ'
                         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
                         user.insert(
                             {"UserId": userid, "NameMovie": "", "Cate": clas, "Question": question, "Answer": text,"Time": datetime.now()})
-                elif findm!='':
+                else:
                     Type(clas, event, chec, userid, user, question, name, findm)
 
 
 
 
             elif (name == '') and (chec == '') and classify == 12:
+                print('dddddddddddddddddddddddddd')
                 general(question, event, userid, user)
             else:
+                print('eeeeeeeeeeeeeeeeeeeeeeeeee')
                 Type(clas, event, chec, userid, user, question,name,findm)
 
     elif findm == '' and findcate!='12' and chec !='':
         try:
+            print('aaaaaaaaaaaaaaaaaaa')
             check = checkname(ques)
             if chec != '' or check==True:
                 w = user.find({'UserId':userid}).sort("Time")
@@ -266,6 +270,7 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
+            print('bbbbbbbbbbbbbbbbbb')
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
             user.insert(
