@@ -97,7 +97,7 @@ def movie(event):
     if sentence !='' and searchMovie(question) =='' :
         #cut = cutw(sentence)
         cut = keyword(sentence)
-        print(cut)
+
         words = []
         for row in cut:
             words.append(row)
@@ -778,26 +778,8 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                                     uri='http://mandm.plearnjai.com/'
                                 )
                             ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=a[5],
-                            title=d[5],
-                            text=f[5],
-                            actions=[
-                                MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[5],
-                                    text='เรื่องย่อ'+d[5]
-                                ),
-                                MessageTemplateAction(
-                                    label='บทรีวิว'+d[5],
-                                    text='บทรีวิว'+d[5]
-                                ),
-                                URITemplateAction(
-                                    label='website',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
                         )
+
                     ]
                 )
             )
