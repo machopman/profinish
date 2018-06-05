@@ -690,12 +690,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[0],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[0],
-                                    text='เรื่องย่อ'+d[0]
+                                    label='เรื่องย่อ'+str(d[0]),
+                                    text='เรื่องย่อ'+str(d[0])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+d[0],
-                                    text='บทรีวิว'+d[0]
+                                    label='บทรีวิว'+str(d[0]),
+                                    text='บทรีวิว'+str(d[0])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -709,12 +709,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[1],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[1],
-                                    text='เรื่องย่อ'+d[1]
+                                    label='เรื่องย่อ'+str(d[1]),
+                                    text='เรื่องย่อ'+str([1])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+d[1],
-                                    text='บทรีวิว'+d[1]
+                                    label='บทรีวิว'+str(d[1]),
+                                    text='บทรีวิว'+str(d[1])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -728,12 +728,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[2],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[2],
-                                    text='เรื่องย่อ'+d[2]
+                                    label='เรื่องย่อ'+str(d[2]),
+                                    text='เรื่องย่อ'+str(d[2])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+d[2],
-                                    text='บทรีวิว'+d[2]
+                                    label='บทรีวิว'+str(d[2]),
+                                    text='บทรีวิว'+str(d[2])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -747,12 +747,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[3],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[3],
-                                    text='เรื่องย่อ'+d[3]
+                                    label='เรื่องย่อ'+str(d[3]),
+                                    text='เรื่องย่อ'+str(d[3])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+d[3],
-                                    text='บทรีวิว'+d[3]
+                                    label='บทรีวิว'+str(d[3]),
+                                    text='บทรีวิว'+str(d[3])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -766,12 +766,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[4],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+d[4],
-                                    text='เรื่องย่อ'+d[4]
+                                    label='เรื่องย่อ'+str(d[4]),
+                                    text='เรื่องย่อ'+str(d[4])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+d[4],
-                                    text='บทรีวิว'+d[4]
+                                    label='บทรีวิว'+str(d[4]),
+                                    text='บทรีวิว'+str(d[4])
                                 ),
                                 URITemplateAction(
                                     label='website',
