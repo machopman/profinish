@@ -27,7 +27,7 @@ def CutNameMovie(question):
             return question
     else:
         return question
-CutNameMovie('ไม่ต้องการ')
+#CutNameMovie('ไม่ต้องการ')
 
 def CutName(question):
     cut = mmcut(question)

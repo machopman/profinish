@@ -3,7 +3,7 @@ import re
 from cutword import cutw
 
 
-def GetListWithoutRepetitions(question):
+def GetList(question):
     if question==[]:
         return []
     Output = []
@@ -21,18 +21,19 @@ def  normalword(word):
     if "นนัก" not in word:
         question = re.sub(r'(\w)\1+', r'\1', word)
         s = cutw(question)
-        e= GetListWithoutRepetitions(s)
+        e= GetList(s)
         f = ''
         for i in e:
             f=f+i
         return f
     else:
         s = cutw(word)
+        print(s)
         p = []
         for i in s:
             if len(i) > 2:
                 p.append(i)
-        e = GetListWithoutRepetitions(p)
+        e = GetList(p)
         k =''
         for i in e:
             k = k +i
@@ -41,6 +42,6 @@ def  normalword(word):
 
 
 
-#print(normalword('ใครเป็นนักแสดงงงงงงงงงงวันเดอวูแมนนนนนน'))
+#print(normalword('หีหีหีหีหีหีแม่แม่แม่แม่มึง'))
 
 #print(normalword('ใครเป็นผู้กำกับบบบบบบวันเดอวูแมนนนนน'))

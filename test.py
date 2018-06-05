@@ -17,6 +17,7 @@ def readFile1():
     return a
 
 def ran(sentence):
+
         #cut = cutw(sentence)
         cut= keyword(sentence)
         words = []
@@ -60,6 +61,7 @@ def ran(sentence):
                 else:
                     poem = np.concatenate((poem, np.zeros(22)))
             inputs2.append(poem)
+
         graph = tf.Graph()
         with graph.as_default():
             wordCount = 15
@@ -103,7 +105,7 @@ def ran(sentence):
 
             # Combine all the pooled features
             num_filters_total = features1 * len([2, 3, 4])
-            print(pooled_outputs)
+            print(num_filters_total)
 
             # h_pool = tf.concat(3, pooled_outputs)
             h_pool = tf.concat(pooled_outputs, 3)
@@ -131,7 +133,6 @@ def ran(sentence):
             # CalculateMean cross-entropy loss
             with tf.name_scope("loss"):
                 losses = tf.nn.softmax_cross_entropy_with_logits(logits=scores, labels=y_)
-                loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
 
             correct_prediction = tf.equal(tf.argmax(scores, 1), tf.argmax(y_, 1))
             train_step = tf.train.AdamOptimizer(1e-4).minimize(losses)  #######///
@@ -141,6 +142,7 @@ def ran(sentence):
             with tf.Session(graph=graph) as sess:
                 saver.restore(sess, 'model.ckpt')
                 p = sess.run(tf.argmax(scores, 1), feed_dict={x: inputs2, keep_prob: 1.0})
+
             print(cut)
             print(sentence)
             print(p)
@@ -148,6 +150,5 @@ def ran(sentence):
 def qq():
    for i in readFile1():
        ran(i)
-
 
 qq()

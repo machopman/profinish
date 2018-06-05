@@ -232,7 +232,7 @@ def movie(event):
             le = len(checksentence(question))
 
             if findm == '' and classify!=12 and classify!=13 and classify!=14 and classify!=11 and classify!=10 and classify!=9 and classify!=8 and name ==''and chec=='' and classify!=15 and classify!=16 :
-                print('ccccccccccccccccccccc')
+
                 if le ==1:
                     if chec == '':
                         text = 'เรื่องอะไรครับ'
@@ -246,15 +246,15 @@ def movie(event):
 
 
             elif (name == '') and (chec == '') and classify == 12:
-                print('dddddddddddddddddddddddddd')
+
                 general(question, event, userid, user)
             else:
-                print('eeeeeeeeeeeeeeeeeeeeeeeeee')
+
                 Type(clas, event, chec, userid, user, question,name,findm)
 
     elif findm == '' and findcate!='12' and chec !='' and findcate!='16' :
         try:
-            print('aaaaaaaaaaaaaaaaaaa')
+
             check = checkname(ques)
             if chec != '' or check==True:
                 w = user.find({'UserId':userid}).sort("Time")
@@ -272,7 +272,7 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
-            print('bbbbbbbbbbbbbbbbbb')
+
             question = 'รีวิวหน่อย'
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
@@ -288,7 +288,7 @@ def movie(event):
     elif find == False and en == 'not':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='อย่าพิมภาษาอังกฤษมั่วดิ'))
     elif find == True:
-        print('yyyyyyyyyyyyyyyyyyy')
+
         detail ='ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ'
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
         user.insert(
@@ -301,7 +301,7 @@ def movie(event):
 def PatternCon(userid,event,findm,ques,user):
 
     if findquestion(userid) == 'ต้องการอ่านเนื้อหาหนังเรื่องนี้ไหมครับ':
-        print('zzzzzzzzzzzzzzzzzzzzzzzzzz')
+
         question ='อยากอ่านเรื่องย่อ'
         if 'ต้องการ' == event.message.text :
             detail = movie_detail(event, findm, question)
@@ -697,12 +697,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[0],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[0],
+                                    text='เรื่องย่อ'+d[0]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[0],
+                                    text='บทรีวิว'+d[0]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -716,12 +716,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[1],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[1],
+                                    text='เรื่องย่อ'+d[1]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[1],
+                                    text='บทรีวิว'+d[1]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -735,12 +735,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[2],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[2],
+                                    text='เรื่องย่อ'+d[2]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[2],
+                                    text='บทรีวิว'+d[2]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -754,12 +754,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[3],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[3],
+                                    text='เรื่องย่อ'+d[3]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[3],
+                                    text='บทรีวิว'+d[3]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -773,12 +773,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[4],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[4],
+                                    text='เรื่องย่อ'+d[4]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[4],
+                                    text='บทรีวิว'+d[4]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -792,12 +792,12 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[5],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ',
-                                    text='เรื่องย่อ'
+                                    label='เรื่องย่อ'+d[5],
+                                    text='เรื่องย่อ'+d[5]
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว',
-                                    text='บทรีวิว'
+                                    label='บทรีวิว'+d[5],
+                                    text='บทรีวิว'+d[5]
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -809,6 +809,8 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                 )
             )
             line_bot_api.reply_message(event.reply_token, message)
+          
+
             return 0
     if clas =='11':
             if name != '' and clas != 9 :
