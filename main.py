@@ -89,8 +89,6 @@ def movie(event):
     ques = checkd(question)
     userid = event.source.user_id
     findm =findmovie(userid)[0]
-    print(findm)
-    print(ques)
     ques  =PatternCon(userid,event,findm,ques,user)
     ques = CutNameMovie(ques)
     findcate = findmovie(userid)[1]
@@ -342,11 +340,6 @@ def PatternCon(userid,event,findm,ques,user):
 
 
 def Type(clas, event, chec, userid, user, question,name,findm):
-    print('ประเภท'+"="+clas)
-    print('ชื่อหนังพบในdic'+"="+chec)
-    print('คำถาม'+"="+question)
-    print('ชื่อหนัง'+"="+name)
-    print('ชื่อหนังก่อนหน้า'+"="+findm)
     moviename = searchMovie(chec)
     if clas == '0' : #actor
         if name != '' :
@@ -809,7 +802,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                 )
             )
             line_bot_api.reply_message(event.reply_token, message)
-          
+
 
             return 0
     if clas =='11':
