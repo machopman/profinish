@@ -690,11 +690,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[0],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+str(d[0]),
+                                    label='เรื่องย่อ',
                                     text='เรื่องย่อ'+str(d[0])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+str(d[0]),
+                                    label='บทรีวิว',
                                     text='บทรีวิว'+str(d[0])
                                 ),
                                 URITemplateAction(
@@ -709,11 +709,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[1],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+str(d[1]),
+                                    label='เรื่องย่อ',
                                     text='เรื่องย่อ'+str([1])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+str(d[1]),
+                                    label='บทรีวิว',
                                     text='บทรีวิว'+str(d[1])
                                 ),
                                 URITemplateAction(
@@ -728,11 +728,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[2],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+str(d[2]),
+                                    label='เรื่องย่อ',
                                     text='เรื่องย่อ'+str(d[2])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+str(d[2]),
+                                    label='บทรีวิว',
                                     text='บทรีวิว'+str(d[2])
                                 ),
                                 URITemplateAction(
@@ -747,11 +747,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[3],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+str(d[3]),
+                                    label='เรื่องย่อ',
                                     text='เรื่องย่อ'+str(d[3])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+str(d[3]),
+                                    label='บทรีวิว',
                                     text='บทรีวิว'+str(d[3])
                                 ),
                                 URITemplateAction(
@@ -766,11 +766,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             text=f[4],
                             actions=[
                                 MessageTemplateAction(
-                                    label='เรื่องย่อ'+str(d[4]),
+                                    label='เรื่องย่อ',
                                     text='เรื่องย่อ'+str(d[4])
                                 ),
                                 MessageTemplateAction(
-                                    label='บทรีวิว'+str(d[4]),
+                                    label='บทรีวิว',
                                     text='บทรีวิว'+str(d[4])
                                 ),
                                 URITemplateAction(
