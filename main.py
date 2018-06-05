@@ -19,15 +19,14 @@ from searchpic import searchpic
 import json
 import numpy as np
 import tensorflow as tf
-from cutword import cutw
+#from cutword import cutw
 from checkdic import checkd
 from searchMovieNameInDic import searchMovie, searchM
 from flask import Flask, request, abort
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage,
-                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction, ButtonsTemplate,
-                            PostbackTemplateAction)
+                            CarouselTemplate, CarouselColumn, MessageTemplateAction, URITemplateAction)
 import re
 from flask.ext.pymongo import PyMongo
 from review import movie_review
@@ -270,7 +269,6 @@ def movie(event):
                 ques = q[-1]+chec
                 Type(t[-1], event, chec, userid, user, ques, chec,findm)
         except:
-
             question = 'รีวิวหน่อย'
             detail ='แล้วต้องการอ่าน บทรีวิว ไหมล่ะ'
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=detail))
@@ -370,8 +368,6 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                  "Time": datetime.now()})
 
     if clas == '1':#"director"
-
-
         if name != '' :
             detail = movie_director(event,findm,question)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=detail))
@@ -691,11 +687,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+str(d[0])
+                                    text='เรื่องย่อ'+(d[0])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
-                                    text='บทรีวิว'+str(d[0])
+                                    text='บทรีวิว'+(d[0])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -710,11 +706,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+str([1])
+                                    text='เรื่องย่อ'+([1])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
-                                    text='บทรีวิว'+str(d[1])
+                                    text='บทรีวิว'+(d[1])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -729,11 +725,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+str(d[2])
+                                    text='เรื่องย่อ'+(d[2])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
-                                    text='บทรีวิว'+str(d[2])
+                                    text='บทรีวิว'+(d[2])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -748,11 +744,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+str(d[3])
+                                    text='เรื่องย่อ'+(d[3])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
-                                    text='บทรีวิว'+str(d[3])
+                                    text='บทรีวิว'+(d[3])
                                 ),
                                 URITemplateAction(
                                     label='website',
@@ -767,11 +763,11 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+str(d[4])
+                                    text='เรื่องย่อ'+(d[4])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
-                                    text='บทรีวิว'+str(d[4])
+                                    text='บทรีวิว'+(d[4])
                                 ),
                                 URITemplateAction(
                                     label='website',
