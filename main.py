@@ -580,7 +580,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                 template=CarouselTemplate(
                     columns=[
                         CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
+                            title='ตัวอย่างการสนทนาในแต่ละประเภท',
                             text='ถามเกี่ยวกับ',
                             actions=[
 
@@ -600,7 +600,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             ]
                         ),
                         CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
+                            title='ตัวอย่างการสนทนาในแต่ละประเภท',
                             text='ถามเกี่ยวกับ',
                             actions=[
 
@@ -619,7 +619,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             ]
                         ),
                         CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
+                            title='ตัวอย่างการสนทนาในแต่ละประเภท',
                             text='ถามเกี่ยวกับ',
                             actions=[
 
@@ -638,7 +638,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             ]
                         ),
                         CarouselColumn(
-                            title='สามารถถามได้ดังนี้',
+                            title='ตัวอย่างการสนทนาในแต่ละประเภท',
                             text='ถามเกี่ยวกับ',
                             actions=[
 
