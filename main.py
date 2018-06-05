@@ -982,7 +982,8 @@ def general(question, event,userid,user):
            user.insert({"UserId": userid, "NameMovie": '', "Cate": '12', "Question": question, "Answer": text,
                         "Time": datetime.now()})
        else:
-           text ="เราสามารถถาม เกี่ยวกับ ผู้กำกับ นักแสดง รีวิว สปอย แนะนำหนัง รูปภาพ เวลาฉาย ประเภท ของหนังแต่ละเรื่องได้นะได้นะ"
+           s = ['เราสามารถถาม เกี่ยวกับ ผู้กำกับ นักแสดง รีวิว สปอย แนะนำหนัง รูปภาพ เวลาฉาย ประเภท ของหนังแต่ละเรื่องได้นะได้นะ','เราสามารถแนะนำหนังได้นะ','สามารถถามชื่อนักแสดงได้นะ','ถามอย่างอื่นได้ไหมล่ะ เช่น ชื่อนักแสดง ชื่อผู้กำกับ ได้นะ','ถามเรื่องอื่นได้ไหม เช่น ถามเรื่องย่อ ถามรีวิว ได้นะ','เราสามารถให้ข้อมูลเดี่ยวกับนักแสดงได้นะ']
+           text = random.choice(s)
            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=text))
            user.insert({"UserId": userid, "NameMovie": '', "Cate": '12', "Question": question, "Answer": text,
                         "Time": datetime.now()})
