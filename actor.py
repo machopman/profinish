@@ -5,7 +5,7 @@ from json import load
 from checkName import checksentence
 from classifyname import checDic
 from cutnameword import CutName
-from cutword import cutw
+#from cutword import cutw
 from searchMovieNameInDic import searchMovieNameInDic, searchMovie
 
 
@@ -37,7 +37,7 @@ def movie_actor(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif (movie_name == '' and le == 1 and name == ''):  # คำถามธรรมดา
-            print('เข้า2')
+
             mov = findm
             movie_name = mov.lower().replace(' ', '')
             URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -52,7 +52,7 @@ def movie_actor(event,findm,question):
                     movie_detail = r.json()
                     detail = movie_detail['response'][0]['detailMovie'][0]['Actor']
                     detail = detail.replace('\n', '')
-                    print(detail)
+                    #print(detail)
                     if detail != '':
                         return detail
                     else:
@@ -61,7 +61,7 @@ def movie_actor(event,findm,question):
                 return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
 
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-                print('เข้า3')
+
                 with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                     a = load(f)
                     for key, value in a.items():
@@ -81,7 +81,7 @@ def movie_actor(event,findm,question):
                                         movie_detail = r.json()
                                         detail = movie_detail['response'][0]['detailMovie'][0]['Actor']
                                         detail = detail.replace('\n', '')
-                                        print(detail)
+                                        #print(detail)
                                         if detail != '':
                                             return detail
                                         else:
@@ -111,10 +111,10 @@ def movie_actor(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลนักแสดงหนังเรื่องนี้เลยครับ'
     elif e != '' and dd == '':
-        print('เข้า5')
+
         return 'ยังไม่มีข้อมูลนะครับ'
     else:
-        print('เข้า6')
+
         return 'ยังไม่มีข้อมูลเลยจร้า'
 
 

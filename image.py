@@ -40,7 +40,7 @@ def movie_image(event,findm,question):
                 found = True
                 return "https://imagemovie.herokuapp.com/" + movie['idIMDb'] + '.jpg'
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-            print('เข้า3')
+
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():
@@ -69,9 +69,9 @@ def movie_image(event,findm,question):
                 found = True
                 return "https://imagemovie.herokuapp.com/" + movie['idIMDb'] + '.jpg'
     elif e !='' and dd =='':
-        print('เข้า5')
+
         return 'ยังไม่มีข้อมูลนะครับ'
     else:
-        print('เข้า6')
+
         return 'ยังไม่มีข้อมูลเลยจร้า'
 #print(movie_image('ขอรูปหนังwonderwoman'))

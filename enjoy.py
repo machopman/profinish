@@ -79,7 +79,7 @@ def movie_enjoy(event,findm,question):
                     return 'ไม่สนุกมาก'
 
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-            print('เข้า3')
+
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():
@@ -148,10 +148,10 @@ def movie_enjoy(event,findm,question):
                 elif neg >= 76 and neg <= 100:
                     return 'สนุกมาก'
     elif e != '' and dd == '':
-        print('เข้า5')
+
         return 'ยังไม่มีข้อมูลนะครับ'
     else:
-        print('เข้า6')
+
         return 'ยังไม่มีข้อมูลเลยจร้า'
 
 #print(movie_enjoy('วันเดอวูแมนสนุกไหมครับ'))

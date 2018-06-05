@@ -40,7 +40,7 @@ def movie_director(event,findm,question):
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
 
     elif (movie_name=='' and le==1 and name ==''):  #คำถามธรรมดา
-        print('เข้า2')
+
         mov = findm
         movie_name = mov.lower().replace(' ','')
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
@@ -64,7 +64,7 @@ def movie_director(event,findm,question):
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
 
     elif movie_name !='' and searchMovieNameInDic(movie_name)!='' :
-        print('เข้า3')
+
         with open('new.txt', mode='r', encoding='utf-8-sig') as f:
             a = load(f)
             for key, value in a.items():
@@ -93,7 +93,7 @@ def movie_director(event,findm,question):
                     except:
                         return 'ยังไม่รู้ใครเป็นผู้กำกับเลย'
     elif movie_name !='':
-        print('เข้า4')
+
         movie_name = movie_name.lower()
         URL = "http://mandm.plearnjai.com/API/id_nameMovie.php?key=mandm"
         r = requests.get(url=URL)
@@ -114,10 +114,10 @@ def movie_director(event,findm,question):
         if found == False:
             return 'ยังไม่มีข้อมูลผู้กำกับหนังเรื่องนี้เลยครับ'
     elif e !='' and dd =='':
-        print('เข้า5')
+
         return 'ยังไม่มีข้อมูลนะครับ'
     else:
-        print('เข้า6')
+
         return 'ยังไม่มีข้อมูลเลยจร้า'
 
 

@@ -78,7 +78,7 @@ def movie_detail(event,findm,question):
         if found == False:
             return 'ยังไม่ทราบเนื้อเรื่องนี้เลยครับ'
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-            print('เข้า3')
+
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():

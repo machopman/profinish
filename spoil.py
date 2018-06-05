@@ -72,7 +72,7 @@ def movie_spoil(event,findm,question):
         if found == False:
             return 'ยังไม่ทราบตอนจบเรื่องนี้เลยครับ'
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-            print('เข้า3')
+
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():
@@ -131,10 +131,10 @@ def movie_spoil(event,findm,question):
         if found == False:
             return 'ยังไม่ทราบตอนจบเรื่องนี้เลยครับ'
     elif e != '' and dd == '':
-        print('เข้า5')
+
         return 'ยังไม่มีข้อมูลนะครับ'
     else:
-        print('เข้า6')
+
         return 'ยังไม่มีข้อมูลเลยจร้า'
 
 

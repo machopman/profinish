@@ -59,7 +59,7 @@ def movie_date(event,findm,question):
         if found == False:
             return 'ยังไม่ทราบวันฉายเลยครับ'
     elif movie_name != '' and searchMovieNameInDic(movie_name) != '':
-            print('เข้า3')
+
             with open('new.txt', mode='r', encoding='utf-8-sig') as f:
                 a = load(f)
                 for key, value in a.items():

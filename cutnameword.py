@@ -13,7 +13,7 @@ def readFile():
 def CutNameMovie(question):
     cut = mmcut(question)
     if len(cut) ==2:
-        print('k')
+        #print('k')
         d= []
         for i in readFile():
             for j in cut:
