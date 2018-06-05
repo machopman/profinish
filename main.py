@@ -706,7 +706,7 @@ def Type(clas, event, chec, userid, user, question,name,findm):
                             actions=[
                                 MessageTemplateAction(
                                     label='เรื่องย่อ',
-                                    text='เรื่องย่อ'+([1])
+                                    text='เรื่องย่อ'+(d[1])
                                 ),
                                 MessageTemplateAction(
                                     label='บทรีวิว',
