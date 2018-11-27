@@ -42,6 +42,6 @@ def  normalword(word):
 
 
 
-#print(normalword('หีหีหีหีหีหีแม่แม่แม่แม่มึง'))
+
 
 #print(normalword('ใครเป็นผู้กำกับบบบบบบวันเดอวูแมนนนนน'))
