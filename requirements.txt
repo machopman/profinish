@@ -3,7 +3,7 @@ gunicorn==19.7.1
 requests==2.18.4
 jsonschema==2.6.0
 numpy==1.14.1
-tensorflow==1.6.0
+tensorflow==1.15.2
 marisa-trie==0.7.4
 heapdict==1.0.0
 chardet==3.0.4
